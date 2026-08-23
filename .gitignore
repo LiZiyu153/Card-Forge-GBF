@@ -83,3 +83,9 @@ res/custom-cards/
 # ==== 临时探针输出（scratch，不入库） ====
 tests/probe*.txt
 
+
+# ==== GBF ??????????????2026-08-23? ====
+!res/languages/
+res/languages/*
+!res/languages/cardnames-zh-CN.txt
+!res/languages/zh-CN.properties
