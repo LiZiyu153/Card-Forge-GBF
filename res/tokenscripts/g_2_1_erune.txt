@@ -1,0 +1,5 @@
+Name:Erune Token
+ManaCost:no cost
+Types:Creature Erune
+PT:2/1
+Oracle:

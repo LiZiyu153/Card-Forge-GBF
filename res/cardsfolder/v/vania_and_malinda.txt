@@ -1,0 +1,7 @@
+Name:Vania and Malinda
+ManaCost:U B
+Types:Creature Dragon Vampire
+PT:2/2
+A:AB$ Pump | Cost$ 1 | Defined$ Self | KW$ Flying | Duration$ UntilEndOfTurn | SpellDescription$ CARDNAME gains flying until end of turn.
+A:AB$ Pump | Cost$ 1 | Defined$ Self | KW$ Lifelink | Duration$ UntilEndOfTurn | SpellDescription$ CARDNAME gains lifelink until end of turn.
+Oracle:{1}: Vania and Malinda gains flying until end of turn.\n{1}: Vania and Malinda gains lifelink until end of turn.

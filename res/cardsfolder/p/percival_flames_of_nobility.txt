@@ -1,0 +1,12 @@
+Name:Percival,Flames of Nobility
+ManaCost:2 R R R
+Types:Legendary Creature Human Noble
+PT:2/4
+K:First Strike
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigDamage | TriggerDescription$ Whenever CARDNAME attacks, it deals damage to target creature you don't control equal to its power. Then if you don't control an untapped creature, untap all creatures you control, and after this combat phase there is an additional combat phase. This ability triggers only once each turn.
+SVar:TrigDamage:DB$ DealDamage | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | NumDmg$ X | SubAbility$ DBExtraCombat
+SVar:DBExtraCombat:DB$ AddPhase | ExtraPhase$ Combat | AfterPhase$ EndCombat | ConditionCheckSVar$ Y | ConditionSVarCompare$ EQ0 | SubAbility$ DBUntapAll
+SVar:DBUntapAll:DB$ UntapAll | ValidCards$ Creature.YouCtrl | ConditionCheckSVar$ Y | ConditionSVarCompare$ EQ0
+SVar:X:Count$CardPower
+SVar:Y:Count$ValidBattlefield Creature.untapped+YouCtrl
+Oracle:First strike\nWhenever Percival attacks, it deals damage to target creature you don't control equal to its power. Then if you don't control an untapped creature, untap all creatures you control, and after this combat phase there is an additional combat phase. This ability triggers only once each turn.

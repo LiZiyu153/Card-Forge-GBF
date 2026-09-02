@@ -1,0 +1,11 @@
+Name:Noa,Airship's Guide
+ManaCost:4 W U
+Types:Legendary Creature Primal Artificer
+PT:4/5
+K:Flying
+K:Convoke
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever CARDNAME attacks, target other creature you control gains flying until end of turn.
+SVar:TrigPump:DB$ Pump | ValidTgts$ Creature.Other+YouCtrl | TgtPrompt$ Select another target creature you control | KW$ Flying | Duration$ UntilEndOfTurn
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigCopy | TriggerDescription$ When CARDNAME enters, create a token that's a copy of target artifact you control, except it isn't legendary.
+SVar:TrigCopy:DB$ CopyPermanent | ValidTgts$ Artifact.YouCtrl | TgtPrompt$ Select target artifact you control | NonLegendary$ True
+Oracle:Flying, convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nWhenever Noa attacks, target other creature you control gains flying until end of turn.\nWhen Noa enters, create a token that's a copy of target artifact you control, except it isn't legendary.

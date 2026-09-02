@@ -1,0 +1,5 @@
+Name:Wild Butterfly
+ManaCost:2 U U
+Types:Sorcery
+A:SP$ CopyPermanent | ValidTgts$ Creature | TgtPrompt$ Select target creature | AddKeywords$ Prowess | SpellDescription$ Create a token that's a copy of target creature, except it has prowess.
+Oracle:Create a token that's a copy of target creature, except it has prowess. (Whenever you cast a noncreature spell, that creature gets +1/+1 until end of turn.)

@@ -1,0 +1,5 @@
+Name:Plan B
+ManaCost:1 B
+Types:Instant
+A:SP$ Pump | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumAtt$ +2 | KW$ Fear | Duration$ UntilEndOfTurn | SpellDescription$ Target creature you control gets +2/+0 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
+Oracle:Target creature you control gets +2/+0 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)

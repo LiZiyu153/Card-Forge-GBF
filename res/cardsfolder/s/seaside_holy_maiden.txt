@@ -1,0 +1,8 @@
+Name:Seaside Holy Maiden
+ManaCost:1 U
+Types:Creature Human Knight
+PT:2/2
+K:Vigilance
+S:Mode$ CantBlock | ValidCard$ Card.Self | ValidBlocker$ Human | Description$ CARDNAME can't block Humans.
+S:Mode$ Continuous | Affected$ Creature.Human+Other+YouCtrl | AddPower$ 1 | AddToughness$ 1 | Description$ Other Humans you control get +1/+1.
+Oracle:Vigilance\nSeaside Holy Maiden can't block Humans.\nOther Humans you control get +1/+1.

@@ -1,0 +1,8 @@
+Name:Puella Volans
+ManaCost:W B
+Types:Enchantment Saga
+K:Chapter:3:DBI,DBII,DBIII
+SVar:DBI:DB$ Mill | NumCards$ 3 | Defined$ Player | SpellDescription$ Each player mills three cards.
+SVar:DBII:DB$ Token | TokenScript$ w_3_3_primal_flying_haste | TokenOwner$ You | SpellDescription$ Create a 3/3 white Primal creature token with flying and haste. It has vanishing 1.
+SVar:DBIII:DB$ ChangeZone | ValidTgts$ Card.Artifact+YouCtrl+cmcLE3 | TargetMin$ 0 | TargetMax$ 2 | TgtPrompt$ Select up to two target artifact cards in your graveyard with total mana value 3 or less | TgtZone$ Graveyard | Origin$ Graveyard | Destination$ Battlefield | SpellDescription$ Return up to two target artifact cards with total mana value 3 or less from your graveyard to the battlefield.
+Oracle:(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Each player mills three cards.\nII — Create a 3/3 white Primal creature token with flying and haste. It has vanishing 1.\nIII — Return up to two target artifact cards with total mana value 3 or less from your graveyard to the battlefield.

@@ -1,0 +1,8 @@
+Name:Slumbering Dragon
+ManaCost:3 G
+Types:Creature Human Knight
+PT:3/3
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigEffect | TriggerDescription$ When CARDNAME enters, target legendary creature you control has hexproof as long as CARDNAME remains on the battlefield.
+SVar:TrigEffect:DB$ Effect | ValidTgts$ Creature.Legendary+YouCtrl | TgtPrompt$ Select target legendary creature you control | RememberObjects$ Targeted | Duration$ UntilHostLeavesPlay | StaticAbilities$ STHexproof
+SVar:STHexproof:Mode$ Continuous | Affected$ Card.IsRemembered | AddKeyword$ Hexproof | Description$ This creature has hexproof as long as CARDNAME remains on the battlefield.
+Oracle:When Slumbering Dragon enters, target legendary creature you control has hexproof as long as Slumbering Dragon remains on the battlefield.

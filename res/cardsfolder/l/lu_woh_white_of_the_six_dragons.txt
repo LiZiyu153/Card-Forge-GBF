@@ -1,0 +1,7 @@
+Name:Lu Woh,White of the Six Dragons
+ManaCost:3 W W
+Types:Legendary Creature Erune Incarnation
+PT:4/4
+S:Mode$ CantBeCast | ValidCard$ Card | Origin$ Graveyard,Exile | Description$ Players can't cast spells from graveyards or exile.
+R:Event$ CreateToken | ActiveZones$ Battlefield | Layer$ CantHappen | Description$ Players can't create tokens.
+Oracle:Players can't cast spells from graveyards or from exile.\nPlayers can't create tokens.

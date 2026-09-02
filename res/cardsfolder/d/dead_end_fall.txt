@@ -1,0 +1,5 @@
+Name:Dead-End Fall
+ManaCost:1 B
+Types:Instant
+A:SP$ Destroy | ValidTgts$ Creature.Primal,Creature.Moonfolk | TgtPrompt$ Select target Primal or Moonfolk creature | NoRegen$ True | SpellDescription$ Destroy target Primal or Moonfolk creature. It can't be regenerated.
+Oracle:Destroy target Primal or Moonfolk creature. It can't be regenerated.

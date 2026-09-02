@@ -1,0 +1,12 @@
+Name:Protect This Smile Forever
+ManaCost:8 G
+Types:Legendary Enchantment
+K:Hexproof
+S:Mode$ CantChangeLife | ValidCard$ Card.Self | Description$ Your life total can't change.
+R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ You | ReplaceWith$ DBMill | Description$ If you would be dealt damage, mill that many cards instead. Then you may choose a permanent card from among the cards milled this way and put it onto the battlefield.
+SVar:DBMill:DB$ Mill | NumCards$ X | RememberMilled$ True | SubAbility$ DBChoose
+SVar:DBChoose:DB$ ChooseCard | ChoiceZone$ Graveyard | Choices$ Card.IsRemembered+Permanent | Optional$ True | RememberChosen$ True | SubAbility$ DBToBattlefield
+SVar:DBToBattlefield:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Battlefield | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True | ClearChosenCard$ True
+SVar:X:ReplaceCount$DamageAmount
+Oracle:Hexproof\nYour life total can't change.\nWhenever you would be dealt damage, instead mill that many cards. Then you may choose a permanent card from among those cards and put it onto the battlefield.

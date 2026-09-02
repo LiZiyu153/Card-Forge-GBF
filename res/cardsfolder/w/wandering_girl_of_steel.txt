@@ -1,0 +1,6 @@
+Name:Wandering Girl of Steel
+ManaCost:2 B
+Types:Creature Human Warrior
+PT:3/2
+A:AB$ Regenerate | Cost$ Sac<1/Land> | Defined$ Self | SpellDescription$ Sacrifice a land: Regenerate CARDNAME.
+Oracle:Sacrifice a land: Regenerate Wandering Girl of Steel.

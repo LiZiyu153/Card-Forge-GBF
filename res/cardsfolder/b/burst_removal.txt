@@ -1,0 +1,8 @@
+Name:Burst Removal
+ManaCost:3 W
+Types:Instant
+A:SP$ Charm | Choices$ DBArtifacts,DBAttacking | SpellDescription$ Choose one —\n• Destroy target artifact or enchantment. You gain 4 life.\n• Destroy target attacking or blocking creature.
+SVar:DBArtifacts:DB$ Destroy | ValidTgts$ Artifact,Enchantment | TgtPrompt$ Select target artifact or enchantment | SubAbility$ DBGainLife | SpellDescription$ Destroy target artifact or enchantment. You gain 4 life.
+SVar:DBGainLife:DB$ GainLife | LifeAmount$ 4
+SVar:DBAttacking:DB$ Destroy | ValidTgts$ Creature.attacking,Creature.blocking | TgtPrompt$ Select target attacking or blocking creature | SpellDescription$ Destroy target attacking or blocking creature.
+Oracle:Choose one —\n• Destroy target artifact or enchantment. You gain 4 life.\n• Destroy target attacking or blocking creature.

@@ -1,0 +1,9 @@
+Name:Selfless Salvation
+ManaCost:1 W
+Types:Enchantment
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ Player | TriggerZones$ Battlefield | Execute$ TrigGainLife | TriggerDescription$ At the beginning of each player's upkeep, that player gains 1 life.
+SVar:TrigGainLife:DB$ GainLife | Defined$ TriggeredPlayer | LifeAmount$ 1
+T:Mode$ Phase | Phase$ End of Turn | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ GE3 | Execute$ TrigDraw | TriggerDescription$ At the beginning of each end step, if a player gained 3 or more life this turn, you draw a card.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1
+SVar:X:PlayerCountRegistered$HasPropertyLifeGainedThisTurnGE3
+Oracle:At the beginning of each player's upkeep, that player gains 1 life.\nAt the beginning of each end step, if a player gained 3 or more life this turn, you draw a card.

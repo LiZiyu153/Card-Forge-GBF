@@ -1,0 +1,8 @@
+Name:Duo of Justice
+ManaCost:3 W
+Types:Creature Harvin Human
+PT:2/2
+K:First Strike
+K:Vigilance
+A:AB$ GainLife | Cost$ Sac<1/CARDNAME> | LifeAmount$ 4 | SpellDescription$ Sacrifice CARDNAME: You gain 4 life.
+Oracle:First strike, vigilance\nSacrifice Duo of Justice: You gain 4 life.

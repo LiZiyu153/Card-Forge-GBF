@@ -1,0 +1,5 @@
+Name:Phantom Rose
+ManaCost:U U
+Types:Instant
+A:SP$ CopySpellAbility | ValidTgts$ Card,Emblem | TargetType$ Spell.OppCtrl,Activated.OppCtrl | TgtPrompt$ Select target spell or activated ability an opponent controls that targets you or a creature you control | TargetValidTargeting$ You,Creature.YouCtrl+inRealZoneBattlefield | MayChooseTarget$ True | SpellDescription$ Copy target spell or activated ability an opponent controls that targets you or a creature you control. You may choose new targets for the copy.
+Oracle:Copy target spell or activated ability an opponent controls that targets you or a creature you control. You may choose new targets for the copy.

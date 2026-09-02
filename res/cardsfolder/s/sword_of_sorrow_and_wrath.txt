@@ -1,0 +1,7 @@
+Name:Sword of Sorrow and Wrath
+ManaCost:3 G
+Types:Creature Primal Warrior
+PT:3/3
+K:Vigilance
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Defender | IsPresent$ Primal.Other+YouCtrl | PresentCompare$ EQ0 | PresentZone$ Battlefield | Description$ Unless you control another Primal, CARDNAME has defender.
+Oracle:Vigilance\nUnless you control another Primal, Sword of Sorrow and Wrath has defender.

@@ -1,0 +1,7 @@
+Name:Levin Knight
+ManaCost:2 W
+Types:Creature Human Knight
+PT:2/3
+K:Vigilance
+K:First Strike
+Oracle:Vigilance, first strike

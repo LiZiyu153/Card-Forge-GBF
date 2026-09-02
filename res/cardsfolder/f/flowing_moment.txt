@@ -1,0 +1,5 @@
+Name:Flowing Moment
+ManaCost:B
+Types:Instant
+A:SP$ Pump | ValidTgts$ Creature.OppCtrl | TargetMin$ 2 | TargetMax$ 2 | TgtPrompt$ Select two target creatures an opponent controls | NumAtt$ -1 | NumDef$ -1 | IsCurse$ True | SpellDescription$ Two target creatures an opponent controls each get -1/-1 until end of turn.
+Oracle:Two target creatures an opponent controls each get -1/-1 until end of turn.

@@ -1,0 +1,8 @@
+Name:Best Mascot in the Skies
+ManaCost:4 B
+Types:Artifact Creature Construct
+PT:3/3
+K:Haste
+A:AB$ LoseLife | Cost$ T 3 B B | LifeAmount$ 3 | SubAbility$ DBDraw | SpellDescription$ You lose 3 life and draw three cards.
+SVar:DBDraw:DB$ Draw | NumCards$ 3
+Oracle:Haste\n{T}{3}{B}{B}: You lose 3 life and draw three cards.

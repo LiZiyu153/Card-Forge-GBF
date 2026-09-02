@@ -1,0 +1,10 @@
+Name:Mirin,Samurai Heart
+ManaCost:G G
+Types:Legendary Creature Human Samurai
+PT:0/5
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigReturn | TriggerDescription$ When CARDNAME enters, return up to one target Equipment card from your graveyard to your hand.
+SVar:TrigReturn:DB$ ChangeZone | ValidTgts$ Card.Equipment+YouCtrl | TargetMin$ 0 | TargetMax$ 1 | TgtPrompt$ Select up to one target Equipment card in your graveyard | TgtZone$ Graveyard | Origin$ Graveyard | Destination$ Hand
+S:Mode$ Continuous | Affected$ Card.Self+equipped | AddTrigger$ DamageDone | AddSVar$ TrigDraw | Description$ As long as CARDNAME is equipped, it has "Whenever CARDNAME deals combat damage to a player, draw that many cards."
+SVar:DamageDone:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Player | CombatDamage$ True | Execute$ TrigDraw | TriggerZones$ Battlefield | TriggerDescription$ Whenever CARDNAME deals combat damage to a player, draw that many cards.
+SVar:TrigDraw:DB$ Draw | NumCards$ TriggerCount$DamageAmount
+Oracle:When Mirin enters, return up to one target Equipment card from your graveyard to your hand.\nAs long as Mirin is equipped, it has "Whenever Mirin deals combat damage to a player, draw that many cards."

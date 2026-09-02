@@ -1,0 +1,6 @@
+Name:Behold My Evil Eye!
+ManaCost:2 W
+Types:Instant
+A:SP$ Destroy | ValidTgts$ Creature.attacking | TgtPrompt$ Select target attacking creature | SpellDescription$ Destroy target attacking creature.
+K:Overload:3 W W
+Oracle:Destroy target attacking creature.\nOverload {3}{W}{W} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")

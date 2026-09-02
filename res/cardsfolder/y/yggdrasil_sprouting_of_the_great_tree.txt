@@ -1,0 +1,10 @@
+Name:Yggdrasil,Sprouting of the Great Tree
+ManaCost:G
+Types:Legendary Creature Primal Elf
+PT:1/1
+K:Indestructible
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.YouCtrl+powerGTX | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever a creature with power greater than CARDNAME's power enters under your control, put a +1/+1 counter on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1
+SVar:X:Count$CardPower
+A:AB$ Animate | Cost$ T 2 G | ValidTgts$ Land.YouCtrl | TgtPrompt$ Select target land you control | Power$ X | Toughness$ X | Types$ Primal,Elf,Creature | AddKeyword$ Haste | Duration$ Permanent | SpellDescription$ Target land you control becomes an X/X Primal Elf creature with haste, where X is CARDNAME's power. It's still a land.
+Oracle:Indestructible\nWhenever a creature with power greater than Yggdrasil's power enters under your control, put a +1/+1 counter on Yggdrasil.\n{T}{2}{G}: Target land you control becomes an X/X Primal Elf creature with haste, where X is Yggdrasil's power. It's still a land.

@@ -1,0 +1,12 @@
+Name:Rei,Master of the Heart-Discerning Eyes
+ManaCost:B
+Types:Legendary Enchantment Creature Harvin
+PT:1/1
+S:Mode$ Continuous | Affected$ Card.Self | MayPlay$ True | AffectedZone$ Graveyard | EffectZone$ Graveyard | Description$ You may cast CARDNAME from your graveyard.
+A:AB$ ChangeZone | Cost$ T | Origin$ Hand | Destination$ Battlefield | ChangeType$ Creature | ChangeNum$ 1 | RememberChanged$ True | SubAbility$ DBAuraForm | SpellDescription$ Put a creature card from your hand onto the battlefield. Then CARDNAME becomes attached to that creature. The enchanted creature becomes a copy of a creature card in your graveyard, except it's 1/1.
+SVar:DBAuraForm:DB$ Animate | Defined$ Self | Types$ Aura | RemoveTypes$ Creature | Duration$ UntilHostLeavesPlay | SubAbility$ DBAttach
+SVar:DBAttach:DB$ Attach | Object$ Self | Defined$ Remembered | SubAbility$ DBClone
+SVar:DBClone:DB$ Clone | ChoiceZone$ Graveyard | Choices$ Creature.YouOwn | ChoiceTitle$ Select a creature card in your graveyard to copy | CloneTarget$ Remembered | SetPower$ 1 | SetToughness$ 1 | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+K:Enchant:Creature
+Oracle:You may cast Rei from your graveyard.\n{T}: Put a creature card from your hand onto the battlefield. Then Rei becomes attached to that creature. The enchanted creature becomes a copy of a creature card in your graveyard, except it's 1/1.

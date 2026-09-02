@@ -1,0 +1,9 @@
+Name:Erloesung Lied
+ManaCost:4 W W
+Types:Sorcery
+A:SP$ Charm | Choices$ DBReturn,DBGainLife,DBDestroyArtifacts,DBDestroyEnchantments | CharmNum$ 2 | SpellDescription$ Choose two —\n• Return up to two target legendary creature cards from your graveyard to the battlefield.\n• You gain 10 life.\n• Destroy all artifacts.\n• Destroy all enchantments.
+SVar:DBReturn:DB$ ChangeZone | ValidTgts$ Creature.Legendary+YouCtrl | TgtPrompt$ Select up to two target legendary creature cards in your graveyard | TargetMin$ 0 | TargetMax$ 2 | TgtZone$ Graveyard | Origin$ Graveyard | Destination$ Battlefield | SpellDescription$ Return up to two target legendary creature cards from your graveyard to the battlefield.
+SVar:DBGainLife:DB$ GainLife | LifeAmount$ 10 | SpellDescription$ You gain 10 life.
+SVar:DBDestroyArtifacts:DB$ DestroyAll | ValidCards$ Artifact | SpellDescription$ Destroy all artifacts.
+SVar:DBDestroyEnchantments:DB$ DestroyAll | ValidCards$ Enchantment | SpellDescription$ Destroy all enchantments.
+Oracle:Choose two —\n• Return up to two target legendary creature cards from your graveyard to the battlefield.\n• You gain 10 life.\n• Destroy all artifacts.\n• Destroy all enchantments.

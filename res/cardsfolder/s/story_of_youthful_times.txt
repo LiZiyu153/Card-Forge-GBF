@@ -1,0 +1,16 @@
+Name:Story of Youthful Times
+ManaCost:4 U U
+Types:Enchantment
+T:Mode$ SpellCast | ValidCard$ Card.Lesson | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ GE3 | Execute$ TrigDraw | TriggerDescription$ Whenever you cast a Lesson spell, if there are three or more Lesson cards in your graveyard, you draw a card.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1
+SVar:X:Count$ValidGraveyard Lesson.YouOwn
+AlternateMode:Adventure
+Oracle:Whenever you cast a Lesson spell, if there are three or more Lesson cards in your graveyard, you draw a card.
+
+ALTERNATE
+
+Name:What Might Have Been
+ManaCost:2 R
+Types:Instant Adventure
+A:SP$ Pump | ValidTgts$ Card.Instant+YouCtrl,Sorcery.YouCtrl | TargetMin$ 0 | TargetMax$ 1 | TgtPrompt$ Select up to one target instant or sorcery card in your graveyard | TgtZone$ Graveyard | PumpZone$ Graveyard | AddKeyword$ Flashback:CardManaCost | Duration$ UntilEndOfTurn | SpellDescription$ Until end of turn, target instant or sorcery card in your graveyard gains flashback. Its flashback cost is equal to its mana cost.
+Oracle:Until end of turn, target instant or sorcery card in your graveyard gains flashback. Its flashback cost is equal to its mana cost. (Then exile this card. You may cast the enchantment later from exile.)

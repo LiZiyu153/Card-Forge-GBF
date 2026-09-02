@@ -1,0 +1,8 @@
+Name:Dreaming Violinist
+ManaCost:2 U
+Types:Creature Erune
+PT:1/4
+A:AB$ Tap | Cost$ U T | ValidTgts$ Creature | TgtPrompt$ Select target creature | SubAbility$ DBPutCounter | SpellDescription$ Tap target creature and put a stun counter on it.
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Targeted | CounterType$ STUN | CounterNum$ 1
+K:TypeCycling:Basic:U
+Oracle:{U}, {T}: Tap target creature and put a stun counter on it. (If a permanent with a stun counter would become untapped, remove one from it instead.)\nBasic landcycling {U} ({U}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)

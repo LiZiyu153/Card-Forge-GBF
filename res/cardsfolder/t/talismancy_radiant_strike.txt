@@ -1,0 +1,7 @@
+Name:Talismancy: Radiant Strike
+ManaCost:W
+Types:Instant
+A:SP$ ChangeZone | ValidTgts$ Creature.MultiColor | TgtPrompt$ Select target multicolored creature | Origin$ Battlefield | Destination$ Exile | RememberChanged$ True | SubAbility$ DBReturn | SpellDescription$ Exile target multicolored creature, then return it to the battlefield under its owner's control.
+SVar:DBReturn:DB$ ChangeZone | Defined$ Remembered | Origin$ Exile | Destination$ Battlefield | GainControl$ True | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Exile target multicolored creature, then return it to the battlefield under its owner's control.

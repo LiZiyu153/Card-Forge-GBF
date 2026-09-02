@@ -1,0 +1,9 @@
+Name:Descent of the Flames
+ManaCost:R
+Types:Instant
+A:SP$ PutCounter | Defined$ You | CounterType$ ENERGY | CounterNum$ 2 | SubAbility$ DBChooseNumber | SpellDescription$ You get {E}{E} (two energy counters), then you may pay any amount of {E}. CARDNAME deals 1 damage to that many target creatures.
+SVar:DBChooseNumber:DB$ ChooseNumber | Max$ Max | ListTitle$ amount of energy to pay | SubAbility$ DBDealDamage
+SVar:DBDealDamage:DB$ DealDamage | ValidTgts$ Creature | TargetMin$ 0 | TargetMax$ X | TgtPrompt$ Select up to X target creatures | NumDmg$ 1 | UnlessCost$ PayEnergy<X> | UnlessPayer$ You | UnlessSwitched$ True
+SVar:Max:Count$YourCountersEnergy
+SVar:X:Count$ChosenNumber
+Oracle:You get {E}{E} (two energy counters), then you may pay any amount of {E}. Descent of the Flames deals 1 damage to that many target creatures.

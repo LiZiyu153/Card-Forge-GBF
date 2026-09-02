@@ -1,0 +1,8 @@
+Name:Sunset Memories
+ManaCost:1 R
+Types:Enchantment
+K:Cumulative upkeep:1
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigToken | TriggerDescription$ At the beginning of your upkeep, create two Treasure tokens.
+SVar:TrigToken:DB$ Token | TokenScript$ c_a_treasure_sac | TokenAmount$ 2 | TokenOwner$ You
+DeckHas:Ability$Token
+Oracle:Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay {1} for each age counter on it.)\nAt the beginning of your upkeep, create two Treasure tokens. (They're artifacts with "{T}, Sacrifice this artifact: Add one mana of any color.")

@@ -1,0 +1,8 @@
+Name:Gaia Dora
+ManaCost:R G
+Types:Sorcery
+A:SP$ PutCounter | ValidTgts$ Creature | TgtPrompt$ Select target creature | CounterType$ TRAMPLE | CounterNum$ 1 | RememberPut$ True | SubAbility$ DBPump | SpellDescription$ Put a trample counter on target creature. It gets +2/+0 until end of turn.
+SVar:DBPump:DB$ Pump | Defined$ Remembered | NumAtt$ +2 | Duration$ UntilEndOfTurn | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+K:Overload:2 R R G G
+Oracle:Put a trample counter on target creature. It gets +2/+0 until end of turn.\nOverload {2}{R}{R}{G}{G} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")

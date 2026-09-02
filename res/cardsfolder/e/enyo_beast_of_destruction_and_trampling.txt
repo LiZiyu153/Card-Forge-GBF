@@ -1,0 +1,13 @@
+Name:Enyo,Beast of Destruction and Trampling
+ManaCost:2 B G
+Types:Legendary Creature Primal
+PT:3/3
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ GE2 | Execute$ TrigSac | OptionalDecider$ You | TriggerDescription$ At the beginning of each end step, if you cast both a creature spell and a noncreature spell this turn, you may sacrifice a permanent you control. When you do, destroy target permanent.
+SVar:TrigSac:DB$ Sacrifice | SacValid$ Permanent.YouCtrl | SacMessage$ a permanent you control | RememberSacrificed$ True | SubAbility$ TrigWhenDo
+SVar:TrigWhenDo:DB$ ImmediateTrigger | ConditionDefined$ Remembered | ConditionPresent$ Card | Execute$ TrigDestroy | SubAbility$ DBCleanup | TriggerDescription$ When you do, destroy target permanent.
+SVar:TrigDestroy:DB$ Destroy | ValidTgts$ Permanent | TgtPrompt$ Select target permanent
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:CreatureCast:Count$ThisTurnCast_Creature.YouCtrl/LimitMax.1
+SVar:NoncreatureCast:Count$ThisTurnCast_Card.nonCreature+YouCtrl/LimitMax.1
+SVar:X:SVar$CreatureCast/Plus.SVar$NoncreatureCast
+Oracle:At the beginning of each end step, if you cast both a creature spell and a noncreature spell this turn, you may sacrifice a permanent you control. When you do, destroy target permanent.

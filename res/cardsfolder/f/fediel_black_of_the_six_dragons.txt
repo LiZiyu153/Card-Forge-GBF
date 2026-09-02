@@ -1,0 +1,10 @@
+Name:Fediel,Black of the Six Dragons
+ManaCost:3 B B
+Types:Legendary Creature Draph Incarnation
+PT:3/4
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigExileAll | TriggerDescription$ When CARDNAME enters, each player exiles all creature cards from their graveyard.
+SVar:TrigExileAll:DB$ ChangeZoneAll | Origin$ Graveyard | Destination$ Exile | ChangeType$ Creature
+R:Event$ Moved | ActiveZones$ Battlefield | ValidCard$ Creature | Destination$ Graveyard | ReplaceWith$ Exile | Description$ If a creature card would be put into a graveyard from anywhere, exile it instead.
+SVar:Exile:DB$ ChangeZone | Hidden$ True | Origin$ All | Destination$ Exile | Defined$ ReplacedCard
+S:Mode$ Continuous | Affected$ Creature.Other | AddKeyword$ Cumulative upkeep:1 | Description$ All other creatures have cumulative upkeep {1}. (At the beginning of their controller's upkeep, put an age counter on that creature, then sacrifice it unless that player pays {1} for each age counter on it.)
+Oracle:When Fediel enters, each player exiles all creature cards from their graveyard.\nIf a creature card would be put into a graveyard from anywhere, exile it instead.\nAll other creatures have cumulative upkeep {1}.

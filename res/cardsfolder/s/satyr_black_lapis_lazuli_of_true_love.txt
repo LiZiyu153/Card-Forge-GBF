@@ -1,0 +1,13 @@
+Name:Satyr,Black Lapis Lazuli of True Love
+ManaCost:2 B G
+Types:Legendary Creature Primal
+PT:3/3
+K:Convoke
+S:Mode$ ReduceCost | ValidCard$ Card.Primal | Type$ Spell | Activator$ You | Amount$ X | EffectZone$ All | Description$ Primal spells you cast cost {1} less to cast for each +1/+1 counter on CARDNAME.
+SVar:X:Count$CardCounters.P1P1
+T:Mode$ SpellCast | ValidCard$ Card.Primal | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigDiscard | OptionalDecider$ You | TriggerDescription$ Whenever you cast a Primal spell, you may discard a card. If you do, put a +1/+1 counter on CARDNAME.
+SVar:TrigDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1 | RememberDiscarded$ True | SubAbility$ DBPutCounter
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1 | ConditionDefined$ Remembered | ConditionPresent$ Card | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+DeckHas:Ability$Discard|Counters
+Oracle:Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nPrimal spells you cast cost {1} less to cast for each +1/+1 counter on Satyr.\nWhenever you cast a Primal spell, you may discard a card. If you do, put a +1/+1 counter on Satyr.

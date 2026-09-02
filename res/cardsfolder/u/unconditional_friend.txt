@@ -1,0 +1,9 @@
+Name:Unconditional Friend
+ManaCost:2 B
+Types:Enchantment
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.YouCtrl | TriggerZones$ Battlefield | FirstTime$ True | PlayerTurn$ True | Execute$ TrigGainLife | TriggerDescription$ Whenever the first creature enters the battlefield under your control each turn, you gain life equal to its power.
+SVar:TrigGainLife:DB$ GainLife | Defined$ You | LifeAmount$ X
+SVar:X:TriggeredCard$CardPower
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.OppCtrl | TriggerZones$ Battlefield | FirstTime$ True | PlayerTurn$ True | Execute$ TrigLoseLife | Secondary$ True | TriggerDescription$ Whenever the first creature enters the battlefield under an opponent's control each turn, that player loses life equal to its power.
+SVar:TrigLoseLife:DB$ LoseLife | Defined$ TriggeredCardController | LifeAmount$ X
+Oracle:Whenever the first creature enters the battlefield under your control each turn, you gain life equal to its power.\nWhenever the first creature enters the battlefield under an opponent's control each turn, that player loses life equal to its power.

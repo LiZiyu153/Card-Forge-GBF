@@ -1,0 +1,11 @@
+Name:Vortex of the Void
+ManaCost:2 G
+Types:Instant
+K:Split Second
+A:SP$ Charm | Choices$ DBDestroyAll,DBExile | SpellDescription$ Choose one —\n• Destroy all artifacts and enchantments. Each player gains 2 life for each permanent destroyed this way.\n• Exile target player's graveyard, then exile CARDNAME.
+SVar:DBDestroyAll:DB$ DestroyAll | ValidCards$ Artifact,Enchantment | RememberDestroyed$ True | SubAbility$ DBGainLife | SpellDescription$ Destroy all artifacts and enchantments. Each player gains 2 life for each permanent destroyed this way.
+SVar:DBGainLife:DB$ GainLife | Defined$ Player | LifeAmount$ X
+SVar:X:Count$RememberedSize/Times.2
+SVar:DBExile:DB$ ChangeZoneAll | ValidTgts$ Player | TgtPrompt$ Select target player | Origin$ Graveyard | Destination$ Exile | ChangeType$ Card.TargetedPlayerCtrl | SubAbility$ DBExileSelf | SpellDescription$ Exile target player's graveyard, then exile CARDNAME.
+SVar:DBExileSelf:DB$ ChangeZone | Defined$ Self | Origin$ Stack | Destination$ Exile
+Oracle:Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.)\nChoose one —\n• Destroy all artifacts and enchantments. Each player gains 2 life for each permanent destroyed this way.\n• Exile target player's graveyard, then exile Vortex of the Void.

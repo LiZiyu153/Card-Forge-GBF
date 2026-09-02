@@ -1,0 +1,8 @@
+Name:Wilnas,Vermillion of the Six Dragons
+ManaCost:3 R R
+Types:Legendary Creature Human Incarnation
+PT:4/4
+K:Trample
+S:Mode$ Continuous | Affected$ Creature.YouCtrl | AffectedZone$ Hand | AddKeyword$ Blitz:CardManaCost | Description$ Creature cards in your hand have blitz. The blitz cost is equal to their mana cost. (You may choose to cast that card for its blitz cost. If you do, it gains haste and "When this creature dies, draw a card." Sacrifice it at the beginning of the next end step.)
+S:Mode$ ReduceCost | ValidCard$ Card | ValidSpell$ Spell.Blitz | Activator$ You | Amount$ 2 | Description$ Blitz costs you pay cost {2} less.
+Oracle:Trample\nCreature cards in your hand have blitz. The blitz cost is equal to their mana cost minus {2}. (If you cast a spell for its blitz cost, it gains haste and "When this creature dies, draw a card." Sacrifice it at the beginning of the next end step.)

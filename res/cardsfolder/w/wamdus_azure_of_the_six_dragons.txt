@@ -1,0 +1,15 @@
+Name:Wamdus,Azure of the Six Dragons
+ManaCost:3 U U
+Types:Legendary Creature Harvin Incarnation
+PT:3/6
+S:Mode$ Continuous | Affected$ Instant.YouCtrl,Sorcery.YouCtrl | MayPlay$ True | AffectedZone$ Graveyard | Description$ You may cast instant and sorcery spells from your graveyard.
+T:Mode$ SpellCast | ValidCard$ Instant.wasCastFromGraveyard+YouCtrl,Sorcery.wasCastFromGraveyard+YouCtrl | TriggerZones$ Battlefield | Execute$ TrigEffect | TriggerDescription$ Whenever you cast an instant or sorcery spell from your graveyard, after it resolves, put that card on the bottom of your library, then choose a target creature. Put that creature into its owner's hand. Then if its owner is you, draw a card.
+SVar:TrigEffect:DB$ Effect | ReplacementEffects$ PutBottom | RememberObjects$ TriggeredCard | ExileOnMoved$ Stack | SpellDescription$ After that spell resolves, put it on the bottom of your library.
+SVar:PutBottom:Event$ Moved | ValidCard$ Card.IsRemembered | Origin$ Stack | Destination$ Graveyard | ReplaceWith$ DBChain | Description$ After that spell resolves, put it on the bottom of your library.
+SVar:DBChain:DB$ ChangeZone | Defined$ ReplacedCard | Origin$ Stack | Destination$ Library | LibraryPosition$ -1 | SubAbility$ TrigChoose
+SVar:TrigChoose:DB$ ChooseCard | ChoiceZone$ Battlefield | Choices$ Creature | ChoiceTitle$ Select a creature to put into its owner's hand | Mandatory$ True | RememberChosen$ True | SubAbility$ TrigBounce
+SVar:TrigBounce:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Battlefield | Destination$ Hand | SubAbility$ TrigDraw
+SVar:TrigDraw:DB$ Draw | ConditionDefined$ ChosenCard | ConditionPresent$ Card.OwnedBy You | ConditionCompare$ GE1 | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+K:Warp:1 U
+Oracle:You may cast instant and sorcery spells from your graveyard.\nWhenever you cast an instant or sorcery spell from your graveyard, after it resolves, put that card on the bottom of your library, then choose a target creature. Put that creature into its owner's hand. Then if its owner is you, draw a card.\nWarp {1}{U} ({1}{U}: Put this card into your library from your graveyard, then draw a card.)

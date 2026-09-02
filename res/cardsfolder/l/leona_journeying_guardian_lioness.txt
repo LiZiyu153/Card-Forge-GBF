@@ -1,0 +1,11 @@
+Name:Leona,Journeying Guardian Lioness
+ManaCost:1 G
+Types:Legendary Creature Human Warrior
+PT:2/1
+K:Flash
+K:Indestructible
+K:Vanishing:3
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigEffect | TriggerDescription$ When CARDNAME enters, target other creature you control has hexproof as long as CARDNAME remains on the battlefield.
+SVar:TrigEffect:DB$ Effect | ValidTgts$ Creature.Other+YouCtrl | TgtPrompt$ Select target other creature you control | RememberObjects$ Targeted | Duration$ UntilHostLeavesPlay | StaticAbilities$ STHexproof
+SVar:STHexproof:Mode$ Continuous | Affected$ Card.IsRemembered | AddKeyword$ Hexproof | Description$ This creature has hexproof as long as CARDNAME remains on the battlefield.
+Oracle:Flash, indestructible, vanishing 3 (This permanent enters with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)\nWhen Leona enters, target other creature you control has hexproof as long as Leona remains on the battlefield.

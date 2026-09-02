@@ -1,0 +1,7 @@
+Name:Moonlight Blossoms
+ManaCost:2 U
+Types:Instant
+A:SP$ Counter | ValidTgts$ Card,Emblem | TargetType$ Spell,Activated,Triggered | TgtPrompt$ Select target spell or ability | UnlessCost$ 3 | SubAbility$ DBDraw | SpellDescription$ Counter target spell or activated ability unless its controller pays {3}. (Mana abilities can't be targeted.) Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, draw a card.
+SVar:DBDraw:DB$ Draw | NumCards$ 1 | ConditionCheckSVar$ X | ConditionSVarCompare$ GE2
+SVar:X:Count$ValidGraveyard Instant.YouOwn,Sorcery.YouOwn
+Oracle:Counter target spell or activated ability unless its controller pays {3}. (Mana abilities can't be targeted.)\nSpell mastery — If there are two or more instant and/or sorcery cards in your graveyard, draw a card.

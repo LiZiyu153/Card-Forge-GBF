@@ -1,0 +1,7 @@
+Name:Ragazzo,A Duet of Regulation and Freedom
+ManaCost:R R R
+Types:Legendary Creature Human
+PT:2/2
+K:Haste
+K:Double Strike
+Oracle:Haste, double strike

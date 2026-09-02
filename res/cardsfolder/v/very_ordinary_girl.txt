@@ -1,0 +1,9 @@
+Name:Very Ordinary Girl
+ManaCost:1 B
+Types:Creature Human
+PT:2/2
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigDiscard | TriggerDescription$ When CARDNAME enters, target opponent discards a card. If the discarded card wasn't a land card, you lose 3 life.
+SVar:TrigDiscard:DB$ Discard | ValidTgts$ Opponent | TgtPrompt$ Select target opponent | Mode$ TgtChoose | NumCards$ 1 | RememberDiscarded$ True | SubAbility$ DBLoseLife
+SVar:DBLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ 3 | ConditionDefined$ Remembered | ConditionPresent$ Card.nonLand | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:When Very Ordinary Girl enters, target opponent discards a card. If the discarded card wasn't a land card, you lose 3 life.

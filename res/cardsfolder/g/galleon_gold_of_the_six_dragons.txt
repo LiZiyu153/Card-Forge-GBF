@@ -1,0 +1,11 @@
+Name:Galleon,Gold of the Six Dragons
+ManaCost:3 B G
+Types:Legendary Creature Incarnation
+PT:1/8
+R:Event$ Moved | ActiveZones$ Battlefield | ValidCard$ Creature.YouCtrl+!token+Other | Origin$ Battlefield | Destination$ Graveyard | ReplaceWith$ Exile | Optional$ True | Description$ Whenever another nontoken creature you control would die, you may exile it instead. If you do, search your library for a land card, put it onto the battlefield tapped, then shuffle.
+SVar:Exile:DB$ ChangeZone | Hidden$ True | Origin$ All | Destination$ Exile | Defined$ ReplacedCard | SubAbility$ DBSearch
+SVar:DBSearch:DB$ ChangeZone | Origin$ Library | Destination$ Battlefield | ChangeType$ Land | ChangeNum$ 1 | Tapped$ True | Shuffle$ True
+R:Event$ Moved | ActiveZones$ Battlefield | ValidCard$ Permanent.!token+Other | Origin$ Hand,Library,Exile,Stack | Destination$ Graveyard | ReplaceWith$ Exile2 | Optional$ True | Description$ If a nontoken permanent would be put into a graveyard from a zone other than the battlefield, you may exile it instead. If you do, choose a creature that permanent's owner controls and put a +1/+1 counter on it.
+SVar:Exile2:DB$ ChangeZone | Hidden$ True | Origin$ All | Destination$ Exile | Defined$ ReplacedCard | SubAbility$ DBPutCounter
+SVar:DBPutCounter:DB$ PutCounter | Choices$ Creature.ControlledBy ReplacedCardOwner | ChoiceZone$ Battlefield | ChoiceTitle$ Select a creature that permanent's owner controls | CounterType$ P1P1 | CounterNum$ 1
+Oracle:Whenever another nontoken creature you control would die, you may exile it instead. If you do, search your library for a land card, put it onto the battlefield tapped, then shuffle.\nIf a nontoken permanent would be put into a graveyard from a zone other than the battlefield, you may exile it instead. If you do, choose a creature that permanent's owner controls and put a +1/+1 counter on it.

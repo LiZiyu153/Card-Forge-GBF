@@ -1,0 +1,11 @@
+Name:Zeta,Crimson Return
+ManaCost:2 R
+Types:Legendary Creature Human Soldier
+PT:2/2
+K:Double Strike
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigSearch | OptionalDecider$ You | TriggerDescription$ When CARDNAME enters, if you don't control an artifact, you may search your library for an Equipment card, reveal it, put it into your hand, then shuffle.
+SVar:TrigSearch:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Equipment | ChangeNum$ 1 | Reveal$ True | Shuffle$ True | ConditionCheckSVar$ X | ConditionSVarCompare$ EQ0
+SVar:X:Count$ValidBattlefield Artifact.YouCtrl
+T:Mode$ AttackerBlocked | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigAttach | TriggerDescription$ Whenever CARDNAME attacks and is blocked, you may attach up to one target Equipment you control to it.
+SVar:TrigAttach:DB$ Attach | ValidTgts$ Equipment.YouCtrl | TargetMin$ 0 | TargetMax$ 1 | TgtPrompt$ Select up to one target Equipment you control | Object$ Targeted | Defined$ Self | Optional$ True
+Oracle:Double strike\nWhen Zeta enters, if you don't control an artifact, you may search your library for an Equipment card, reveal it, put it into your hand, then shuffle.\nWhenever Zeta attacks and is blocked, you may attach up to one target Equipment you control to it.

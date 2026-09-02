@@ -1,0 +1,11 @@
+Name:Sunlit Sorceress
+ManaCost:1 R
+Types:Creature Human Wizard
+PT:2/2
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, create a 1/1 red Elemental creature token with flying.
+SVar:TrigToken:DB$ Token | TokenScript$ r_1_1_elemental_flying | TokenOwner$ You
+T:Mode$ Attacks | ValidCard$ Creature.YouCtrl+powerLTX | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever a creature you control with power less than CARDNAME's power attacks, it gets +1/+0 until end of turn.
+SVar:TrigPump:DB$ Pump | Defined$ TriggeredAttackerLKICopy | NumAtt$ +1
+SVar:X:Count$CardPower
+DeckHas:Ability$Token
+Oracle:When Sunlit Sorceress enters, create a 1/1 red Elemental creature token with flying.\nWhenever a creature you control with power less than Sunlit Sorceress's power attacks, it gets +1/+0 until end of turn.

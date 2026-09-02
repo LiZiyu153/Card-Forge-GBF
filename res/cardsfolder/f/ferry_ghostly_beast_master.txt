@@ -1,0 +1,8 @@
+Name:Ferry,Ghostly Beast Master
+ManaCost:1 W W
+Types:Legendary Creature Erune Spirit
+PT:2/2
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, create a 2/1 white Spirit creature token.
+SVar:TrigToken:DB$ Token | TokenScript$ w_2_1_spirit | TokenOwner$ You
+A:AB$ Pump | Cost$ 2 | ValidTgts$ Creature.Spirit+YouCtrl | TgtPrompt$ Select target Spirit you control | KW$ Shadow | Duration$ UntilEndOfTurn | SpellDescription$ Target Spirit you control gains shadow until end of turn. (It can block or be blocked only by creatures with shadow.)
+Oracle:When Ferry enters, create a 2/1 white Spirit creature token.\n{2}: Target Spirit you control gains shadow until end of turn. (It can block or be blocked only by creatures with shadow.)

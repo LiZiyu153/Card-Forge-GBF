@@ -1,0 +1,12 @@
+Name:Societte,Thousand-Year Successor
+ManaCost:2 U
+Types:Legendary Creature Erune
+PT:2/3
+K:Flash
+K:Kicker:Return<1/Creature.YouCtrl>
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigEffect | TriggerDescription$ When CARDNAME enters, target creature you don't control gets -5/-0 as long as CARDNAME remains on the battlefield. If this spell was kicked, instead put that creature on the bottom of its owner's library.
+SVar:TrigEffect:DB$ Branch | Condition$ Kicked | TrueSubAbility$ DBToLibrary | FalseSubAbility$ DBEffect
+SVar:DBToLibrary:DB$ ChangeZone | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | Origin$ Battlefield | Destination$ Library | LibraryPosition$ -1
+SVar:DBEffect:DB$ Effect | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | RememberObjects$ Targeted | Duration$ UntilHostLeavesPlay | StaticAbilities$ STPump
+SVar:STPump:Mode$ Continuous | Affected$ Card.IsRemembered | AddPower$ -5 | Description$ This creature gets -5/-0.
+Oracle:Flash\nKicker — Return a creature you control to its owner's hand. (You may return a creature you control to its owner's hand in addition to any other costs as you cast this spell.)\nWhen Societte enters, target creature you don't control gets -5/-0 as long as Societte remains on the battlefield. If this spell was kicked, instead put that creature on the bottom of its owner's library.

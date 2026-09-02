@@ -1,0 +1,6 @@
+Name:Amplify Magic
+ManaCost:2 R R
+Types:Sorcery
+A:SP$ DelayedTrigger | Execute$ EffTrigCopy | ThisTurn$ True | Mode$ SpellCast | ValidCard$ Instant | ValidActivatingPlayer$ You | SpellDescription$ When you cast your next instant spell this turn, copy that spell twice. You may choose new targets for the copies.
+SVar:EffTrigCopy:DB$ CopySpellAbility | Defined$ TriggeredSpellAbility | Amount$ 2 | MayChooseTarget$ True
+Oracle:When you cast your next instant spell this turn, copy that spell twice. You may choose new targets for the copies.

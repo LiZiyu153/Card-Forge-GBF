@@ -1,0 +1,6 @@
+Name:Pugilist Princess
+ManaCost:2 R
+Types:Creature Draph Warrior
+PT:2/1
+A:AB$ DealDamage | Cost$ 2 R T | DividedAsYouChoose$ 2 | ValidTgts$ Creature | TargetMin$ 1 | TargetMax$ 2 | NumDmg$ 2 | TgtPrompt$ Select up to two target creatures | SpellDescription$ CARDNAME deals 2 damage divided as you choose among up to two target creatures.
+Oracle:{2}{R}, {T}: Pugilist Princess deals 2 damage divided as you choose among up to two target creatures.

@@ -1,0 +1,6 @@
+Name:Graceful Order
+ManaCost:W W
+Types:Enchantment
+S:Mode$ Continuous | Affected$ Creature.YouCtrl | AddKeyword$ First Strike | Description$ Creatures you control have first strike.
+A:AB$ Pump | Cost$ 2 W | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | KW$ Vigilance | Duration$ UntilEndOfTurn | SpellDescription$ Target creature you control gains vigilance until end of turn.
+Oracle:Creatures you control have first strike.\n{2}{W}: Target creature you control gains vigilance until end of turn.

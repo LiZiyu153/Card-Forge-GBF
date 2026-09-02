@@ -1,0 +1,7 @@
+Name:Construct Token
+ManaCost:no cost
+Types:Artifact Creature Construct
+PT:1/5
+K:Haste
+K:Lifelink
+Oracle:Haste, lifelink

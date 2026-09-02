@@ -1,0 +1,8 @@
+Name:Yaia Fried Rice!
+ManaCost:1 G
+Types:Sorcery
+A:SP$ Charm | Choices$ DBDestroy,DBToken | SpellDescription$ Choose one —\n• Destroy target artifact or enchantment.\n• Create two Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")
+SVar:DBDestroy:DB$ Destroy | ValidTgts$ Artifact,Enchantment | TgtPrompt$ Select target artifact or enchantment | SpellDescription$ Destroy target artifact or enchantment.
+SVar:DBToken:DB$ Token | TokenScript$ c_a_food_sac | TokenAmount$ 2 | TokenOwner$ You | SpellDescription$ Create two Food tokens.
+DeckHas:Ability$Token
+Oracle:Choose one —\n• Destroy target artifact or enchantment.\n• Create two Food tokens. (They're artifacts with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")

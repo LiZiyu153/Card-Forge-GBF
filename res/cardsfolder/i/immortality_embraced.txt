@@ -1,0 +1,6 @@
+Name:Immortality Embraced
+ManaCost:X B R
+Types:Instant
+A:SP$ DestroyAll | Cost$ X B R | ValidCards$ Artifact.Creature+cmcLEX,Planeswalker.cmcLEX | SpellDescription$ Destroy each artifact creature and each planeswalker with mana value X or less.
+SVar:X:Count$xPaid
+Oracle:Destroy each artifact creature and each planeswalker with mana value X or less.

@@ -1,0 +1,5 @@
+Name:Human Knight Token
+ManaCost:no cost
+Types:Creature Human Knight
+PT:2/1
+Oracle:

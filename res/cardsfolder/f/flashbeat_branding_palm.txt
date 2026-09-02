@@ -1,0 +1,6 @@
+Name:Flashbeat Branding Palm
+ManaCost:1 R
+Types:Instant
+A:SP$ Pump | ValidTgts$ Creature | TgtPrompt$ Select target creature | NumAtt$ +2 | KW$ Trample | Duration$ UntilEndOfTurn | SpellDescription$ Target creature gets +2/+0 and gains trample until end of turn.
+K:Replicate:1 R
+Oracle:Target creature gets +2/+0 and gains trample until end of turn.\nReplicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)

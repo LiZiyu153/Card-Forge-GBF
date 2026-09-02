@@ -1,0 +1,9 @@
+Name:Yew Bow Knight
+ManaCost:2 G
+Types:Creature Human Knight
+PT:3/3
+K:Reach
+R:Event$ Moved | ValidCard$ Card.Self | Destination$ Battlefield | ReplaceWith$ LandTapped | ReplacementResult$ Updated | CheckSVar$ X | SVarCompare$ EQ0 | Description$ Unless you control another Human, CARDNAME enters the battlefield tapped.
+SVar:X:Count$ValidBattlefield Human.Other+YouCtrl
+SVar:LandTapped:DB$ Tap | Defined$ Self | ETB$ True
+Oracle:Reach\nUnless you control another Human, Yew Bow Knight enters the battlefield tapped.

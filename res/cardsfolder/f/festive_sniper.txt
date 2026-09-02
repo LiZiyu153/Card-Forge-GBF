@@ -1,0 +1,7 @@
+Name:Festive Sniper
+ManaCost:2 R
+Types:Creature Human
+PT:3/3
+S:Mode$ CantBlock | ValidCard$ Card.Self | Description$ CARDNAME can't block.
+A:AB$ Pump | Cost$ 4 R T | ValidTgts$ Creature | TgtPrompt$ Select target creature | KW$ Double Strike | Duration$ UntilEndOfTurn | SpellDescription$ Target creature gains double strike until end of turn.
+Oracle:Festive Sniper can't block.\n{4}{R}, {T}: Target creature gains double strike until end of turn.

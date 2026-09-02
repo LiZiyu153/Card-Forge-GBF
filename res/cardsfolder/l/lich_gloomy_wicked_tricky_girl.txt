@@ -1,0 +1,10 @@
+Name:Lich,Gloomy, Wicked, Tricky Girl
+ManaCost:2 B B
+Types:Legendary Creature Primal
+PT:2/2
+K:Devour:1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, for each counter on it, create a 2/2 black Primal Zombie creature token.
+SVar:TrigToken:DB$ Token | TokenAmount$ X | TokenScript$ b_2_2_primal_zombie | TokenOwner$ You
+SVar:X:Count$CardCounters.ALL
+A:AB$ Regenerate | Cost$ Sac<1/Creature.Zombie+YouCtrl> SubCounter<1/ANY/CARDNAME> | Defined$ Self | SpellDescription$ Sacrifice a Zombie you control and remove a counter from CARDNAME: Regenerate CARDNAME.
+Oracle:Devour 1 (As this enters, you may sacrifice any number of creatures. It enters with that many +1/+1 counters on it.)\nWhen Lich enters, for each counter on it, create a 2/2 black Primal Zombie creature token.\nSacrifice a Zombie you control and remove a counter from Lich: Regenerate Lich.

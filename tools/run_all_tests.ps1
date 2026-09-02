@@ -194,7 +194,8 @@ $behaviorTests = @(
     'GbfPerpetualTailwindTest',
     'GbfWingsTest',
     'GbfFlameArtsTest',
-    'GbfCerberusTest'
+    'GbfCerberusTest',
+    'GbfDiagTest'
 )
 if ($Quick) {
     Write-Host "---- [4/6] 行为测试 (跳过, -Quick) ----"

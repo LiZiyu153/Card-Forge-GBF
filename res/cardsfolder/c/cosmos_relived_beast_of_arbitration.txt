@@ -1,0 +1,18 @@
+Name:Cosmos,Relived Beast of Arbitration
+ManaCost:3 R R
+Types:Legendary Creature Primal
+PT:5/5
+K:Flying
+R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ Card.Self | ReplaceWith$ Counters | PreventionEffect$ True | Description$ If damage would be dealt to CARDNAME, prevent that damage. Put a -1/-1 counter on CARDNAME for each 1 damage prevented this way.
+SVar:Counters:DB$ PutCounter | Defined$ ReplacedTarget | CounterType$ M1M1 | CounterNum$ X
+SVar:X:ReplaceCount$DamageAmount
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ Player | TriggerZones$ Battlefield | Execute$ TrigTarget | TriggerDescription$ At the beginning of each player's end step, you may choose up to one target player. You may remove all +1/+1 counters or all -1/-1 counters from CARDNAME. CARDNAME deals that much damage to that player and each creature that player controls.
+SVar:TrigTarget:DB$ ChoosePlayer | Defined$ You | Choices$ Player | Optional$ True | SubAbility$ TrigChoice | SpellDescription$ Choose up to one target player.
+SVar:TrigChoice:DB$ GenericChoice | Choices$ Plus,Minus | SpellDescription$ You may remove all +1/+1 counters or all -1/-1 counters from CARDNAME. CARDNAME deals that much damage to that player and each creature that player controls.
+SVar:Plus:DB$ RemoveCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ All | RememberAmount$ True | SubAbility$ DBDamage | SpellDescription$ Remove all +1/+1 counters from CARDNAME.
+SVar:Minus:DB$ RemoveCounter | Defined$ Self | CounterType$ M1M1 | CounterNum$ All | RememberAmount$ True | SubAbility$ DBDamage | SpellDescription$ Remove all -1/-1 counters from CARDNAME.
+SVar:DBDamage:DB$ DealDamage | Defined$ ChosenPlayer | NumDmg$ Y | SubAbility$ DBDamageAll | SpellDescription$ CARDNAME deals that much damage to that player and each creature that player controls.
+SVar:DBDamageAll:DB$ DamageAll | ValidCards$ Creature.ControlledBy ChosenPlayer | NumDmg$ Y | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:Y:Count$RememberedNumber
+Oracle:Flying\nIf damage would be dealt to Cosmos, prevent that damage. Put a -1/-1 counter on Cosmos for each 1 damage prevented this way.\nAt the beginning of each player's end step, you may choose up to one target player. You may remove all +1/+1 counters or all -1/-1 counters from Cosmos. Cosmos deals that much damage to that player and each creature that player controls.

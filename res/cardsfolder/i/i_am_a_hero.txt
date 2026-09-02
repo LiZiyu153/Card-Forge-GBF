@@ -1,0 +1,9 @@
+Name:I AM A HERO
+ManaCost:W
+Types:Enchantment Aura
+K:Enchant:Creature
+K:Flash
+K:Vanishing:2
+S:Mode$ Continuous | Affected$ Card.EnchantedBy | AddKeyword$ Protection from each color | Description$ Enchanted creature has protection from each color. (It can't be blocked, targeted, dealt damage, enchanted, or equipped by anything that's white, blue, black, red, or green.)
+S:Mode$ Continuous | Affected$ Card.Self | AddHiddenKeyword$ This effect doesn't remove Auras or Equipment | Description$ This effect doesn't remove Auras or Equipment you control attached to the enchanted creature.
+Oracle:Flash, vanishing 2 (This permanent enters with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)\nEnchant creature\nEnchanted creature has protection from each color. (It can't be blocked, targeted, dealt damage, enchanted, or equipped by anything that's white, blue, black, red, or green.)\nThis effect doesn't remove Auras or Equipment you control attached to it.

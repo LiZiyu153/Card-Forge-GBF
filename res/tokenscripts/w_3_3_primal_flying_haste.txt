@@ -1,0 +1,8 @@
+Name:Primal Token
+ManaCost:no cost
+Types:Creature Primal
+PT:3/3
+K:Flying
+K:Haste
+K:Vanishing:1
+Oracle:Flying, haste, vanishing 1 (This token enters with a time counter on it. At the beginning of its controller's upkeep, remove a time counter from it. When the last is removed, sacrifice it.)

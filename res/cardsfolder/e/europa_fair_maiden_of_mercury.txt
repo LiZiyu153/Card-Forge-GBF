@@ -1,0 +1,10 @@
+Name:Europa,Fair Maiden of Mercury
+ManaCost:2 U U
+Types:Legendary Creature Primal
+PT:4/4
+S:Mode$ Continuous | Affected$ Permanent.Other+!Snow | AddType$ Snow | Description$ All other permanents are snow.
+S:Mode$ Continuous | Affected$ Permanent.Snow+Other | AddKeyword$ Shroud | Description$ Snow permanents have shroud. (They can't be the targets of spells or abilities.)
+S:Mode$ CantBeActivated | ValidCard$ Permanent.Snow+Other | ValidSA$ Activated.!ManaAbility | Description$ Activated abilities of snow permanents can't be activated unless they're mana abilities.
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.Snow+YouCtrl | TriggerZones$ Battlefield | Execute$ TrigPutCounter | OptionalDecider$ You | TriggerDescription$ Whenever a snow creature enters under your control, you may pay {S}. If you do, put a +1/+1 counter on that creature.
+SVar:TrigPutCounter:AB$ PutCounter | Cost$ S | Defined$ TriggeredCardLKICopy | CounterType$ P1P1 | CounterNum$ 1 | SpellDescription$ You may pay {S}. If you do, put a +1/+1 counter on that creature.
+Oracle:All other permanents are snow. Snow permanents have shroud, and activated abilities of snow permanents can't be activated unless they're mana abilities. (A permanent with shroud can't be the target of spells or abilities.)\nWhenever a snow creature enters under your control, you may pay {S}. If you do, put a +1/+1 counter on that creature.

@@ -1,0 +1,6 @@
+Name:Spirit Token
+ManaCost:no cost
+Types:Creature Spirit
+PT:2/1
+K:Flying
+Oracle:Flying

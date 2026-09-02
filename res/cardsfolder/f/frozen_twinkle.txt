@@ -1,0 +1,7 @@
+Name:Frozen Twinkle
+ManaCost:2 W
+Types:Instant
+A:SP$ PutCounterAll | ValidCards$ Creature.YouCtrl | CounterType$ P1P1 | CounterNum$ 1 | SubAbility$ DBExile | SpellDescription$ Put a +1/+1 counter on each creature you control. Chroma — If at least three white mana was spent to cast this spell, exile target creature or enchantment. Its controller gains 2 life.
+SVar:DBExile:DB$ ChangeZone | ValidTgts$ Creature,Enchantment | TgtPrompt$ Select target creature or enchantment | Origin$ Battlefield | Destination$ Exile | ConditionCheckSVar$ CastSA>Count$Adamant_3.W.1.0 | ConditionSVarCompare$ EQ1 | SubAbility$ DBGainLife
+SVar:DBGainLife:DB$ GainLife | Defined$ TargetedController | LifeAmount$ 2 | ConditionCheckSVar$ CastSA>Count$Adamant_3.W.1.0 | ConditionSVarCompare$ EQ1
+Oracle:Put a +1/+1 counter on each creature you control.\nChroma — If at least three white mana was spent to cast this spell, exile target creature or enchantment. Its controller gains 2 life.

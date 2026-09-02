@@ -1,0 +1,8 @@
+Name:Dashing Archer
+ManaCost:1 G G
+Types:Creature Erune Archer
+PT:2/3
+K:Reach
+A:AB$ DealDamage | Cost$ T | ValidTgts$ Creature.withFlying | TgtPrompt$ Select target creature with flying | NumDmg$ X | SpellDescription$ CARDNAME deals damage to target creature with flying equal to the number of Erune creatures you control.
+SVar:X:Count$ValidBattlefield Creature.Erune+YouCtrl
+Oracle:Reach\n{T}: Dashing Archer deals damage to target creature with flying equal to the number of Erune creatures you control.

@@ -1,0 +1,8 @@
+Name:Marigold of Black Tears
+ManaCost:2 B
+Types:Creature Human Assassin
+PT:3/3
+K:Shadow
+T:Mode$ BecomesTarget | ValidTarget$ Card.Self | ValidSource$ Spell.OppCtrl,Ability.OppCtrl | TriggerZones$ Battlefield | Execute$ TrigSac | TriggerDescription$ When CARDNAME becomes the target of a spell or ability an opponent controls, sacrifice it.
+SVar:TrigSac:DB$ Sacrifice | SacValid$ Card.Self
+Oracle:Shadow (This creature can block or be blocked only by creatures with shadow.)\nWhen Marigold of Black Tears becomes the target of a spell or ability an opponent controls, sacrifice it.

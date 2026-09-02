@@ -1,0 +1,8 @@
+Name:Seaside Rose
+ManaCost:1 G
+Types:Enchantment Aura
+K:Enchant:Creature
+S:Mode$ Continuous | Affected$ Card.EnchantedBy | AddTrigger$ BecomesTarget | AddSVar$ TrigDraw | Description$ Enchanted creature has "Whenever this creature becomes the target of a spell or ability an opponent controls, you draw a card."
+SVar:BecomesTarget:Mode$ BecomesTarget | ValidTarget$ Card.Self | ValidSource$ Spell.OppCtrl,Ability.OppCtrl | Execute$ TrigDraw | TriggerZones$ Battlefield | TriggerDescription$ Whenever this creature becomes the target of a spell or ability an opponent controls, you draw a card.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1
+Oracle:Enchant creature\nEnchanted creature has "Whenever this creature becomes the target of a spell or ability an opponent controls, you draw a card."

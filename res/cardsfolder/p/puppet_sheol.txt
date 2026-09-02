@@ -1,0 +1,8 @@
+Name:Puppet Sheol
+ManaCost:1 B
+Types:Instant
+R:Event$ Counter | ActiveZones$ Stack | ValidCard$ Card.Self | ValidSA$ Spell | Layer$ CantHappen | Description$ This spell can't be countered.
+A:SP$ Destroy | ValidTgts$ Creature | TgtPrompt$ Select target creature | RememberTargets$ True | SubAbility$ DBLoseLife | SpellDescription$ Destroy target creature. You lose life equal to its power.
+SVar:DBLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ X
+SVar:X:Targeted$CardPower
+Oracle:This spell can't be countered.\nDestroy target creature. You lose life equal to its power.

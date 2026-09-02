@@ -1,0 +1,13 @@
+Name:Beach Quarter-Note
+ManaCost:U
+Types:Enchantment
+T:Mode$ Taps | ValidCard$ Creature | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever a creature becomes tapped, put a charge counter on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ CHARGE | CounterNum$ 1
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ Player | TriggerZones$ Battlefield | Execute$ TrigEffect | OptionalDecider$ You | TriggerDescription$ At the beginning of each player's upkeep, you may remove four charge counters from CARDNAME. If you do, creatures that player controls can't be tapped this turn.
+SVar:TrigEffect:DB$ Branch | ConditionCheckSVar$ X | ConditionSVarCompare$ GE4 | TrueSubAbility$ DBRemove | FalseSubAbility$ DBNothing
+SVar:DBRemove:DB$ RemoveCounter | Defined$ Self | CounterType$ CHARGE | CounterNum$ 4 | SubAbility$ DBEffect
+SVar:DBEffect:DB$ Effect | RememberObjects$ TriggeredPlayer | ReplacementEffects$ CantTap | Duration$ UntilEndOfTurn
+SVar:CantTap:Event$ Tap | ValidCard$ Creature.ControlledBy Player.TriggeredPlayer | Layer$ CantHappen | Description$ Creatures that player controls can't be tapped this turn.
+SVar:DBNothing:DB$ Effect | Duration$ Instant
+SVar:X:Count$Valid Card.Self+counters_GE4_CHARGE
+Oracle:Whenever a creature becomes tapped, put a charge counter on Beach Quarter-Note.\nAt the beginning of each player's upkeep, you may remove four charge counters from Beach Quarter-Note. If you do, creatures that player controls can't be tapped this turn.

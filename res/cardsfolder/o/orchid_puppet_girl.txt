@@ -1,0 +1,12 @@
+Name:Orchid,Puppet Girl
+ManaCost:3 B B
+Types:Legendary Artifact Creature Construct
+PT:2/2
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, create a 1/5 black Construct artifact creature token with haste and lifelink.
+SVar:TrigToken:DB$ Token | TokenScript$ b_1_5_construct_haste_lifelink | TokenOwner$ You
+T:Mode$ Attacks | ValidCard$ Artifact.Creature+YouCtrl | TriggerZones$ Battlefield | Execute$ TrigChoose | OptionalDecider$ You | TriggerDescription$ Whenever an artifact creature you control attacks, you may pay X life. If you do, target creature gets -X/-X until end of turn.
+SVar:TrigChoose:DB$ ChooseNumber | Optional$ True | Min$ 0 | Max$ Max | ListTitle$ amount of life to pay | SubAbility$ DBPump
+SVar:DBPump:DB$ Pump | ValidTgts$ Creature | TgtPrompt$ Select target creature | NumAtt$ -X | NumDef$ -X | IsCurse$ True | UnlessCost$ PayLife<X> | UnlessPayer$ You | UnlessSwitched$ True
+SVar:Max:Count$PlayerLifeYou
+SVar:X:Count$ChosenNumber
+Oracle:When Orchid enters, create a 1/5 black Construct artifact creature token with haste and lifelink.\nWhenever an artifact creature you control attacks, you may pay X life. If you do, target creature gets -X/-X until end of turn.

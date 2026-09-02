@@ -1,0 +1,6 @@
+Name:Electrifying Feats
+ManaCost:1 W W B B
+Types:Instant
+K:Split Second
+A:SP$ Destroy | ValidTgts$ Permanent | TgtPrompt$ Select target permanent | SpellDescription$ Destroy target permanent.
+Oracle:Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.)\nDestroy target permanent.

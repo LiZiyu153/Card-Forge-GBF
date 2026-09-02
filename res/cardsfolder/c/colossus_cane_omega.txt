@@ -1,0 +1,8 @@
+Name:Colossus Cane Omega
+ManaCost:1 R
+Types:Artifact Equipment
+S:Mode$ Continuous | Affected$ Card.EquippedBy | AddPower$ 2 | Description$ Equipped creature gets +2/+0.
+T:Mode$ AttackerBlocked | ValidCard$ Creature.EquippedBy | TriggerZones$ Battlefield | Execute$ TrigDamage | TriggerDescription$ Whenever equipped creature becomes blocked, it deals 1 damage to target creature.
+SVar:TrigDamage:DB$ DealDamage | ValidTgts$ Creature | TgtPrompt$ Select target creature | NumDmg$ 1
+K:Equip:3
+Oracle:Equipped creature gets +2/+0.\nWhenever equipped creature becomes blocked, it deals 1 damage to target creature.\nEquip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)

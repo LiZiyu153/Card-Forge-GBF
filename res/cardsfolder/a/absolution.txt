@@ -1,0 +1,7 @@
+Name:Absolution
+ManaCost:R
+Types:Instant
+A:SP$ Destroy | ValidTgts$ Artifact | TgtPrompt$ Select target artifact | RememberTargets$ True | SubAbility$ DBDamage
+SVar:DBDamage:DB$ DealDamage | Defined$ TargetedController | NumDmg$ 3 | SubAbility$ DBGainControl
+SVar:DBGainControl:DB$ GainControl | Chooser$ TargetedController | Choices$ Artifact.YouCtrl | NewController$ TargetedController | SpellDescription$ Then that artifact's controller gains control of an artifact you control.
+Oracle:Destroy target artifact. Absolution deals 3 damage to that artifact's controller. Then that artifact's controller gains control of an artifact you control.

@@ -1,0 +1,7 @@
+Name:Quickdraw Stance
+ManaCost:W
+Types:Instant
+A:SP$ PreventDamage | ValidTgts$ Creature | TgtPrompt$ Select target creature | Amount$ 99 | PreventionSubAbility$ DBDraw | ShieldEffectTarget$ Targeted | SpellDescription$ Prevent all damage that would be dealt by target creature this turn. At the beginning of the next upkeep step, you draw a card.
+SVar:DBDraw:DB$ DelayedTrigger | Mode$ Phase | Phase$ Upkeep | OneOff$ True | Execute$ TrigDraw | TriggerDescription$ At the beginning of the next upkeep step, you draw a card.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1
+Oracle:Prevent all damage that would be dealt by target creature this turn.\nAt the beginning of the next upkeep step, you draw a card.

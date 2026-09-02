@@ -1,0 +1,7 @@
+Name:Crescendo Waves
+ManaCost:2 U R U R R
+Types:Enchantment
+T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigCopy | TriggerDescription$ Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy. This ability triggers only once each turn.
+T:Mode$ AbilityCast | ValidCard$ Planeswalker | ValidSA$ Activated.Loyalty | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigCopy | Secondary$ True | TriggerDescription$ Whenever you cast an instant or sorcery spell, or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.
+SVar:TrigCopy:DB$ CopySpellAbility | Defined$ TriggeredSpellAbility | MayChooseTarget$ True
+Oracle:Whenever you cast an instant or sorcery spell, or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.

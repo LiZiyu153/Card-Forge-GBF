@@ -1,0 +1,9 @@
+Name:Wicked Ebony Scythe
+ManaCost:2 R R
+Types:Creature Draph Berserker
+PT:2/4
+K:Menace
+T:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Card | TriggerZones$ Battlefield | Execute$ TrigDamage | TriggerDescription$ Whenever CARDNAME is dealt damage, it deals twice that much damage to the source of that damage.
+SVar:TrigDamage:DB$ DealDamage | Defined$ TriggeredSource | NumDmg$ X | DamageSource$ Self
+SVar:X:TriggerCount$DamageAmount/Twice
+Oracle:Menace (This creature can't be blocked except by two or more creatures.)\nWhenever Wicked Ebony Scythe is dealt damage, it deals twice that much damage to the source of that damage.

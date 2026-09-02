@@ -1,0 +1,11 @@
+Name:Beach Activity
+ManaCost:U
+Types:Instant
+K:Spree
+A:SP$ Charm | Choices$ DBToken,DBExile | MinCharmNum$ 1 | CharmNum$ 2 | SpellDescription$ Spree (Choose one or more additional costs.)\n+ {1} — Create a 2/1 blue Human Knight creature token.\n+ {1} — Discard a card, then exile cards from the top of your library until you exile a card that shares a card type with the discarded card. Put that card into your hand and the rest on the bottom of your library in a random order.
+SVar:DBToken:DB$ Token | ModeCost$ 1 | TokenScript$ u_2_1_human_knight | SpellDescription$ Create a 2/1 blue Human Knight creature token.
+SVar:DBExile:DB$ Discard | ModeCost$ 1 | Defined$ You | Mode$ TgtChoose | RememberDiscarded$ True | SubAbility$ DBDigUntil
+SVar:DBDigUntil:DB$ DigUntil | Valid$ Card.sharesCardTypeWith Remembered | FoundDestination$ Hand | RevealedDestination$ Library | RevealedLibraryPosition$ -1 | RevealRandomOrder$ True | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+DeckHas:Ability$Discard|Token
+Oracle:Spree (Choose one or more additional costs.)\n+ {1} — Create a 2/1 blue Human Knight creature token.\n+ {1} — Discard a card, then exile cards from the top of your library until you exile a card that shares a card type with the discarded card. Put that card into your hand and the rest on the bottom of your library in a random order.

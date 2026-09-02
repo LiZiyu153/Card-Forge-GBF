@@ -1,0 +1,9 @@
+Name:Where... are my rat ears?
+ManaCost:2 U/B
+Types:Enchantment Aura
+K:Enchant:Creature
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigTap | TriggerDescription$ When CARDNAME enters, tap enchanted creature.
+SVar:TrigTap:DB$ Tap | Defined$ Enchanted
+R:Event$ Untap | ActiveZones$ Battlefield | ValidCard$ Card.EnchantedBy | ValidStepTurnToController$ You | Layer$ CantHappen | Description$ Enchanted creature doesn't untap during its controller's untap step.
+A:AB$ Sacrifice | Cost$ 3 | Defined$ Self | SorcerySpeed$ True | Activator$ Player | SpellDescription$ Any player may sacrifice CARDNAME. Activate only as a sorcery.
+Oracle:Enchant creature\nWhen Where... are my rat ears? enters, tap enchanted creature.\nEnchanted creature doesn't untap during its controller's untap step.\n{3}: Sacrifice Where... are my rat ears?. Any player may activate this ability. Activate only as a sorcery.

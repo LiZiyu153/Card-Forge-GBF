@@ -1,0 +1,6 @@
+Name:Noble Execution
+ManaCost:X U
+Types:Instant
+A:SP$ Counter | Cost$ X U | ValidTgts$ Card,Emblem | TargetType$ Activated,Triggered | TgtPrompt$ Select target activated or triggered ability | UnlessCost$ X | SpellDescription$ Counter target activated or triggered ability unless its controller pays {X}. (Mana abilities can't be targeted.)
+SVar:X:Count$xPaid
+Oracle:Counter target activated or triggered ability unless its controller pays {X}. (Mana abilities can't be targeted.)

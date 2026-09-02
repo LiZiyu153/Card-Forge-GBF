@@ -1,0 +1,12 @@
+Name:Azure Plunge
+ManaCost:3 U B
+Types:Enchantment
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigMill | TriggerDescription$ At the beginning of your end step, mill two cards. You may choose one of them and put it into your hand. If both cards milled this way are creatures, sacrifice CARDNAME.
+SVar:TrigMill:DB$ Mill | NumCards$ 2 | RememberMilled$ True | SubAbility$ DBChoose
+SVar:DBChoose:DB$ ChooseCard | ChoiceZone$ Graveyard | Choices$ Card.IsRemembered | RememberChosen$ True | Optional$ True | SubAbility$ DBToHand
+SVar:DBToHand:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Hand | SubAbility$ DBCheck
+SVar:DBCheck:DB$ Branch | ConditionCheckSVar$ X | ConditionSVarCompare$ EQ2 | TrueSubAbility$ DBSac | FalseSubAbility$ DBCleanup
+SVar:DBSac:DB$ Sacrifice | SacValid$ Card.Self | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:X:Count$ValidAll Card.IsRemembered+Creature
+Oracle:At the beginning of your end step, mill two cards. You may choose one of them and put it into your hand. If both cards milled this way are creatures, sacrifice Azure Plunge.

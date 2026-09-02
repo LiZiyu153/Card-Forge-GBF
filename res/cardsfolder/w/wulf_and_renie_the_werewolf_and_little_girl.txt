@@ -1,0 +1,9 @@
+Name:Wulf and Renie,The Werewolf and Little Girl
+ManaCost:2 B
+Types:Legendary Creature Wolf Human
+PT:3/3
+K:Menace
+K:Deathtouch
+K:Lifelink
+K:CARDNAME can't attack alone.
+Oracle:Menace (This creature can't be blocked except by two or more creatures.)\nDeathtouch, lifelink\nWulf and Renie can't attack alone.

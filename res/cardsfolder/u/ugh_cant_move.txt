@@ -1,0 +1,7 @@
+Name:Ugh, Can't Move...
+ManaCost:1 U
+Types:Sorcery
+A:SP$ Tap | ValidTgts$ Creature | TgtPrompt$ Select target creature | SubAbility$ DBPutCounter | SpellDescription$ Tap target creature and put X stun counters on it, where X is the number of tapped creatures that creature's controller controls.
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Targeted | CounterType$ STUN | CounterNum$ X
+SVar:X:Count$ValidBattlefield Creature.tapped+ControlledBy TargetedController
+Oracle:Tap target creature and put X stun counters on it, where X is the number of tapped creatures that creature's controller controls. (If a permanent with a stun counter would become untapped, remove one from it instead.)

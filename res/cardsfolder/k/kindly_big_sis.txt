@@ -1,0 +1,7 @@
+Name:Kindly Big Sis
+ManaCost:2 G
+Types:Creature Erune
+PT:2/3
+T:Mode$ Blocks | ValidCard$ Creature.Erune+YouCtrl | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever an Erune creature you control blocks, it gets +2/+0 until end of turn.
+SVar:TrigPump:DB$ Pump | Defined$ TriggeredBlockerLKICopy | NumAtt$ +2 | Duration$ UntilEndOfTurn
+Oracle:Whenever an Erune creature you control blocks, it gets +2/+0 until end of turn.

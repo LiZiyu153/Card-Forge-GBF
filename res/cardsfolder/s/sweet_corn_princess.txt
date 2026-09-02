@@ -1,0 +1,9 @@
+Name:Sweet Corn Princess
+ManaCost:W W
+Types:Creature Harvin
+PT:3/1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, create a Food token.
+SVar:TrigToken:DB$ Token | TokenScript$ c_a_food_sac | TokenOwner$ You
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Lifelink | IsPresent$ Food.YouCtrl | PresentZone$ Battlefield | Description$ As long as you control a Food, CARDNAME has lifelink.
+DeckHas:Ability$Token|LifeGain
+Oracle:When Sweet Corn Princess enters, create a Food token. (It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")\nAs long as you control a Food, Sweet Corn Princess has lifelink.

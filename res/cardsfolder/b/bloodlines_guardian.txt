@@ -1,0 +1,8 @@
+Name:Bloodline's Guardian
+ManaCost:1 G
+Types:Creature Erune
+PT:2/2
+S:Mode$ Continuous | Affected$ Creature.YouCtrl+powerLTX | AddToughness$ 1 | Description$ Creatures you control with power less than CARDNAME's power get +0/+1.
+SVar:X:Count$CardPower
+A:AB$ Pump | Cost$ 1 R/W | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumAtt$ +1 | SpellDescription$ Target creature you control gets +1/+0 until end of turn.
+Oracle:Creatures you control with power less than Bloodline's Guardian's power get +0/+1.\n{1}{R/W}: Target creature you control gets +1/+0 until end of turn.

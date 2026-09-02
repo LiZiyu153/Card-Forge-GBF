@@ -17,11 +17,12 @@ import forge.model.FModel;
  * (the identical chain as VentureEffect / TokenInfo in a real game).
  *
  * <p>Usage: {@code java -Dfile.encoding=UTF-8 -cp "<install jar>;<classes>" GbfTokenParseTest [tokenScript...]}
- * (defaults to the 5 tokens registered in res/editions/Granblue Fantasy.txt [tokens]).
+ * (defaults to the 18 tokens registered in res/editions/Granblue Fantasy.txt [tokens]).
  * Run from the install dir; see GbfTestBase for the run rules.
  */
 public class GbfTokenParseTest extends GbfTestBase {
 
+    /** All 18 scripts registered in editions [tokens] (kept in sync with that section). */
     private static final String[] GBF_TOKENS = {
         "c_0_0_a_construct_flying_artifactcount",   // Mahira (GBF #126)
         "b_1_1_dog_ally_lifelink_deathtouch",       // Vajra (GBF #127)
@@ -29,6 +30,18 @@ public class GbfTokenParseTest extends GbfTestBase {
         "rg_2_1_boar",                              // Kumbhira (GBF #128)
         "b_0_1_rat",                                // Vikala (GBF #129)
         "cerberus_enchantment",                     // Cerberus,Hadean Watchdog (GBF #55)
+        "w_5_5_elemental_artifact_defender",        // batch-2 (GBF #161 Cosmos etc.)
+        "u_2_1_human_knight",                       // batch-2
+        "g_2_1_erune",                              // batch-2
+        "r_4_3_bird_flying",                        // batch-2
+        "g_3_4_dog_vigilance",                      // batch-2
+        "w_2_1_spirit",                             // batch-2
+        "b_1_5_construct_haste_lifelink",           // batch-2
+        "u_2_1_spirit_flying",                      // batch-2
+        "w_3_3_primal_flying_haste",                // batch-2
+        "w_1_2_human_soldier_vigilance",            // batch-2
+        "r_1_1_elemental_flying",                   // batch-2
+        "b_2_2_primal_zombie",                      // batch-2
     };
 
     public static void main(String[] args) {

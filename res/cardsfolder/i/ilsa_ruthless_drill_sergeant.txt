@@ -1,0 +1,11 @@
+Name:Ilsa,Ruthless Drill Sergeant
+ManaCost:3 B
+Types:Legendary Creature Ernue Warrior
+PT:2/4
+K:Deathtouch
+S:Mode$ Continuous | Affected$ Creature.YouCtrl+equipped+!Primal | AddPower$ 1 | AddToughness$ 1 | AddKeyword$ Vigilance | Description$ Equipped non-Primal creatures you control get +1/+1 and have vigilance.
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ GE1 | Execute$ TrigLoseLife | TriggerDescription$ At the beginning of your end step, if a creature you controlled died this turn, you lose 1 life and draw a card.
+SVar:TrigLoseLife:DB$ LoseLife | LifeAmount$ 1 | SubAbility$ DBDraw
+SVar:DBDraw:DB$ Draw | NumCards$ 1
+SVar:X:Count$ThisTurnDied_Creature.YouCtrl
+Oracle:Deathtouch\nEquipped non-Primal creatures you control get +1/+1 and have vigilance.\nAt the beginning of your end step, if a creature you controlled died this turn, you lose 1 life and draw a card.

@@ -1,0 +1,10 @@
+Name:Trilok Smash
+ManaCost:2 G
+Types:Instant
+S:Mode$ OptionalCost | EffectZone$ All | ValidCard$ Card.Self | ValidSA$ Spell | Cost$ tapXType<Any/Creature.YouCtrl+withTotalPowerGE4> | Description$ As an additional cost to cast this spell, you may tap any number of untapped creatures you control with total power 4 or greater.
+A:SP$ Charm | CharmNum$ X | Choices$ DBBird,DBEnchantment,DBGraveyard | AdditionalDescription$ . If this spell's additional cost was paid, choose all of them instead.
+SVar:DBBird:DB$ Destroy | ValidTgts$ Creature.withFlying | TgtPrompt$ Select target creature with flying | SpellDescription$ Destroy target creature with flying.
+SVar:DBEnchantment:DB$ Destroy | ValidTgts$ Enchantment | TgtPrompt$ Select target enchantment | SpellDescription$ Destroy target enchantment.
+SVar:DBGraveyard:DB$ ChangeZone | ValidTgts$ Card | TgtPrompt$ Select target card in a graveyard | TgtZone$ Graveyard | Origin$ Graveyard | Destination$ Exile | SpellDescription$ Exile target card from a graveyard.
+SVar:X:Count$OptionalGenericCostPaid.3.1
+Oracle:Convoke 4 (As an additional cost to cast this spell, you may tap any number of untapped creatures you control with total power 4 or greater.)\nChoose one. If this spell's additional cost was paid, choose all of them instead.\n• Destroy target creature with flying.\n• Destroy target enchantment.\n• Exile target card from a graveyard.

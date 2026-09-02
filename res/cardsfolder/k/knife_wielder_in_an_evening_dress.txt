@@ -1,0 +1,7 @@
+Name:Knife-Wielder in an Evening Dress
+ManaCost:4 B
+Types:Creature Human Assassin
+PT:4/4
+K:Flash
+K:Menace
+Oracle:Flash, menace (This creature can't be blocked except by two or more creatures.)

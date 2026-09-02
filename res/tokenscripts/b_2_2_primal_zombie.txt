@@ -1,0 +1,5 @@
+Name:Primal Zombie Token
+ManaCost:no cost
+Types:Creature Primal Zombie
+PT:2/2
+Oracle:

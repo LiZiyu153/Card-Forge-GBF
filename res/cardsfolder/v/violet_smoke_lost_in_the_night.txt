@@ -1,0 +1,7 @@
+Name:Violet Smoke Lost in the Night
+ManaCost:1 U
+Types:Creature Ernue
+PT:2/2
+A:AB$ GainControl | Cost$ 5 U T | ValidTgts$ Creature.OppCtrl+powerGEtoughness | TgtPrompt$ Select target creature an opponent controls with power greater than or equal to its toughness | LoseControl$ EOT | SubAbility$ DBPump | SpellDescription$ Gain control of target creature an opponent controls with power greater than or equal to its toughness until end of turn. Untap it. It gains haste until end of turn.
+SVar:DBPump:DB$ Pump | Defined$ Targeted | Untap$ True | KW$ Haste | Duration$ UntilEndOfTurn
+Oracle:{5}{U}, {T}: Gain control of target creature an opponent controls with power greater than or equal to its toughness until end of turn. Untap that creature. It gains haste until end of turn.

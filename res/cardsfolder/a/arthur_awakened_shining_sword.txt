@@ -1,0 +1,8 @@
+Name:Arthur,Awakened Shining Sword
+ManaCost:2 W
+Types:Legendary Creature Human Knight
+PT:2/1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Equipment.YouCtrl | TriggerZones$ Battlefield | Execute$ TrigAttach | OptionalDecider$ You | TriggerDescription$ Whenever an Equipment you control enters, you may attach it to CARDNAME.
+SVar:TrigAttach:DB$ Attach | Defined$ Self | Object$ TriggeredCardLKICopy
+DeckHints:Type$Equipment
+Oracle:Whenever an Equipment you control enters, you may attach it to Arthur.

@@ -1,0 +1,9 @@
+Name:Thunderswift Lord's Torching
+ManaCost:3 W
+Types:Creature Human Knight
+PT:2/3
+K:Double Strike
+T:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever CARDNAME deals combat damage to a player, put a double strike counter on another target creature you control, then put a stun counter on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | ValidTgts$ Creature.Other+YouCtrl | TgtPrompt$ Select another target creature you control | CounterType$ DoubleStrike | CounterNum$ 1 | SubAbility$ DBPutStun
+SVar:DBPutStun:DB$ PutCounter | Defined$ Self | CounterType$ STUN | CounterNum$ 1
+Oracle:Double strike\nWhenever Thunderswift Lord's Torching deals combat damage to a player, put a double strike counter on another target creature you control, then put a stun counter on Thunderswift Lord's Torching.

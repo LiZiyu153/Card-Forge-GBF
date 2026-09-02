@@ -1,0 +1,9 @@
+Name:Anne,Princess Mysteria
+ManaCost:1 W U
+Types:Legendary Creature Human Wizard
+PT:2/2
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Hexproof | IsPresent$ Card.Self+untapped | Description$ As long as CARDNAME is untapped, it has hexproof.
+T:Mode$ Attacks | ValidCard$ Card.Self | Execute$ TrigToken | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ GE3 | TriggerDescription$ Whenever CARDNAME attacks, if you have three or more Lesson cards in your graveyard, create a 5/5 white Elemental artifact creature token with defender. That token has "At the beginning of your upkeep, exile this creature."
+SVar:TrigToken:DB$ Token | TokenScript$ w_5_5_elemental_artifact_defender | TokenOwner$ You
+SVar:X:Count$ValidGraveyard Lesson.YouOwn
+Oracle:As long as Anne is untapped, she has hexproof.\nWhenever Anne attacks, if you have three or more Lesson cards in your graveyard, create a 5/5 white Elemental artifact creature token with defender. That token has "At the beginning of your upkeep, exile this creature."

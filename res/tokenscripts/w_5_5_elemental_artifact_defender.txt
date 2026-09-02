@@ -1,0 +1,8 @@
+Name:Elemental Token
+ManaCost:no cost
+Types:Artifact Creature Elemental
+PT:5/5
+K:Defender
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigExile | TriggerDescription$ At the beginning of your upkeep, exile this creature.
+SVar:TrigExile:DB$ ChangeZone | Defined$ Self | Origin$ Battlefield | Destination$ Exile
+Oracle:Defender (This creature can't attack.)\nAt the beginning of your upkeep, exile this creature.

@@ -1,0 +1,11 @@
+Name:Athena,Goddess of Defense
+ManaCost:2 W
+Types:Legendary Creature Primal Knight
+PT:1/3
+K:Flash
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigChoose | TriggerDescription$ When CARDNAME enters, choose a source. All damage that source would deal to you or target permanent you control is dealt to another target creature instead.
+SVar:TrigChoose:DB$ ChooseSource | Choices$ Card,Emblem | SubAbility$ DBEffect
+SVar:DBEffect:DB$ Effect | ReplacementEffects$ Redirect | ValidTgts$ Creature | TgtPrompt$ Select target creature to redirect damage to | TargetMin$ 1 | TargetMax$ 1 | RememberObjects$ Targeted | Duration$ UntilHostLeavesPlay | SpellDescription$ Choose a source. All damage that source would deal to you or target permanent you control is dealt to another target creature instead.
+SVar:Redirect:Event$ DamageDone | ActiveZones$ Command | ValidTarget$ You,Permanent.YouCtrl | ValidSource$ Card.ChosenCardStrict,Emblem.ChosenCard | DamageTarget$ Remembered | ReplaceWith$ DBReplace | Description$ All damage that source would deal to you or target permanent you control is dealt to another target creature instead.
+SVar:DBReplace:DB$ ReplaceEffect | VarName$ Affected | VarValue$ Remembered | VarType$ Card
+Oracle:Flash\nWhen Athena enters, choose a source. All damage that source would deal to you or target permanent you control is dealt to another target creature instead.

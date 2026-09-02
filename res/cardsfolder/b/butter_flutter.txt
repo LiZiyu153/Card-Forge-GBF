@@ -1,0 +1,6 @@
+Name:Butter Flutter
+ManaCost:1 B
+Types:Sorcery
+A:SP$ ChooseCard | Cost$ 1 B Discard<1/Card> | CostDesc$ As an additional cost to cast this spell, discard a card. | ChoiceZone$ Graveyard | Choices$ Card.sharesCardTypeWith Discarded | Mandatory$ True | ChoiceTitle$ Choose a card in your graveyard that shares a card type with the discarded card | SubAbility$ DBChangeZone | SpellDescription$ Choose a card in your graveyard that shares a card type with the discarded card. Put that card into your hand.
+SVar:DBChangeZone:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Hand
+Oracle:As an additional cost to cast this spell, discard a card.\nChoose a card in your graveyard that shares a card type with the discarded card. Put that card into your hand.

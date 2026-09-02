@@ -1,0 +1,7 @@
+Name:Kimi to Boku no Concert of Miracles
+ManaCost:W G
+Types:Kindred Enchantment Harvin
+S:Mode$ Continuous | Affected$ Creature.YouCtrl | AffectedZone$ Stack | CheckSVar$ X | SVarCompare$ EQ0 | AddKeyword$ Convoke | Description$ The first creature spell you cast each turn has convoke.
+SVar:X:Count$ThisTurnCast_Creature.YouCtrl
+S:Mode$ Continuous | Affected$ Creature.YouOwn | AffectedZone$ Graveyard | AddKeyword$ Dredge:5 | IsPresent$ Creature.YouCtrl | PresentCompare$ GE4 | Description$ If you control four or more creatures, creature cards in your graveyard have dredge 5.
+Oracle:The first creature spell you cast each turn has convoke. (Your creatures can help cast it. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nIf you control four or more creatures, creature cards in your graveyard have dredge 5. (If you would draw a card, you may instead mill exactly five cards and return this card from your graveyard to your hand.)

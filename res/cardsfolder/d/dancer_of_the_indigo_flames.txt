@@ -1,0 +1,8 @@
+Name:Dancer of the Indigo Flames
+ManaCost:B B
+Types:Creature Erune
+PT:2/1
+K:Menace
+T:Mode$ Attacks | ValidCard$ Creature.YouCtrl | Alone$ True | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever a creature you control attacks alone, it gets +1/+1 until end of turn.
+SVar:TrigPump:DB$ Pump | Defined$ TriggeredAttackerLKICopy | NumAtt$ +1 | NumDef$ +1
+Oracle:Menace (This creature can't be blocked except by two or more creatures.)\nWhenever a creature you control attacks alone, it gets +1/+1 until end of turn.
