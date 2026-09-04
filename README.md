@@ -5,7 +5,7 @@
 > ⚠️ **重要**：本项目的卡牌脚本使用了**魔改后的 Forge 引擎 API**（见下方「引擎改动」），
 > **不能**用官方原版 Forge 引擎运行本系列卡牌（会报错）。
 >
-> **想直接玩**：下载 [Releases](https://github.com/LiZiyu153/Cards-Forge-GBF/releases) 里的**便携版压缩包**，
+> **想直接玩**：下载 [Releases](https://github.com/LiZiyu153/Card-Forge-GBF/releases) 里的**便携版压缩包**，
 > 解压即玩，不需要编译、也不需要安装官方 Forge（见「快速开始」）。
 > **想自己编译**：本仓库包含魔改引擎完整源码（`forge-src/`），见「安装（从源码编译）」章节。
 
@@ -60,7 +60,7 @@
 
 ### 快速开始（推荐：开箱即用）
 
-1. 到 [Releases 页面](https://github.com/LiZiyu153/Card-Forge-GBF/releases) 下载最新的**便携版压缩包**（如 `Cards-Forge-GBF-Portable-v0.0.1.8.zip`）；
+1. 到 [Releases 页面](https://github.com/LiZiyu153/Card-Forge-GBF/releases) 下载最新的**便携版压缩包**（如 `Card-Forge-GBF-Portable-v0.0.1.8.zip`）；
 2. 解压到任意目录（路径建议不含中文）；
 3. 双击运行压缩包内的 **`安装卡图.cmd`**（只需一次：把 GBF 卡图复制到 Forge 卡图缓存目录）；
 4. 双击 **`forge.exe`** 或 **`forge.cmd`** 启动游戏（两者等价；`forge.exe` 通过同目录 `l4j.ini` 自动带上与 `forge.cmd` 相同的内存/UTF-8 参数）；
