@@ -1,6 +1,8 @@
 Name:Carnival of Fear
 ManaCost:W B
 Types:Enchantment
-T:Mode$ BecomesTarget | ValidTarget$ Card.YouCtrl | ValidSource$ Spell.OppCtrl | TriggerZones$ Battlefield | Execute$ TrigDiscard | UnlessCost$ 1 PayLife<1> | TriggerDescription$ Whenever you or a permanent you control becomes the target of a spell an opponent controls, that player discards a card unless they pay {1} or 1 life.
-SVar:TrigDiscard:DB$ Discard | Defined$ TriggeredSourceController | Mode$ TgtChoose
+T:Mode$ BecomesTarget | ValidTarget$ You,Permanent.YouCtrl+inZoneBattlefield | ValidSource$ Spell.OppCtrl | TriggerZones$ Battlefield | Execute$ TrigDiscard | TriggerDescription$ Whenever you or a permanent you control becomes the target of a spell an opponent controls, that player discards a card unless they pay {1} or 1 life.
+SVar:TrigDiscard:DB$ GenericChoice | Choices$ Pay1,Pay1Life | AILogic$ PayUnlessCost | Defined$ TriggeredSourceController
+SVar:Pay1:DB$ Discard | Mode$ TgtChoose | Defined$ TriggeredSourceController | UnlessCost$ 1 | UnlessPayer$ TriggeredSourceController | SpellDescription$ That player discards a card unless they pay {1}.
+SVar:Pay1Life:DB$ Discard | Mode$ TgtChoose | Defined$ TriggeredSourceController | UnlessCost$ PayLife<1> | UnlessPayer$ TriggeredSourceController | SpellDescription$ That player discards a card unless they pay 1 life.
 Oracle:Whenever you or a permanent you control becomes the target of a spell an opponent controls, that player discards a card unless they pay {1} or 1 life.

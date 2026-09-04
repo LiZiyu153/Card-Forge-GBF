@@ -2,10 +2,9 @@ Name:Solar Pledge
 ManaCost:2 R
 Types:Sorcery
 A:SP$ Destroy | ValidTgts$ Artifact,Land.nonBasic | TgtPrompt$ Select target artifact or nonbasic land | SubAbility$ DBFromExile | SpellDescription$ Destroy target artifact or nonbasic land. If this spell was cast from exile, target player chooses a creature they control with the greatest power, and CARDNAME deals damage to it equal to its power.
-SVar:DBFromExile:DB$ Branch | ConditionCheckSVar$ CastFromExile | ConditionSVarCompare$ EQ1 | TrueSubAbility$ DBDamage
-SVar:DBDamage:DB$ DealDamage | ValidTgts$ Player | TgtPrompt$ Select target player | SubAbility$ DBDamageCreature | SpellDescription$ Target player chooses a creature they control with the greatest power, and CARDNAME deals damage to it equal to its power.
-SVar:DBDamageCreature:DB$ DealDamage | Defined$ Valid Creature.greatestPower+ControlledBy Targeted | NumDmg$ X | Chooser$ Targeted
-SVar:X:Count$CardPower
-SVar:CastFromExile:Count$Valid Card.Self+wasCastFromExile
+SVar:DBFromExile:DB$ ChooseCard | ValidTgts$ Player | TgtPrompt$ Select target player | TargetMin$ CastFromExile | TargetMax$ CastFromExile | Choices$ Creature.greatestPowerControlledByTargeted | Mandatory$ True | RememberChosen$ True | SubAbility$ DBDamage
+SVar:DBDamage:DB$ DealDamage | Defined$ ChosenCard | NumDmg$ X
+SVar:X:ChosenCard$CardPower
+SVar:CastFromExile:Count$wasCastFromExile.1.0
 K:Foretell:2 R
 Oracle:Destroy target artifact or nonbasic land. If this spell was cast from exile, target player chooses a creature they control with the greatest power, and Solar Pledge deals damage to it equal to its power.\nForetell {2}{R} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)

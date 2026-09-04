@@ -2,8 +2,9 @@ Name:Lancelot,Loyal Captain of the Knights
 ManaCost:1 R W
 Types:Legendary Creature Human Knight
 PT:2/2
-S:Mode$ Continuous | Affected$ Card.Self,Card.Self | AddKeyword$ Ward:2 | Description$ CARDNAME has ward {2}.
 S:Mode$ Continuous | Affected$ Creature.YouCtrl | AddKeyword$ Ward:2 | Description$ Creatures you control have ward {2}. (Whenever a creature you control becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)
+T:Mode$ BecomesTarget | ValidSource$ SpellAbility.OppCtrl | ValidTarget$ You | TriggerZones$ Battlefield | Execute$ TrigWard | TriggerDescription$ You have ward {2}. (Whenever you become the target of a spell or ability an opponent controls, counter that spell or ability unless that player pays {2}.)
+SVar:TrigWard:DB$ Counter | Defined$ TriggeredSourceSA | UnlessCost$ 2 | UnlessPayer$ TriggeredSourceSAController
 T:Mode$ Attacks | ValidCard$ Card.Self | Execute$ TrigPump | IsPresent$ Creature.Legendary+attacking+Other | PresentCompare$ GE1 | TriggerZones$ Battlefield | TriggerDescription$ Whenever CARDNAME and another legendary creature attack, CARDNAME gains double strike until end of turn.
 SVar:TrigPump:DB$ Pump | Defined$ Self | KW$ Double Strike | Duration$ UntilEndOfTurn
 Oracle:You and creatures you control have ward {2}. (Whenever you or a creature you control becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)\nWhenever Lancelot and another legendary creature attack, Lancelot gains double strike until end of turn.

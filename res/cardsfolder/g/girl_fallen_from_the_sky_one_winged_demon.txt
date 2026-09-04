@@ -4,13 +4,13 @@ Types:Creature Human God
 PT:6/6
 K:Lifelink
 AlternateMode:DoubleFaced
-T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigExileUnlessPaid | TriggerDescription$ At the beginning of your upkeep, exile CARDNAME unless you pay {2}.
-SVar:TrigExileUnlessPaid:DB$ ChangeZone | Defined$ Self | Origin$ Battlefield | Destination$ Exile | UnlessCost$ 2 | UnlessPayer$ You
-S:Mode$ Continuous | Affected$ Card.Self | EffectZone$ Exile | AffectedZone$ Exile | MayPlay$ True | MayPlayAltManaCost$ 2 W/B | Description$ While this card is in exile, you may cast it for {2}{W/B}. If you do, it enters transformed.
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigExileUnlessPaid | TriggerDescription$ At the beginning of your upkeep, exile CARDNAME unless you sacrifice two lands.
+SVar:TrigExileUnlessPaid:DB$ ChangeZone | Defined$ Self | Origin$ Battlefield | Destination$ Exile | UnlessCost$ Sac<2/Land> | UnlessPayer$ You
+S:Mode$ Continuous | Affected$ Card.Self | EffectZone$ Exile | AffectedZone$ Exile | MayPlay$ True | MayPlayAltManaCost$ 2 B | Description$ While this card is in exile, you may cast it for {2}{B}. If you do, it enters transformed.
 T:Mode$ ChangesZone | Destination$ Battlefield | ValidCard$ Card.Self+wasCastFromExileByYou | TriggerZones$ Battlefield | Execute$ DBTransform | TriggerDescription$ When CARDNAME is cast from exile, transform it.
 SVar:DBTransform:DB$ SetState | Defined$ Self | Mode$ Transform | SubAbility$ DBReveal
 SVar:DBReveal:DB$ Discard | ValidTgts$ Player | Mode$ RevealYouChoose | NumCards$ 1 | DiscardValid$ Card.nonLand
-Oracle:Lifelink\nAt the beginning of your upkeep, exile CARDNAME unless you pay {2}.\nWhile this card is in exile, you may cast it for {2}{W/B}. If you do, it enters transformed.
+Oracle:Lifelink\nAt the beginning of your upkeep, exile CARDNAME unless you sacrifice two lands.\nWhile this card is in exile, you may cast it for {2}{B}. If you do, it enters transformed.
 
 ALTERNATE
 

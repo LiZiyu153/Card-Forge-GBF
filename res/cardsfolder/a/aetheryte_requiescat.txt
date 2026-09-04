@@ -1,6 +1,9 @@
 Name:Aetheryte Requiescat
 ManaCost:B B B
 Types:Sorcery
-A:SP$ Pump | ValidTgts$ Creature.OppCtrl | TargetMin$ 1 | TargetMax$ 99 | TgtPrompt$ Select any number of target creatures an opponent controls | NumAtt$ -1 | NumDef$ -1 | IsCurse$ True | ReplaceDyingDefined$ Targeted | SpellDescription$ Creatures target opponent controls get -1/-1 until end of turn. If a creature would die this turn, exile it instead.
+A:SP$ PumpAll | ValidTgts$ Opponent | TgtPrompt$ Select target opponent | ValidCards$ Creature | NumAtt$ -1 | NumDef$ -1 | IsCurse$ True | RememberPumped$ True | SubAbility$ DBEffect | SpellDescription$ Creatures target opponent controls get -1/-1 until end of turn. If a creature that got -1/-1 this way would die this turn, exile it instead.
+SVar:DBEffect:DB$ Effect | RememberObjects$ Remembered | Duration$ UntilEndOfTurn | ReplacementEffects$ RExileDie
+SVar:RExileDie:Event$ Moved | Origin$ Battlefield | Destination$ Graveyard | ValidCard$ Card.IsRemembered | ReplaceWith$ DBExileDie | Description$ If a creature that got -1/-1 this way would die this turn, exile it instead.
+SVar:DBExileDie:DB$ ChangeZone | Defined$ ReplacedCard | Hidden$ True | Origin$ All | Destination$ Exile
 K:TypeCycling:Basic:1 B
-Oracle:Creatures target opponent controls get -1/-1 until end of turn. If a creature would die this turn, exile it instead.\nBasic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)
+Oracle:Creatures target opponent controls get -1/-1 until end of turn. If a creature that got -1/-1 this way would die this turn, exile it instead.\nBasic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)

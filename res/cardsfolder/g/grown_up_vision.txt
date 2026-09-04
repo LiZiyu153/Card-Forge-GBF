@@ -7,6 +7,6 @@ SVar:DBII:DB$ Mill | NumCards$ 7 | RememberMilled$ True | SubAbility$ DBChoose |
 SVar:DBChoose:DB$ ChooseCard | ChoiceZone$ Graveyard | Choices$ Card.IsRemembered+Permanent | RememberChosen$ True | Optional$ True | SubAbility$ DBToHand
 SVar:DBToHand:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Hand | SubAbility$ DBCleanup
 SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True | ClearChosenCard$ True
-SVar:DBIII:DB$ ChangeZone | Defined$ Imprinted | Origin$ Exile | Destination$ Battlefield | GainControl$ True | WithCountersType$ P1P1 | SubAbility$ DBClearImprint | SpellDescription$ The exiled creature returns to the battlefield under its owner's control with a +1/+1 counter on it.
+SVar:DBIII:DB$ ChangeZone | Defined$ Imprinted | Origin$ Exile | Destination$ Battlefield | WithCountersType$ P1P1 | SubAbility$ DBClearImprint | SpellDescription$ The exiled creature returns to the battlefield under its owner's control with a +1/+1 counter on it.
 SVar:DBClearImprint:DB$ Cleanup | ClearImprinted$ True
 Oracle:(As this Saga enters and after your draw step, add a lore counter. Sacrifice after III.)\nI — Exile target creature.\nII — Mill seven cards. You may put a permanent card from among the milled cards into your hand.\nIII — The exiled creature returns to the battlefield under its owner's control with a +1/+1 counter on it.

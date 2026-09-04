@@ -1,7 +1,7 @@
 Name:Loewenbein: Jagd
 ManaCost:5 G
 Types:Sorcery
-A:SP$ Charm | Choices$ DBBird,DBDog | CharmNum$ 1 | MaxCharmNum$ 1 | ConditionPlayerTurn$ True | ConditionCheckSVar$ X | ConditionSVarCompare$ GE1 | CanRepeatModes$ True | SpellDescription$ Choose one. If you control a Mountain as you cast this spell, choose both. (You may choose both in any order.)
+A:SP$ Charm | MinCharmNum$ 1 | CharmNum$ Count$Compare X GE1.2.1 | Choices$ DBBird,DBDog | SpellDescription$ Choose one. | AdditionalDescription$ If you control a Mountain as you cast this spell, you may choose both instead.
 SVar:DBBird:DB$ Token | TokenScript$ r_4_3_bird_flying | TokenOwner$ You | SpellDescription$ Create a 4/3 red Bird creature token with flying.
 SVar:DBDog:DB$ Token | TokenScript$ g_3_4_dog_vigilance | TokenOwner$ You | SpellDescription$ Create a 3/4 green Dog creature token with vigilance.
 SVar:X:Count$ValidBattlefield Mountain.YouCtrl

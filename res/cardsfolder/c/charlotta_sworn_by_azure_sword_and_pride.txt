@@ -6,7 +6,7 @@ R:Event$ Counter | ActiveZones$ Stack | ValidCard$ Card.Self | ValidSA$ Spell | 
 A:AB$ Mill | Cost$ G | NumCards$ 1 | RememberMilled$ True | SubAbility$ DBChoose | SpellDescription$ Mill a card. You may put a creature card milled this way into your hand. If you don't, put a +1/+1 counter on CARDNAME.
 SVar:DBChoose:DB$ ChooseCard | ChoiceZone$ Graveyard | Choices$ Card.IsRemembered+Creature | RememberChosen$ True | Optional$ True | SubAbility$ DBToHand
 SVar:DBToHand:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Hand | SubAbility$ DBCheck
-SVar:DBCheck:DB$ Branch | ConditionDefined$ ChosenCard | ConditionPresent$ Card | ConditionCompare$ EQ0 | TrueSubAbility$ DBPutCounter | FalseSubAbility$ DBCleanup
+SVar:DBCheck:DB$ Branch | BranchConditionSVar$ Count$ChosenSize | BranchConditionSVarCompare$ EQ0 | TrueSubAbility$ DBPutCounter | FalseSubAbility$ DBCleanup
 SVar:DBPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1 | SubAbility$ DBCleanup
 SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True | ClearChosenCard$ True
 Oracle:This spell can't be countered.\n{G}: Mill a card. You may put a creature card milled this way into your hand. If you don't, put a +1/+1 counter on Charlotta.

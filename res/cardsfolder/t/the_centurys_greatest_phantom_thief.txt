@@ -4,8 +4,7 @@ Types:Creature Human Rouge
 PT:3/3
 T:Mode$ BecomesTarget | ValidTarget$ Card.Self | ValidSource$ Spell,Ability | TriggerZones$ Battlefield | Execute$ TrigSac | TriggerDescription$ When CARDNAME becomes the target of a spell or ability, sacrifice it.
 SVar:TrigSac:DB$ Sacrifice | SacValid$ Card.Self
-A:AB$ Effect | Cost$ 2 U | ValidTgts$ Creature.Other | TgtPrompt$ Select another target creature | RememberObjects$ Targeted | StaticAbilities$ STClone | SubAbility$ DBTap | SpellDescription$ Tap another target creature and put a stun counter on it. As long as that creature remains tapped, CARDNAME becomes a copy of that creature, except it isn't legendary.
-SVar:STClone:Mode$ Continuous | Affected$ Card.Self | Clone$ Remembered | IsPresent$ Card.IsRemembered+tapped | Description$ As long as the tapped creature remains tapped, CARDNAME becomes a copy of it, except it isn't legendary.
-SVar:DBTap:DB$ Tap | Defined$ Targeted | SubAbility$ DBPutCounter
-SVar:DBPutCounter:DB$ PutCounter | Defined$ Targeted | CounterType$ STUN | CounterNum$ 1
+A:AB$ Tap | Cost$ 2 U | ValidTgts$ Creature.Other | TgtPrompt$ Select another target creature | SubAbility$ DBCounter | SpellDescription$ Tap another target creature and put a stun counter on it. As long as that creature remains tapped, CARDNAME becomes a copy of that creature, except it isn't legendary.
+SVar:DBCounter:DB$ PutCounter | Defined$ Targeted | CounterType$ Stun | CounterNum$ 1 | SubAbility$ DBCopy
+SVar:DBCopy:DB$ Clone | Defined$ Targeted | NonLegendary$ True | Duration$ UntilTargetedUntaps
 Oracle:When The Century's Greatest Phantom Thief becomes the target of a spell or ability, sacrifice it.\n{2}{U}: Tap another target creature and put a stun counter on it. As long as that creature remains tapped, The Century's Greatest Phantom Thief becomes a copy of that creature, except it isn't legendary.

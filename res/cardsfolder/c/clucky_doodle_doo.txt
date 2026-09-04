@@ -2,9 +2,9 @@ Name:Clucky Doodle-doo
 ManaCost:1 G
 Types:Sorcery
 K:Kicker:2
-A:SP$ PutCounter | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | CounterType$ P1P1 | CounterNum$ 1 | SubAbility$ DBKicked
+A:SP$ PutCounter | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | CounterType$ P1P1 | CounterNum$ 1 | SubAbility$ DBKicked | SpellDescription$ Put a +1/+1 counter on target creature you control.
 SVar:DBKicked:DB$ GainLife | Condition$ Kicked | LifeAmount$ X | SubAbility$ DBDraw | SpellDescription$ If this spell was kicked, you gain life equal to that creature's power.
-SVar:DBDraw:DB$ Draw | NumCards$ 1
+SVar:DBDraw:DB$ Draw | NumCards$ 1 | SpellDescription$ Draw a card.
 SVar:X:Targeted$CardPower
 DeckHas:Ability$Counters|LifeGain
 Oracle:Kicker {2} (You may pay an additional {2} as you cast this spell.)\nPut a +1/+1 counter on target creature you control. If this spell was kicked, you gain life equal to that creature's power.\nDraw a card.

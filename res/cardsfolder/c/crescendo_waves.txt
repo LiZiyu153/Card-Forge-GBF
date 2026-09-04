@@ -1,7 +1,11 @@
 Name:Crescendo Waves
-ManaCost:2 U R U R R
+ManaCost:2 UR UR R
 Types:Enchantment
-T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigCopy | TriggerDescription$ Whenever you cast an instant or sorcery spell, copy it. You may choose new targets for the copy. This ability triggers only once each turn.
-T:Mode$ AbilityCast | ValidCard$ Planeswalker | ValidSA$ Activated.Loyalty | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigCopy | Secondary$ True | TriggerDescription$ Whenever you cast an instant or sorcery spell, or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.
-SVar:TrigCopy:DB$ CopySpellAbility | Defined$ TriggeredSpellAbility | MayChooseTarget$ True
+T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ Used | SVarCompare$ EQ0 | Execute$ TrigCopy | TriggerDescription$ Whenever you cast an instant or sorcery spell or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.
+T:Mode$ AbilityCast | ValidCard$ Planeswalker | ValidSA$ Activated.Loyalty | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ Used | SVarCompare$ EQ0 | Execute$ TrigCopy | Secondary$ True | TriggerDescription$ Whenever you cast an instant or sorcery spell or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.
+SVar:TrigCopy:DB$ StoreSVar | SVar$ Used | Type$ Number | Expression$ 1 | SubAbility$ DBCopy
+SVar:DBCopy:DB$ CopySpellAbility | Defined$ TriggeredSpellAbility | MayChooseTarget$ True
+T:Mode$ TurnBegin | Execute$ TrigResetUsed | Static$ True
+SVar:TrigResetUsed:DB$ StoreSVar | SVar$ Used | Type$ Number | Expression$ 0
+SVar:Used:Number$0
 Oracle:Whenever you cast an instant or sorcery spell, or activate a loyalty ability of a planeswalker, copy that spell or ability. You may choose new targets for the copy. This ability triggers only once each turn.

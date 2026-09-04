@@ -45,6 +45,9 @@ public class GbfDiagTest extends GbfTestBase {
         ok &= fedielEtbExilesGraveyards();
         ok &= galleonR2OriginRestriction();
         ok &= reiAttachAndClone();
+        ok &= scytheReflectDamage();
+        ok &= aetheryteDebuffExile();
+        ok &= selflessSalvationDraw();
         System.out.println("DONEALL");
         System.out.println(ok ? "ALL PASS" : "SOME FAILED");
         System.exit(ok ? 0 : 1);
@@ -678,6 +681,114 @@ public class GbfDiagTest extends GbfTestBase {
                 + " attached=" + attached + " auraForm=" + auraForm + " handLeft=" + handLeft
                 + " hostDead=" + hostDead + " reiDead=" + reiDead + " formRestored=" + formRestored
                 + " -> " + (ok ? "PASS" : "FAIL"));
+        return ok;
+    }
+
+    /** Wicked Ebony Scythe (R42-2): when it is dealt damage, it deals twice that much damage
+     *  to the source of that damage (DamageDone trigger must resolve the real source card). */
+    private static boolean scytheReflectDamage() {
+        Game game = newGame();
+        Player p = game.getPlayers().get(1);
+        Player q = game.getPlayers().get(0);
+        Card scythe = makeCard("Wicked Ebony Scythe", p, game);
+        addToBattlefield(scythe);
+        game.getTriggerHandler().registerActiveTrigger(scythe, false);
+        Card bear = makeCard("Grizzly Bears", q, game);
+        addToBattlefield(bear);
+        try {
+            CardDamageTable dmgMap = new CardDamageTable();
+            CardDamageTable prevMap = new CardDamageTable();
+            dmgMap.put(bear, scythe, 2);
+            game.getAction().dealDamage(false, dmgMap, prevMap, new GameEntityCounterTable(), null);
+            runTriggersAndClear(game);
+            ZoneType bearZone = game.getZoneOf(bear) == null ? null : game.getZoneOf(bear).getZoneType();
+            boolean ok = bear.getDamage() == 4 || bearZone == ZoneType.Graveyard;
+            System.out.println("[ScytheReflect] bear damage=" + bear.getDamage() + " zone=" + bearZone
+                    + " (expect 4 damage / dead) -> " + (ok ? "PASS" : "FAIL"));
+            return ok;
+        } catch (Exception e) {
+            System.out.println("[ScytheReflect] EXCEPTION: " + e.getClass().getSimpleName()
+                    + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /** Aetheryte Requiescat (R42-2): creatures target opponent controls get -1/-1 until end of turn;
+     *  if a creature that got -1/-1 this way would die this turn, exile it instead. */
+    private static boolean aetheryteDebuffExile() {
+        Game game = newGame();
+        Player p = game.getPlayers().get(1);
+        Player q = game.getPlayers().get(0);
+        Card aetheryte = makeCard("Aetheryte Requiescat", p, game);
+        addToHand(aetheryte);
+        Card bear = makeCard("Grizzly Bears", q, game);
+        addToBattlefield(bear);
+        try {
+            SpellAbility sa = aetheryte.getFirstSpellAbility();
+            sa.setActivatingPlayer(p);
+            sa.getTargets().add(q);
+            game.getStack().add(sa);
+            playUntilStackClear(game);
+            boolean debuffed = bear.getNetToughness() == 1; // 2/2 -> 1/1
+            game.getAction().destroy(bear, null, false, null);
+            runTriggersAndClear(game);
+            ZoneType bearZone = game.getZoneOf(bear) == null ? null : game.getZoneOf(bear).getZoneType();
+            boolean exiled = bearZone == ZoneType.Exile;
+            boolean ok = debuffed && exiled;
+            System.out.println("[Aetheryte] debuffed=" + debuffed + " (toughness "
+                    + bear.getNetToughness() + ") destroyed bear zone=" + bearZone
+                    + " (expect Exile) -> " + (ok ? "PASS" : "FAIL"));
+            return ok;
+        } catch (Exception e) {
+            System.out.println("[Aetheryte] EXCEPTION: " + e.getClass().getSimpleName()
+                    + ": " + e.getMessage());
+            return false;
+        }
+    }
+
+    /** Selfless Salvation (R42-3): end step draw when a player gained 3+ life this turn.
+     *  Diagnoses which XCount spelling actually computes: ConditionGE3 vs Highest. */
+    private static boolean selflessSalvationDraw() {
+        Game game = newGame();
+        Player p = game.getPlayers().get(1);
+        Card selfless = makeCard("Selfless Salvation", p, game);
+        addToBattlefield(selfless);
+        game.getTriggerHandler().registerActiveTrigger(selfless, false);
+
+        // the player gains 3 life this turn (upkeep triggers are not driven here)
+        p.gainLife(3, selfless, null);
+        // feed the library so the draw has a card
+        p.getZone(ZoneType.Library).add(makeCard("Forest", p, game));
+
+        // diagnose the X SVar value the trigger checks (ConditionGE3 spelling, current script)
+        SpellAbility trig = null;
+        for (forge.game.trigger.Trigger t : selfless.getTriggers()) {
+            String desc = t.getParam("TriggerDescription");
+            if (desc != null && desc.contains("draw a card")) {
+                trig = t.getOverridingAbility();
+                break;
+            }
+        }
+        int xCond = trig == null ? -1 : AbilityUtils.calculateAmount(selfless, "X", trig);
+        // candidate fix: Highest aggregate spelling (KotEL style)
+        int xHigh = trig == null ? -1
+                : AbilityUtils.calculateAmount(selfless, "PlayerCountPlayers$HighestLifeGainedThisTurn", trig);
+        int xHighReg = trig == null ? -1
+                : AbilityUtils.calculateAmount(selfless, "PlayerCountRegistered$HighestLifeGainedThisTurn", trig);
+
+        // fire the real End of Turn phase trigger (Eugen phase recipe)
+        game.getPhaseHandler().devModeSet(PhaseType.END_OF_TURN, p);
+        game.getTriggerHandler().resetActiveTriggers();
+        game.getTriggerHandler().runTrigger(TriggerType.Phase, forge.game.ability.AbilityKey.mapFromPlayer(p), false);
+        game.getStack().unfreezeStack();
+        playUntilStackClear(game);
+
+        int hand = p.getZone(ZoneType.Hand).size();
+        boolean ok = xHigh >= 3 && hand >= 1;
+        System.out.println("[SelflessSalv] X(ConditionGE3)=" + xCond + " X(HighestPlayers)=" + xHigh
+                + " X(HighestRegistered)=" + xHighReg + " hand=" + hand
+                + " (expect X(Highest)>=3, hand>=1) -> "
+                + (ok ? "PASS" : "FAIL"));
         return ok;
     }
 }

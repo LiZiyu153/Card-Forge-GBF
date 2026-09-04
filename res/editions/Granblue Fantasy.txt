@@ -264,6 +264,7 @@ BoosterBox=36
 254 U You Just Plain Can't Beat Cagliostro!
 255 R Yuni,Beloved Child of Arbitration
 256 R Zeta,Crimson Return
+257 U Beach Quarter-Note
 
 [tokens]
 #1 b_1_1_bird_flying 表示它是一张黑色 1/1 的飞行鸟
