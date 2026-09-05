@@ -4,8 +4,10 @@ import com.apptasticsoftware.rssreader.Item;
 import com.apptasticsoftware.rssreader.RssReader;
 import org.apache.commons.text.StringEscapeUtils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -13,13 +15,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RSSReader {
+    // R44: never let a stalled github.com connection hang the caller (EDT startup check /
+    // background updater) — connect/read timeouts in seconds.
+    private static final int CONNECT_TIMEOUT_MS = 3000;
+    private static final int READ_TIMEOUT_MS = 5000;
+
+    private static InputStream openStreamWithTimeout(URL url) throws IOException {
+        URLConnection conn = url.openConnection();
+        conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
+        conn.setReadTimeout(READ_TIMEOUT_MS);
+        return conn.getInputStream();
+    }
+
     public static String getCommitLog(String commitsAtom, Date buildDateOriginal, Date maxDate) {
         String message = "";
         SimpleDateFormat simpleDate = TextUtil.getSimpleDate();
         try {
             RssReader reader = new RssReader();
             URL url = new URL(commitsAtom);
-            InputStream inputStream = url.openStream();
+            InputStream inputStream = openStreamWithTimeout(url);
             List<Item> items = reader.read(inputStream).collect(Collectors.toList());
             StringBuilder logs = new StringBuilder();
             int c = 0;
@@ -55,7 +69,7 @@ public class RSSReader {
         try {
             RssReader reader = new RssReader();
             URL url = new URL(releaseAtom);
-            InputStream inputStream = url.openStream();
+            InputStream inputStream = openStreamWithTimeout(url);
             List<Item> items = reader.read(inputStream).collect(Collectors.toList());
             for (Item i : items) {
                 if (i.getLink().isPresent()) {

@@ -255,6 +255,9 @@ public enum FControl implements KeyEventDispatcher {
                 }
                 snapsVersion = tag.trim();
                 hasSnapsUpdate = !snapsVersion.isEmpty() && !localVersion.isEmpty() && !localVersion.equals(snapsVersion);
+                System.out.println("FControl: update check vs Card-Forge-GBF — local=" + (localVersion.isEmpty() ? "<none>" : localVersion)
+                        + ", latest=" + (snapsVersion.isEmpty() ? "<unknown>" : snapsVersion)
+                        + ", updateAvailable=" + hasSnapsUpdate);
                 buildTimeStamp = BuildInfo.getTimestamp(); // lower bound for the "latest changes" commit log
             }
 

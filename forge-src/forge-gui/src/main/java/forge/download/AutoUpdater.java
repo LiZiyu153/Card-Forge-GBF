@@ -1,5 +1,6 @@
 package forge.download;
 
+import forge.gui.FThreads;
 import forge.gui.util.SOptionPane;
 import forge.util.*;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +11,6 @@ import java.io.IOException;
 import java.net.*;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import static forge.localinstance.properties.ForgeConstants.GBF_LOCAL_VERSION_FILE;
 import static forge.localinstance.properties.ForgeConstants.GBF_RELEASES_ATOM;
@@ -26,6 +26,10 @@ import static forge.localinstance.properties.ForgeConstants.GBF_RELEASES_URL;
  * This project ships portable zips on GitHub Releases, so "updating" compares the latest
  * release tag with the local version marker (&lt;install dir&gt;/version.txt) and opens the
  * Releases page in the browser when a newer version exists.
+ *
+ * R44 hotfix: the whole check is non-reentrant and never runs network on the EDT — a
+ * re-entrant or queued duplicate invocation (e.g. repeated clicks on the title-bar marquee)
+ * is ignored instead of cascading into another check + modal dialog.
  */
 public class AutoUpdater {
     private static final Localizer localizer = Localizer.getInstance();
@@ -34,10 +38,12 @@ public class AutoUpdater {
     // repository regardless of the selected channel.
     public static String[] updateChannels = new String[]{ "none", "snapshot", "release"};
 
+    // Re-entrancy guard: one check at a time, cleared only after the dialog (if any) closes.
+    private static boolean checkInProgress;
+
     private final boolean isLoading;
-    private String version;
     private final String buildVersion;
-    private String packageUrl;
+    private String version;
     private String buildDate = "";
 
     public AutoUpdater(boolean loading) {
@@ -52,15 +58,56 @@ public class AutoUpdater {
     }
 
     public boolean attemptToUpdate(CompletableFuture<String> cf) {
-        if (!verifyUpdateable()) {
+        if (checkInProgress) {
+            System.out.println("AutoUpdater: update check already in progress, ignoring duplicate request");
             return false;
         }
-        try {
-            downloadUpdate(cf);
-        } catch(IOException | URISyntaxException | ExecutionException | InterruptedException e) {
-            return false;
+        checkInProgress = true;
+        if (FThreads.isGuiThread()) {
+            // Both desktop callers (title-bar marquee, Downloads submenu) fire this from the EDT.
+            // Never run network or modal dialogs synchronously inside the originating UI event;
+            // run the check on a background thread and post only the final dialog to the EDT.
+            FThreads.invokeInBackgroundThread(() -> runCheck(cf));
+        } else {
+            runCheck(cf);
         }
         return true;
+    }
+
+    private void runCheck(CompletableFuture<String> cf) {
+        final String logs = fetchCommitLog(cf);
+        boolean updateFound;
+        try {
+            updateFound = verifyUpdateable();
+        } catch (Exception e) {
+            e.printStackTrace();
+            updateFound = false;
+        }
+        if (!updateFound) {
+            System.out.println("AutoUpdater: no update prompt (latest=" + (StringUtils.isEmpty(version) ? "<unknown>" : version)
+                    + ", local=" + (StringUtils.isEmpty(buildDate) ? "<none>" : buildDate) + ")");
+            checkInProgress = false;
+            return;
+        }
+        FThreads.invokeInEdtLater(() -> {
+            try {
+                downloadUpdate(logs); // modal confirm dialog + open Releases page — EDT only
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                checkInProgress = false; // cleared only after the dialog closed
+            }
+        });
+    }
+
+    /** "Latest changes" commit log of this project's repo (may be ""). */
+    private static String fetchCommitLog(CompletableFuture<String> cf) {
+        try {
+            return cf.get();
+        } catch (Exception e) { // ExecutionException / InterruptedException / CancellationException
+            e.printStackTrace();
+            return "";
+        }
     }
 
     private boolean verifyUpdateable() {
@@ -68,12 +115,11 @@ public class AutoUpdater {
             // TODO This doesn't work yet, because FSkin isn't loaded at the time.
             return false;
         }
-
         // Check the internet connection
         if (!testNetConnection()) {
+            System.out.println("AutoUpdater: github.com unreachable, skipping update check");
             return false;
         }
-
         // Fetch the latest release tag of this project's repo and compare it with the local marker
         return compareBuildWithLatestChannelVersion();
     }
@@ -92,17 +138,20 @@ public class AutoUpdater {
         try {
             retrieveVersion();
             if (StringUtils.isEmpty(version)) {
+                System.out.println("AutoUpdater: could not read the latest release tag from the repo");
                 return false;
             }
             final String localVersion = getLocalVersion();
             if (StringUtils.isEmpty(localVersion)) {
-                return false; // no version marker shipped with this install -> stay quiet
+                System.out.println("AutoUpdater: no local version.txt marker shipped, staying quiet");
+                return false;
             }
             buildDate = localVersion; // shown as the "current" version in the update dialog
             return !localVersion.equals(version);
         }
         catch (Exception e) {
-            SOptionPane.showOptionDialog(e.getMessage(), localizer.getMessage("lblError"), null, List.of("Ok"));
+            // never pop an error dialog from inside the check itself — log instead
+            e.printStackTrace();
             return false;
         }
     }
@@ -114,8 +163,6 @@ public class AutoUpdater {
             tag = tag.substring(1);
         }
         version = tag.trim();
-        // The project ships portable zips (no installer jar), so "updating" opens the Releases page.
-        packageUrl = GBF_RELEASES_URL;
     }
 
     private String getLocalVersion() {
@@ -132,37 +179,30 @@ public class AutoUpdater {
         }
     }
 
-    private boolean downloadUpdate(CompletableFuture<String> cf) throws URISyntaxException, IOException, ExecutionException, InterruptedException {
-        // TODO Change the "auto" to be more auto.
-        if (isLoading) {
-            // We need to preload enough of a Skins to show a dialog and a button if we're in loading
-            // splashScreen.prepareForDialogs();
-            return downloadFromBrowser();
-        }
-        // GBF fork (P-14): cf = "latest changes" commit log of this project's repo (may be "").
-        String logs = cf.get();
+    private void downloadUpdate(String logs) {
         String v = version;
         String b = buildDate.isEmpty() ? buildVersion : buildDate;
         String message = localizer.getMessage("lblNewVersionForgeAvailableUpdateConfirm", v, b) + logs;
         final List<String> options = List.of(localizer.getMessage("lblUpdateNow"), localizer.getMessage("lblUpdateLater"));
+        System.out.println("AutoUpdater: update available — latest=" + v + ", local=" + b);
         if (SOptionPane.showOptionDialog(message, localizer.getMessage("lblNewVersionAvailable"), null, options, 0) == 0) {
             // Portable zip distribution: open the Releases page in the browser instead of
             // auto-downloading an installer jar (this project does not ship one).
-            return downloadFromBrowser();
+            try {
+                downloadFromBrowser();
+            } catch (URISyntaxException | IOException e) {
+                e.printStackTrace();
+            }
         }
-
-        return false;
     }
 
-    private boolean downloadFromBrowser() throws URISyntaxException, IOException {
+    private void downloadFromBrowser() throws URISyntaxException, IOException {
         final Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             // Linking directly there will auto download, but won't auto-update
-            desktop.browse(new URI(packageUrl));
-            return true;
-        } else {
-            System.out.println("Download latest version: " + packageUrl);
-            return false;
+            desktop.browse(new URI(GBF_RELEASES_URL));
+            return;
         }
+        System.out.println("AutoUpdater: no desktop browser available — latest version at " + GBF_RELEASES_URL);
     }
 }
