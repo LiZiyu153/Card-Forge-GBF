@@ -38,6 +38,16 @@ public final class ForgeConstants {
     public static final String PROFILE_FILE                     = ASSETS_DIR + "forge.profile.properties";
     public static final String PROFILE_TEMPLATE_FILE            = PROFILE_FILE + ".example";
 
+    // --- GBF fork (P-14): in-game update checker targets THIS project's own repository.
+    // The official Card-Forge URLs above stay untouched (still used by assets downloader /
+    // wiki links / mobile). A release must bump the repo-root version.txt (shipped inside the
+    // portable zip) to the new release tag, so installed copies can be compared with it. ---
+    public static final String GBF_UPDATE_REPO           = "https://github.com/LiZiyu153/Card-Forge-GBF/";
+    public static final String GBF_RELEASES_ATOM         = GBF_UPDATE_REPO + "releases.atom";
+    public static final String GBF_COMMITS_ATOM          = GBF_UPDATE_REPO + "commits/main.atom";
+    public static final String GBF_RELEASES_URL          = GBF_UPDATE_REPO + "releases";
+    public static final String GBF_LOCAL_VERSION_FILE    = ASSETS_DIR + "version.txt";
+
     public static final String RES_DIR                      = ASSETS_DIR + "res" + PATH_SEPARATOR;
     public static final String ADVENTURE_DIR                = RES_DIR + "adventure" + PATH_SEPARATOR;
     public static final String ADVENTURE_COMMON_DIR         = ADVENTURE_DIR + "common" + PATH_SEPARATOR;

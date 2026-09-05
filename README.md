@@ -42,6 +42,7 @@
 | `res/blockdata/` | 轮抓/环境接入（已注册 `Granblue Fantasy` 系列） |
 | `res/gbf-pics/GBF/` | GBF 卡图（Forge 不会自动下载自定义集卡图，随仓库分发；刻意不放在 `res/pics/` 旧版数据目录下，以免触发 Forge 启动时的数据迁移弹窗） |
 | `forge-src/` | **魔改后的 Forge 引擎完整源码**（基于官方 tag `forge-2.0.13`，编译产物不入库） |
+| `version.txt` | **本地版本标记**（一行版本号，如 `0.0.2.1`；随便携版分发，游戏内更新检查的对比基准） |
 | `tests/` | 无头解析/行为测试基建（Java，详见 `tests/README.md`） |
 | `tools/` | 一键回归 gate（`run_all_tests.cmd`）与反模式 lint（`lint_gbf.py`） |
 | `LICENSE.txt` | GPL-3.0 协议全文 |
@@ -68,6 +69,17 @@
 
 > 需要 **Java 21 或更高版本**（没有的话去 [adoptium.net](https://adoptium.net) 下载安装）。
 > 便携版 = 官方安装基底 + 魔改引擎 jar + 全部卡牌脚本 + GBF 卡图，与当前开发环境完全一致。
+
+### 游戏内更新检查（引擎 P-14 起）
+
+游戏会在启动时自动检查**本仓库**（`LiZiyu153/Card-Forge-GBF`）的最新 Release tag，
+与本地根目录 `version.txt` 记录的版本对比；发现新版本时游戏内会有提示，点开后弹窗
+展示仓库近期提交，并提供按钮打开 Releases 页面下载最新便携版。更新检查**只面向本仓库**，
+不会再连接官方 Card-Forge 的快照/发布服务器（官方构建会覆盖魔改引擎、破坏 GBF 卡牌脚本）。
+
+> ⚠️ **发版提醒**：每次发布新版，记得把根目录 `version.txt` 内容改成与 Release tag
+> 一致（如 tag `v0.0.2.2` → 文件内容 `0.0.2.2`），该文件随便携版 zip 分发，
+> 游戏靠它判断"本地已是最新"（缺失时游戏保持安静，不做提示）。
 
 ### 安装（从源码编译）
 

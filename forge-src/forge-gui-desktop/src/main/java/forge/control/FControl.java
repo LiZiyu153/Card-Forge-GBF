@@ -26,8 +26,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -65,11 +63,10 @@ import forge.toolbox.FSkin;
 import forge.util.BuildInfo;
 import forge.util.FileUtil;
 import forge.util.Localizer;
+import forge.util.RSSReader;
 import forge.util.RestartUtil;
 import forge.view.FFrame;
 import forge.view.FView;
-
-import static forge.localinstance.properties.ForgeConstants.GITHUB_SNAPSHOT_URL;
 
 /**
  * <p>
@@ -244,13 +241,21 @@ public enum FControl implements KeyEventDispatcher {
         //get version string
         try {
             if (isSnapshot && prefs.getPrefBoolean(FPref.CHECK_SNAPSHOT_AT_STARTUP)) {
-                URL url = new URL(GITHUB_SNAPSHOT_URL + "version.txt");
-                snapsVersion = FileUtil.readFileToString(url);
-                url = new URL(GITHUB_SNAPSHOT_URL + "build.txt");
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                snapsTimestamp = simpleDateFormat.parse(FileUtil.readFileToString(url));
-                buildTimeStamp = BuildInfo.getTimestamp();
-                hasSnapsUpdate = BuildInfo.verifyTimestamp(snapsTimestamp);
+                // GBF fork (P-14): check THIS project's own repository for a newer release.
+                // Never touch the Card-Forge upstream daily-snapshots — an official build
+                // would replace the modified engine and break the GBF card scripts.
+                String localVersion = "";
+                final File localVersionFile = new File(ForgeConstants.GBF_LOCAL_VERSION_FILE);
+                if (localVersionFile.exists()) {
+                    localVersion = FileUtil.readFileToString(localVersionFile).trim();
+                }
+                String tag = RSSReader.getLatestReleaseTag(ForgeConstants.GBF_RELEASES_ATOM);
+                if (tag.startsWith("v") || tag.startsWith("V")) {
+                    tag = tag.substring(1);
+                }
+                snapsVersion = tag.trim();
+                hasSnapsUpdate = !snapsVersion.isEmpty() && !localVersion.isEmpty() && !localVersion.equals(snapsVersion);
+                buildTimeStamp = BuildInfo.getTimestamp(); // lower bound for the "latest changes" commit log
             }
 
         } catch (Exception ignored) {

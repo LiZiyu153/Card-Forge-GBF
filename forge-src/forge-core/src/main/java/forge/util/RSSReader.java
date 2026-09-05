@@ -61,8 +61,14 @@ public class RSSReader {
                 if (i.getLink().isPresent()) {
                     try {
                         String val = i.getLink().get();
-                        tag = val.substring(val.lastIndexOf("forge"));
-                        break;
+                        // GBF fork (P-14): extract the tag after "/releases/tag/" so this also
+                        // works for repos whose name contains "Forge" (e.g. Card-Forge-GBF).
+                        final String marker = "/releases/tag/";
+                        int idx = val.lastIndexOf(marker);
+                        if (idx >= 0) {
+                            tag = val.substring(idx + marker.length());
+                            break;
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
