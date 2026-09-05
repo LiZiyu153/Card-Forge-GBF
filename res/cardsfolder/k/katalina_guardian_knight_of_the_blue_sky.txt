@@ -5,7 +5,7 @@ PT:1/2
 K:Flash
 T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigDiscard | TriggerDescription$ When CARDNAME enters, discard a nonland card. If you do, search your library for a Human creature card with mana value 3 or less, reveal it, and put it into your hand, then shuffle.
 SVar:TrigDiscard:DB$ StoreSVar | SVar$ HandBefore | Type$ Count | Expression$ Count$ValidHand Card.YouOwn | SubAbility$ DBDiscard
-SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1 | ChooseType$ Card.nonLand | SubAbility$ DBBranch
+SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1 | DiscardValid$ Card.nonLand | SubAbility$ DBBranch
 SVar:DBBranch:DB$ Branch | BranchConditionSVar$ X | BranchConditionSVarCompare$ LT0 | TrueSubAbility$ DBSearch
 SVar:X:Count$ValidHand Card.YouOwn/Minus.SVar$HandBefore
 SVar:DBSearch:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Creature.Human+cmcLE3 | Shuffle$ True
