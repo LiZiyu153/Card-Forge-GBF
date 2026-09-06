@@ -348,7 +348,10 @@ public class GbfAutoUpdater {
                         + "exit /b 1\r\n"
                         + ":swapped\r\n"
                         + "if exist \"%OLDDIR%\\forge.profile.properties\" copy /y \"%OLDDIR%\\forge.profile.properties\" \"%~1\\forge.profile.properties\" >nul\r\n"
-                        + "start \"\" \"%~dp1%~3\\forge.exe\"\r\n"
+                        + "rem launch4j's forge.exe uses the inherited CWD as its working directory,\r\n"
+                        + "rem so cd into the new install dir BEFORE starting it (this script's CWD is %TEMP%)\r\n"
+                        + "cd /d \"%~1\"\r\n"
+                        + "start \"\" \"%~1\\forge.exe\"\r\n"
                         + "exit /b 0\r\n";
         try {
             File bat = new File(System.getProperty("java.io.tmpdir"), "gbf-updater-" + gameName + ".bat");
