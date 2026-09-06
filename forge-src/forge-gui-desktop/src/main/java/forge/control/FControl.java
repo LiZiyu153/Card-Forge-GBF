@@ -40,6 +40,7 @@ import com.google.common.collect.Lists;
 
 import forge.ImageCache;
 import forge.Singletons;
+import forge.download.GbfAutoUpdater;
 import forge.gamemodes.match.HostedMatch;
 import forge.gamemodes.quest.data.QuestPreferences.QPref;
 import forge.gamemodes.quest.io.QuestDataIO;
@@ -235,6 +236,9 @@ public enum FControl implements KeyEventDispatcher {
      * After view and model have been initialized, control can start.
      */
     public void initialize() {
+        // GBF fork (P-14 auto-update): register the desktop auto-install hook and clean up
+        // leftovers of previous interrupted auto-updates in the background.
+        GbfAutoUpdater.register();
         final ForgePreferences prefs = FModel.getPreferences();
         currentVersion = BuildInfo.getVersionString();
         isSnapshot = currentVersion.contains("SNAPSHOT");

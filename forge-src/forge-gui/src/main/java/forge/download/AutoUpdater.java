@@ -41,6 +41,24 @@ public class AutoUpdater {
     // Re-entrancy guard: one check at a time, cleared only after the dialog (if any) closes.
     private static boolean checkInProgress;
 
+    /**
+     * Desktop-side auto-install hook (P-14 auto-update): when the user picks "update now",
+     * the desktop registers an installer that downloads the portable zip, extracts it next to
+     * the install directory and switches directories on restart. forge-gui itself must not
+     * depend on desktop UI, so the actual flow lives in forge-gui-desktop (GbfAutoUpdater).
+     */
+    public interface UpdateInstaller {
+        /** Starts the auto-install for the given new version; must not block the EDT. */
+        void startAutoInstall(String newVersion);
+    }
+    private static UpdateInstaller installer;
+    public static void setUpdateInstaller(UpdateInstaller installer0) {
+        installer = installer0;
+    }
+    public static boolean hasUpdateInstaller() {
+        return installer != null;
+    }
+
     private final boolean isLoading;
     private final String buildVersion;
     private String version;
@@ -182,12 +200,29 @@ public class AutoUpdater {
     private void downloadUpdate(String logs) {
         String v = version;
         String b = buildDate.isEmpty() ? buildVersion : buildDate;
-        String message = localizer.getMessage("lblNewVersionForgeAvailableUpdateConfirm", v, b) + logs;
-        final List<String> options = List.of(localizer.getMessage("lblUpdateNow"), localizer.getMessage("lblUpdateLater"));
+        String message = localizer.getMessage("lblNewVersionForgeAvailableUpdateConfirm", v, b) + logs
+                + localizer.getMessageorUseDefault("lblGbfAutoUpdateHint",
+                        "\n\n选择「立即更新」将自动下载新版并完成安装（约 440MB，需约 1.5GB 临时空间），完成后游戏自动重启。");
+        final List<String> options = List.of(
+                localizer.getMessageorUseDefault("lblGbfUpdateNowAuto", "立即更新（自动安装）"),
+                localizer.getMessage("lblUpdateLater"),
+                localizer.getMessageorUseDefault("lblGbfManualDownload", "手动下载"));
         System.out.println("AutoUpdater: update available — latest=" + v + ", local=" + b);
-        if (SOptionPane.showOptionDialog(message, localizer.getMessage("lblNewVersionAvailable"), null, options, 0) == 0) {
-            // Portable zip distribution: open the Releases page in the browser instead of
-            // auto-downloading an installer jar (this project does not ship one).
+        int reply = SOptionPane.showOptionDialog(message, localizer.getMessage("lblNewVersionAvailable"), null, options, 0);
+        if (reply == 0) {
+            // GBF fork (P-14 auto-update): prefer the desktop auto-install flow (download zip →
+            // extract → dir swap → restart); fall back to opening the Releases page if no
+            // installer is registered (e.g. non-desktop environment).
+            if (installer != null) {
+                installer.startAutoInstall(version);
+            } else {
+                try {
+                    downloadFromBrowser();
+                } catch (URISyntaxException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (reply == 2) {
             try {
                 downloadFromBrowser();
             } catch (URISyntaxException | IOException e) {

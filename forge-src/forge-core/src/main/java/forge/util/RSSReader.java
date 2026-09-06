@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RSSReader {
@@ -93,5 +95,44 @@ public class RSSReader {
             e.printStackTrace();
         }
         return tag;
+    }
+
+    /**
+     * GBF fork (P-14 auto-update): resolve the download URL of the first ".zip" release asset of
+     * the given tag via the GitHub API (robust against asset renames). Falls back to the
+     * conventional asset URL (Card-Forge-GBF-Portable-&lt;tag&gt;.zip) when the API call fails.
+     *
+     * @param repoUrl e.g. "https://github.com/LiZiyu153/Card-Forge-GBF/"
+     * @param tag     the exact release tag, e.g. "v0.0.2.3"
+     */
+    public static String getReleaseZipAssetUrl(String repoUrl, String tag) {
+        final String base = repoUrl.endsWith("/") ? repoUrl : repoUrl + "/";
+        final String fallback = base + "releases/download/" + tag + "/Card-Forge-GBF-Portable-" + tag + ".zip";
+        try {
+            Matcher repoMatcher = Pattern.compile("github\\.com/([^/]+)/([^/]+?)/?$").matcher(base);
+            if (!repoMatcher.find()) {
+                return fallback;
+            }
+            String owner = repoMatcher.group(1);
+            String repo = repoMatcher.group(2);
+            String api = "https://api.github.com/repos/" + owner + "/" + repo + "/releases/tags/" + tag;
+            URLConnection conn = new URL(api).openConnection();
+            conn.setRequestProperty("User-Agent", "Forge/" + BuildInfo.getVersionString()); // GitHub API requires a UA
+            conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
+            conn.setReadTimeout(READ_TIMEOUT_MS);
+            try (InputStream in = conn.getInputStream()) {
+                String json = new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+                Matcher assetMatcher = Pattern.compile("\"browser_download_url\"\\s*:\\s*\"([^\"]+)\"").matcher(json);
+                while (assetMatcher.find()) {
+                    String u = assetMatcher.group(1);
+                    if (u.endsWith(".zip")) {
+                        return u;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fallback;
     }
 }
