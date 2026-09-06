@@ -4,5 +4,5 @@ Types:Creature Elf
 PT:2/3
 S:Mode$ Continuous | Affected$ Card.Self | CheckSVar$ X | SVarCompare$ GE1 | AddKeyword$ Protection from red | Description$ As long as you control an Island, CARDNAME has protection from red.
 SVar:X:Count$Valid Island.YouCtrl
-A:AB$ Animate | Cost$ 5 U T | ValidTgts$ Island | Power$ 3 | Toughness$ 3 | Types$ Elemental,Creature,Land | AddKeyword$ Flying | Colors$ Blue | Duration$ Permanent | SpellDescription$ Target Island becomes a 3/3 blue Elemental creature with flying. It's still a land.
+A:AB$ Animate | Cost$ 5 U T | ValidTgts$ Island | Power$ 3 | Toughness$ 3 | Types$ Elemental,Creature,Land | Keywords$ Flying | Colors$ Blue | Duration$ Permanent | SpellDescription$ Target Island becomes a 3/3 blue Elemental creature with flying. It's still a land.
 Oracle:As long as you control an Island, Crystalia Conductor has protection from red.\n{5}{U}{T}: Target Island becomes a 3/3 blue Elemental creature with flying. It's still a land.
