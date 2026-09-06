@@ -310,6 +310,10 @@ public class GbfAutoUpdater {
      * ".gbf-update" to the original name -> carry over forge.profile.properties -> start the new
      * forge.exe. The old directory is cleaned up by the new build at its next startup
      * (GbfAutoUpdater.cleanupLeftovers).
+     *
+     * NOTE: after a "ren" succeeds the original %~1 path no longer exists, so the script must
+     * reference the renamed old dir as "%~1.gbf-old" and the final install dir as "%~1".
+     * forge.exe is launched by its full path ("%~dp1%~3") because the script's CWD is %TEMP%.
      */
     private static File writeSwitcherBat(File installDir, File newDir, String gameName) {
         String content =
@@ -323,6 +327,7 @@ public class GbfAutoUpdater {
                         + "set \"OLD=%~1\"\r\n"
                         + "set \"NEW=%~2\"\r\n"
                         + "set \"GAME=%~3\"\r\n"
+                        + "set \"OLDDIR=%~1.gbf-old\"\r\n"
                         + "cd /d \"%TEMP%\"\r\n"
                         + "rem give the exiting game time to release its files\r\n"
                         + "timeout /t 8 /nobreak >nul\r\n"
@@ -339,11 +344,11 @@ public class GbfAutoUpdater {
                         + "ren \"%NEW%\" \"%GAME%\"\r\n"
                         + "if not errorlevel 1 goto swapped\r\n"
                         + "echo error: could not move new directory into place, rolling back > \"%TEMP%\\gbf-update-error.txt\"\r\n"
-                        + "ren \"%OLD%\" \"%GAME%\"\r\n"
+                        + "ren \"%OLDDIR%\" \"%GAME%\"\r\n"
                         + "exit /b 1\r\n"
                         + ":swapped\r\n"
-                        + "if exist \"%OLD%\\forge.profile.properties\" copy /y \"%OLD%\\forge.profile.properties\" \"%GAME%\\forge.profile.properties\" >nul\r\n"
-                        + "start \"\" \"%GAME%\\forge.exe\"\r\n"
+                        + "if exist \"%OLDDIR%\\forge.profile.properties\" copy /y \"%OLDDIR%\\forge.profile.properties\" \"%~1\\forge.profile.properties\" >nul\r\n"
+                        + "start \"\" \"%~dp1%~3\\forge.exe\"\r\n"
                         + "exit /b 0\r\n";
         try {
             File bat = new File(System.getProperty("java.io.tmpdir"), "gbf-updater-" + gameName + ".bat");
