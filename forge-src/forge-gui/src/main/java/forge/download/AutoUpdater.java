@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static forge.localinstance.properties.ForgeConstants.GBF_LOCAL_VERSION_FILE;
-import static forge.localinstance.properties.ForgeConstants.GBF_RELEASES_ATOM;
 import static forge.localinstance.properties.ForgeConstants.GBF_RELEASES_URL;
+import static forge.localinstance.properties.ForgeConstants.GBF_UPDATE_REPO;
 
 /**
  * Auto-update support.
@@ -105,6 +105,32 @@ public class AutoUpdater {
             System.out.println("AutoUpdater: no update prompt (latest=" + (StringUtils.isEmpty(version) ? "<unknown>" : version)
                     + ", local=" + (StringUtils.isEmpty(buildDate) ? "<none>" : buildDate) + ")");
             checkInProgress = false;
+            if (StringUtils.isEmpty(version)) {
+                // could not reach the repo — the user clicked a button, so give visible feedback
+                FThreads.invokeInEdtLater(() -> {
+                    int r = SOptionPane.showOptionDialog(
+                            "无法连接 GitHub 检查更新（网络或仓库暂时不可用）。\n可稍后重试，或手动下载最新便携版。",
+                            "检查更新失败", SOptionPane.ERROR_ICON,
+                            List.of(localizer.getMessageorUseDefault("lblGbfRetry", "重试"),
+                                    localizer.getMessageorUseDefault("lblGbfManualDownload", "手动下载"),
+                                    localizer.getMessageorUseDefault("lblClose", "关闭")), 0);
+                    if (r == 0) {
+                        attemptToUpdate(CompletableFuture.completedFuture(""));
+                    } else if (r == 1) {
+                        try {
+                            downloadFromBrowser();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            } else if (!StringUtils.isEmpty(buildDate)) {
+                // reached the repo and versions match → tell the user it is up to date
+                FThreads.invokeInEdtLater(() -> SOptionPane.showMessageDialog(
+                        localizer.getMessageorUseDefault("lblGbfAlreadyLatest", "已是最新版本（v") + buildDate + "）。",
+                        localizer.getMessageorUseDefault("lblGbfCheckUpdates", "检查更新"), SOptionPane.INFORMATION_ICON));
+            }
+            // local version marker missing → stay quiet
             return;
         }
         FThreads.invokeInEdtLater(() -> {
@@ -133,23 +159,11 @@ public class AutoUpdater {
             // TODO This doesn't work yet, because FSkin isn't loaded at the time.
             return false;
         }
-        // Check the internet connection
-        if (!testNetConnection()) {
-            System.out.println("AutoUpdater: github.com unreachable, skipping update check");
-            return false;
-        }
-        // Fetch the latest release tag of this project's repo and compare it with the local marker
+        // Fetch the latest release tag of this project's repo and compare it with the local
+        // marker. No separate connectivity pre-check: RSSReader talks to api.github.com
+        // (plain github.com:443 is frequently unreachable from mainland China) and enforces
+        // its own timeouts.
         return compareBuildWithLatestChannelVersion();
-    }
-
-    private boolean testNetConnection() {
-        try (Socket socket = new Socket()) {
-            InetSocketAddress address = new InetSocketAddress("github.com", 443);
-            socket.connect(address, 1000);
-            return true;
-        } catch (IOException e) {
-            return false; // Either timeout or unreachable or failed DNS lookup.
-        }
     }
 
     private boolean compareBuildWithLatestChannelVersion() {
@@ -175,8 +189,10 @@ public class AutoUpdater {
     }
 
     private void retrieveVersion() {
-        // GBF fork (P-14): latest version = newest release tag of this project's own repository.
-        String tag = RSSReader.getLatestReleaseTag(GBF_RELEASES_ATOM);
+        // GBF fork (P-14/P-15): latest version = newest release tag of this project's own
+        // repository, fetched through the GitHub REST API (api.github.com) — plain github.com
+        // atom feeds are frequently unreachable from mainland China.
+        String tag = RSSReader.getLatestReleaseTagViaApi(GBF_UPDATE_REPO);
         if (tag.startsWith("v") || tag.startsWith("V")) {
             tag = tag.substring(1);
         }

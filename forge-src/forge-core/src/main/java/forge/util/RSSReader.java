@@ -6,6 +6,7 @@ import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -17,10 +18,11 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RSSReader {
-    // R44: never let a stalled github.com connection hang the caller (EDT startup check /
-    // background updater) — connect/read timeouts in seconds.
-    private static final int CONNECT_TIMEOUT_MS = 3000;
-    private static final int READ_TIMEOUT_MS = 5000;
+    // R44: never let a stalled github connection hang the caller (EDT startup check /
+    // background updater) — connect/read timeouts in ms. Generous on purpose: mainland-China
+    // connections to github hosts frequently need several seconds to establish.
+    private static final int CONNECT_TIMEOUT_MS = 6000;
+    private static final int READ_TIMEOUT_MS = 10000;
 
     private static InputStream openStreamWithTimeout(URL url) throws IOException {
         URLConnection conn = url.openConnection();
@@ -134,5 +136,111 @@ public class RSSReader {
             e.printStackTrace();
         }
         return fallback;
+    }
+
+    // ------------------------------------------------------------------
+    // GBF fork (P-14/P-15 hotfix): the in-game update check must NOT talk to github.com
+    // directly (releases/commits atom feeds) — plain github.com:443 is frequently
+    // unreachable from mainland China while api.github.com stays reachable. All update
+    // checks therefore go through the GitHub REST API instead.
+
+    private static final String API_BASE_PATTERN = "github\\.com/([^/]+)/([^/]+?)/?$";
+
+    private static String toApiBase(String repoUrl) {
+        final String base = repoUrl.endsWith("/") ? repoUrl : repoUrl + "/";
+        Matcher repoMatcher = Pattern.compile(API_BASE_PATTERN).matcher(base);
+        if (!repoMatcher.find()) {
+            return null;
+        }
+        return "https://api.github.com/repos/" + repoMatcher.group(1) + "/" + repoMatcher.group(2);
+    }
+
+    /** GET the given api.github.com URL with a proper User-Agent and timeouts; null on failure. */
+    private static String httpGetJson(String apiUrl) {
+        try {
+            HttpURLConnection conn = (HttpURLConnection) new URL(apiUrl).openConnection();
+            conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
+            conn.setReadTimeout(READ_TIMEOUT_MS);
+            conn.setRequestProperty("User-Agent", "Forge/" + BuildInfo.getVersionString()); // GitHub API requires a UA
+            int code = conn.getResponseCode();
+            if (code != HttpURLConnection.HTTP_OK) {
+                System.out.println("RSSReader: HTTP " + code + " for " + apiUrl);
+                return null;
+            }
+            try (InputStream in = conn.getInputStream()) {
+                return new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Latest release tag of the repo (e.g. "v0.0.2.3") via the GitHub REST API; "" on failure.
+     * The repo publishes no drafts, so the first element of the releases list is the newest.
+     */
+    public static String getLatestReleaseTagViaApi(String repoUrl) {
+        String apiBase = toApiBase(repoUrl);
+        if (apiBase == null) {
+            return "";
+        }
+        String json = httpGetJson(apiBase + "/releases?per_page=1");
+        if (json == null) {
+            return "";
+        }
+        Matcher m = Pattern.compile("\"tag_name\"\\s*:\\s*\"([^\"]+)\"").matcher(json);
+        return m.find() ? m.group(1) : "";
+    }
+
+    /**
+     * Commit log (subject lines, newest first, up to 15 entries after buildDateOriginal) of the
+     * repo's default branch via the GitHub REST API. Mirrors the semantics of
+     * {@link #getCommitLog(String, Date, Date)} but over api.github.com.
+     */
+    public static String getCommitLogViaApi(String repoUrl, Date buildDateOriginal, Date maxDate) {
+        String apiBase = toApiBase(repoUrl);
+        if (apiBase == null) {
+            return "";
+        }
+        String json = httpGetJson(apiBase + "/commits?per_page=20");
+        if (json == null) {
+            return "";
+        }
+        StringBuilder logs = new StringBuilder();
+        int c = 0;
+        // Each entry: ... "author": {... "date":"<iso>" ...} ... "message":"<subject...>"
+        // author.date always precedes message inside the "commit" object.
+        Matcher m = Pattern.compile("\"date\"\\s*:\\s*\"([^\"]+)\"[^}]*?\\}\\s*,\\s*\"message\"\\s*:\\s*\"((?:[^\"\\\\]|\\\\.)*)\"").matcher(json);
+        while (m.find()) {
+            String dateStr = m.group(1);
+            String rawMessage = m.group(2);
+            try {
+                Date feedDate = Date.from(java.time.OffsetDateTime.parse(dateStr).toInstant());
+                if (buildDateOriginal != null && feedDate.before(buildDateOriginal)) {
+                    continue;
+                }
+                if (maxDate != null && feedDate.after(maxDate)) {
+                    continue;
+                }
+            } catch (Exception e) {
+                continue; // unparseable date — skip entry
+            }
+            // unescape the JSON string and keep only the subject (first line)
+            String subject = rawMessage
+                    .replace("\\\"", "\"")
+                    .replace("\\\\", "\\")
+                    .replace("\\n", "\n")
+                    .replace("\\r", "")
+                    .split("\n", 2)[0];
+            if (subject.isEmpty() || subject.contains("Merge")) {
+                continue;
+            }
+            logs.append(subject).append("\n\n");
+            if (++c >= 15) {
+                break;
+            }
+        }
+        return logs.length() > 0 ? "\n\nLatest Changes:\n\n" + logs : "";
     }
 }

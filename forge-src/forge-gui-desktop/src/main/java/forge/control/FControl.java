@@ -253,7 +253,7 @@ public enum FControl implements KeyEventDispatcher {
                 if (localVersionFile.exists()) {
                     localVersion = FileUtil.readFileToString(localVersionFile).trim();
                 }
-                String tag = RSSReader.getLatestReleaseTag(ForgeConstants.GBF_RELEASES_ATOM);
+                String tag = RSSReader.getLatestReleaseTagViaApi(ForgeConstants.GBF_UPDATE_REPO);
                 if (tag.startsWith("v") || tag.startsWith("V")) {
                     tag = tag.substring(1);
                 }

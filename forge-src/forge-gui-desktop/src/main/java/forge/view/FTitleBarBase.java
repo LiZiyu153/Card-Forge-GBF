@@ -28,7 +28,7 @@ import forge.toolbox.FSkin.SkinnedMenuBar;
 import forge.util.Localizer;
 import forge.util.RSSReader;
 
-import static forge.localinstance.properties.ForgeConstants.GBF_COMMITS_ATOM;
+import static forge.localinstance.properties.ForgeConstants.GBF_UPDATE_REPO;
 
 @SuppressWarnings("serial")
 public abstract class FTitleBarBase extends SkinnedMenuBar {
@@ -438,7 +438,7 @@ public abstract class FTitleBarBase extends SkinnedMenuBar {
         protected void onClick() {
             if (!displayText.isEmpty()) {
                 try {
-                    new AutoUpdater(false).attemptToUpdate(CompletableFuture.supplyAsync(() -> RSSReader.getCommitLog(GBF_COMMITS_ATOM, FControl.instance.getBuildTimeStamp(), FControl.instance.getSnapsTimestamp())));
+                    new AutoUpdater(false).attemptToUpdate(CompletableFuture.supplyAsync(() -> RSSReader.getCommitLogViaApi(GBF_UPDATE_REPO, FControl.instance.getBuildTimeStamp(), FControl.instance.getSnapsTimestamp())));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
