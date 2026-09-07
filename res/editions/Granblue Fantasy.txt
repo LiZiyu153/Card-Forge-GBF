@@ -8,30 +8,30 @@ BoosterBox=36
 
 [cards]
 #格式：收藏编号 稀有度（L基本地、C普通、U非普通、R稀有、M秘稀、S特殊） 卡名
-1 R Cucouroux,Green Gunsmith
+1 R Cucouroux, Green Gunsmith
 2 U Akua Lanakila
 3 U All Sensation
 4 C Arcane Swordswoman of Flame
 5 C Ars Magna
-6 R Grea,Awakened Dragoness
-7 R Drang,Azure Mercenary
+6 R Grea, Awakened Dragoness
+7 R Drang, Azure Mercenary
 8 C Beastly Iron Ball
 9 U Bedrock Rain
 10 C Beguiling Indigo
-11 R Rosetta,Bewitching Rose of the Blue Sky
-12 C Big Bertha
+11 R Rosetta, Bewitching Rose of the Blue Sky
+12 C Minenwerfer
 13 C Bitter Swordsman
 14 C Blazing Undertaker
 15 U Bloodline of a Ruined Kingdom
-16 M Io,Blue-Green Magical Girl
+16 M Io, Blue-Green Magical Girl
 17 U Burying Bullet
 18 U Celeste Claw Omega
 19 C Cielo della Grazia
 20 C Count of Integrity
 21 C Crosscut
 22 U Crystalia Conductor
-23 R Lily,Crystalian Mission
-24 R Anthuria,Dancer of the Sun
+23 R Lily, Crystalian Mission
+24 R Anthuria, Dancer of the Sun
 25 U Death March
 26 C Die Drachenkanone
 27 C Diligent Holy Knight
@@ -50,43 +50,43 @@ BoosterBox=36
 40 C Flame Arts
 41 C Flare
 42 C Fleur Tourbillon
-43 U Narmaya,Fluttering Swordswoman
+43 U Narmaya, Fluttering Swordswoman
 44 C Foolish
 45 C Forest Ranger
-46 U Cagliostro,Founder Alchemist
+46 U Cagliostro, Founder Alchemist
 47 U Girl Fallen from the Sky
 48 C Goblin Killer
-49 U Sevilbarra,Good Man Seeking Vengeance
+49 U Sevilbarra, Good Man Seeking Vengeance
 50 C Grand Guignol
 51 U Growing Under the Sun
-52 U Katalina,Guardian Knight of the Blue Sky
-53 R Tiamat,Guardian of the Wind
+52 U Katalina, Guardian Knight of the Blue Sky
+53 R Tiamat, Guardian of the Wind
 54 U Guiding Firearm
-55 M Cerberus,Hadean Watchdog
+55 M Cerberus, Hadean Watchdog
 56 C Heaven-Sent Child of the Wind and Waves
 57 C Heavens on Misery
-58 R Jeanne d'Arc,Holy Maiden
+58 R Jeanne d'Arc, Holy Maiden
 59 C Imminent Shadow
 60 C It's Springtime!
 61 R Judgment of Thunder
 62 C Kingly Aura
 63 U Le Jardin de Fleurs
 64 U Leviathan Gaze Omega
-65 R Vira,Love-crazed Flower Armor
-66 R Eugen,Loyalist of Awakened Blue
+65 R Vira, Love-crazed Flower Armor
+66 R Eugen, Loyalist of Awakened Blue
 67 R Luminox Genesi
 68 U Maid Aflame
 69 U Maid of Iron Fists
 70 C Moon Between the Clouds
-71 U Metera,Natural-Born Archer
-72 U Rackam,Navigator of the Blue Skies
+71 U Metera, Natural-Born Archer
+72 U Rackam, Navigator of the Blue Skies
 73 C Nightmare Wish
 74 C O Katalina
-75 M Arulumaya,Oracle Prodigy
+75 M Arulumaya, Oracle Prodigy
 76 U Perpetual Tailwind
 77 C Pilgrim on a Short Break
 78 U Priestess of the Sun
-79 U De La Fille,Princess of Seven Gems
+79 U De La Fille, Princess of Seven Gems
 80 C Private Chiller
 81 U Psycho's Path
 82 C Pursuer of Myth
@@ -94,64 +94,64 @@ BoosterBox=36
 84 C Returnee from the Moon
 85 U Sacred Arc
 86 C Sacred Archer
-87 R Aletheia,Sage of the Sword
+87 R Aletheia, Sage of the Sword
 88 C Sand Wall
 89 C Serene Sinker
 90 C Shrewd Shooter
 91 U Skydrover
 92 C Snowdrop
-93 R Arriet,Soothing Minstrel
+93 R Arriet, Soothing Minstrel
 94 C Southern Cross
 95 C Space Out
 96 C Spear of Arvess
-97 U Stargaze
+97 U Astral Gaze
 98 C Summer Memories
 99 C Sunrise Blade
 100 C Sword Song Dancer
 101 C Talismancer of Vengence
-102 R Beatrix,The Immortal Ultramarine
-103 M Grimnir,The Mad Cyclon
-104 U Yuel,Thousand-Year Seeker
-105 R Albert,Thunderswift Lord
-106 U Eustace,Thunderwolf of Shattered Ground
+102 R Beatrix, The Immortal Ultramarine
+103 M Grimnir, The Mad Cyclon
+104 U Yuel, Thousand-Year Seeker
+105 R Albert, Thunderswift Lord
+106 U Eustace, Thunderwolf of Shattered Ground
 107 U Tiamat Bolt Omega
 108 M Ultima Dagger
-109 M Shiva,Unchanging Protector and Punisher
+109 M Shiva, Unchanging Protector and Punisher
 110 C Unforgettable Summer
 111 C Untergang Rune
-112 R Vania,Vampire Princess
+112 R Vania, Vampire Princess
 113 C Veteran of Crushing Fists
 114 C Violet Shadow Assassin
 115 U War Mecha
 116 C Warrior of Virtue
 117 C White Lightning
-118 M Filene,Whitefrost Dragon Maiden
+118 M Filene, Whitefrost Dragon Maiden
 119 C Wind's Solace
 120 R Wings Shall Deliver You
 121 R Chromatic Paintbrush
 122 U Ebony Scythe
 123 R Self-Centered Flautist
-124 R Anila,Guardian of the South-Southwest
-125 R Andira,Guardian of the West-Southwest
-126 R Mahira,Guardian of the West
-127 R Vajra,Guardian of the West-Northwest
-128 R Kumbhira,Guardian of the North-Northwest
-129 R Vikala,Guardian of the North
-130 R Catura,Guardian of the North-Northeast
-131 R Bai,Jinx of the Tiger
-132 R Huang,Tiger's Prosperity
-133 R Makura,Guardian of the East
-134 R Payila,Guardian of the East-Southeast
-135 R Indala,Guardian of the South-Southeast
-136 M Sandira,Guardian of the South
+124 R Anila, Guardian of the South-Southwest
+125 R Andira, Guardian of the West-Southwest
+126 R Mahira, Guardian of the West
+127 R Vajra, Guardian of the West-Northwest
+128 R Kumbhira, Guardian of the North-Northwest
+129 R Vikala, Guardian of the North
+130 R Catura, Guardian of the North-Northeast
+131 R Bai, Jinx of the Tiger
+132 R Huang, Tiger's Prosperity
+133 R Makura, Guardian of the East
+134 R Payila, Guardian of the East-Southeast
+135 R Indala, Guardian of the South-Southeast
+136 M Sandira, Guardian of the South
 137 U Absolution
 138 U Aetheryte Requiescat
-139 M Alexiel,Guardian of the Realm
+139 M Alexiel, Guardian of the Realm
 140 C Amplify Magic
-141 R Anne,Princess Mysteria
-142 U Arthur,Awakened Shining Sword
+141 R Anne, Princess Mysteria
+142 U Arthur, Awakened Shining Sword
 143 C Aspiring Tactician
-144 U Athena,Goddess of Defense
+144 U Athena, Goddess of Defense
 145 U Azure Plunge
 146 C Beach Activity
 147 U Beach Quarter-Note
@@ -165,11 +165,11 @@ BoosterBox=36
 155 C Caerula Gladius
 156 U Carnival of Fear
 157 C Challenger With Footwork
-158 M Charlotta,Sworn by Azure Sword and Pride
+158 M Charlotta, Sworn by Azure Sword and Pride
 159 C Chivalrous Knight Seeking a Rebirth
 160 C Clucky Doodle-doo
 161 C Colossus Cane Omega
-162 M Cosmos,Relived Beast of Arbitration
+162 M Cosmos, Relived Beast of Arbitration
 163 R Crescendo Waves
 164 C Dancer of the Indigo Flames
 165 U Dashing Archer
@@ -178,45 +178,45 @@ BoosterBox=36
 168 C Dreaming Violinist
 169 C Duo of Justice
 170 C Electrifying Feats
-171 U Enyo,Beast of Destruction and Trampling
+171 U Enyo, Beast of Destruction and Trampling
 172 R Erloesung Lied
-173 M Europa,Fair Maiden of Mercury
-174 M Ewiyar,Emerald of the Six Dragons
-175 M Fediel,Black of the Six Dragons
-176 U Ferry,Ghostly Beast Master
+173 M Europa, Fair Maiden of Mercury
+174 M Ewiyar, Emerald of the Six Dragons
+175 M Fediel, Black of the Six Dragons
+176 U Ferry, Ghostly Beast Master
 177 C Festive Sniper
 178 C Flashbeat Branding Palm
 179 C Flowing Moment
 180 C Frozen Twinkle
 181 U Gaia Dora
-182 M Galleon,Gold of the Six Dragons
+182 M Galleon, Gold of the Six Dragons
 183 U Glacial Guardian
 184 U Graceful Order
 185 U Grown-Up Vision
 186 U Heaven-Piercing Cannonlancer
 187 C I AM A HERO
-188 R Ilsa,Ruthless Drill Sergeant
+188 R Ilsa, Ruthless Drill Sergeant
 189 C Immortality Embraced
 190 R Kimi to Boku no Concert of Miracles
 191 C Kindly Big Sis
 192 C Knife-Wielder in an Evening Dress
-193 R Lancelot,Loyal Captain of the Knights
-194 U Leona,Journeying Guardian Lioness
+193 R Lancelot, Loyal Captain of the Knights
+194 U Leona, Journeying Guardian Lioness
 195 C Levin Knight
-196 R Lich,Gloomy, Wicked, Tricky Girl
+196 R Lich, Gloomy, Wicked, Tricky Girl
 197 U Loewenbein: Jagd
-198 M Lu Woh,White of the Six Dragons
+198 M Lu Woh, White of the Six Dragons
 199 C Marigold of Black Tears
-200 R Mirin,Samurai Heart
-201 U Monika,Liberated Sword Flare
+200 R Mirin, Samurai Heart
+201 U Monika, Liberated Sword Flare
 202 U Moonlight Blossoms
-203 U Nemone,Like Drifting Clouds
-204 R Noa,Airship's Guide
+203 U Nemone, Like Drifting Clouds
+204 R Noa, Airship's Guide
 205 C Noble Execution
-206 U Orchid,Puppet Girl
-207 M Percival,Flames of Nobility
+206 U Orchid, Puppet Girl
+207 M Percival, Flames of Nobility
 208 U Phantom Rose
-209 U Pholia,Retired Sovereign
+209 U Pholia, Retired Sovereign
 210 U Plan B
 211 C Pride-Hidden Melody
 212 R Protect This Smile Forever
@@ -224,14 +224,14 @@ BoosterBox=36
 214 C Pugilist Princess
 215 U Puppet Sheol
 216 C Quickdraw Stance
-217 U Ragazzo,A Duet of Regulation and Freedom
-218 M Rei,Master of the Heart-Discerning Eyes
-219 R Satyr,Black Lapis Lazuli of True Love
+217 U Ragazzo, A Duet of Regulation and Freedom
+218 M Rei, Master of the Heart-Discerning Eyes
+219 R Satyr, Black Lapis Lazuli of True Love
 220 U Seaside Holy Maiden
 221 C Seaside Rose
 222 U Selfless Salvation
-223 C Slumbering Dragon
-224 U Societte,Thousand-Year Successor
+223 C Slumbering Dragon of Radiance
+224 U Societte, Thousand-Year Successor
 225 R Solar Pledge
 226 C Sole di Verona
 227 U Soul Forge
@@ -251,19 +251,19 @@ BoosterBox=36
 241 C Very Ordinary Girl
 242 U Violet Smoke Lost in the Night
 243 R Vortex of the Void
-244 M Wamdus,Azure of the Six Dragons
+244 M Wamdus, Azure of the Six Dragons
 245 U Wandering Girl of Steel
 246 C Where... are my rat ears?
 247 U Wicked Ebony Scythe
 248 U Wild Butterfly
-249 M Wilnas,Vermillion of the Six Dragons
-250 U Wulf and Renie,The Werewolf and Little Girl
+249 M Wilnas, Vermillion of the Six Dragons
+250 U Wulf and Renie, The Werewolf and Little Girl
 251 C Yaia Fried Rice!
 252 C Yew Bow Knight
-253 R Yggdrasil,Sprouting of the Great Tree
+253 R Yggdrasil, Sprouting of the Great Tree
 254 U You Just Plain Can't Beat Cagliostro!
-255 R Yuni,Beloved Child of Arbitration
-256 R Zeta,Crimson Return
+255 R Yuni, Beloved Child of Arbitration
+256 R Zeta, Crimson Return
 257 U Beach Quarter-Note
 
 [tokens]

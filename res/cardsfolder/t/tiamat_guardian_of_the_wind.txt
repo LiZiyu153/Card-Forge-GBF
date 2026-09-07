@@ -1,4 +1,4 @@
-Name:Tiamat,Guardian of the Wind
+Name:Tiamat, Guardian of the Wind
 ManaCost:3 G
 Types:Legendary Creature Primal
 PT:3/4

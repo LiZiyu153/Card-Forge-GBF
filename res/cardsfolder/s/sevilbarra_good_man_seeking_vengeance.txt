@@ -1,4 +1,4 @@
-Name:Sevilbarra,Good Man Seeking Vengeance
+Name:Sevilbarra, Good Man Seeking Vengeance
 ManaCost:2 W
 Types:Legendary Creature Harvin
 PT:2/1

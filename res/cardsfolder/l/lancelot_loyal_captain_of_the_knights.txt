@@ -1,4 +1,4 @@
-Name:Lancelot,Loyal Captain of the Knights
+Name:Lancelot, Loyal Captain of the Knights
 ManaCost:1 R W
 Types:Legendary Creature Human Knight
 PT:2/2

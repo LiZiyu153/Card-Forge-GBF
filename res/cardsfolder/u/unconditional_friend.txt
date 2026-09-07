@@ -1,9 +1,12 @@
 Name:Unconditional Friend
 ManaCost:2 B
 Types:Enchantment
-T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.YouCtrl | TriggerZones$ Battlefield | FirstTime$ True | PlayerTurn$ True | Execute$ TrigGainLife | TriggerDescription$ Whenever the first creature enters the battlefield under your control each turn, you gain life equal to its power.
-SVar:TrigGainLife:DB$ GainLife | Defined$ You | LifeAmount$ X
-SVar:X:TriggeredCard$CardPower
-T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.OppCtrl | TriggerZones$ Battlefield | FirstTime$ True | PlayerTurn$ True | Execute$ TrigLoseLife | Secondary$ True | TriggerDescription$ Whenever the first creature enters the battlefield under an opponent's control each turn, that player loses life equal to its power.
-SVar:TrigLoseLife:DB$ LoseLife | Defined$ TriggeredCardController | LifeAmount$ X
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.YouCtrl | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ EQ1 | Execute$ TrigGainLife | TriggerDescription$ Whenever the first creature enters the battlefield under your control each turn, you gain life equal to its power.
+SVar:TrigGainLife:DB$ GainLife | Defined$ You | LifeAmount$ Y
+SVar:Y:TriggeredCard$CardPower
+SVar:X:Count$ThisTurnEntered_Battlefield_Creature.YouCtrl
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.OppCtrl | TriggerZones$ Battlefield | CheckSVar$ Z | SVarCompare$ EQ1 | Execute$ TrigLoseLife | Secondary$ True | TriggerDescription$ Whenever the first creature enters the battlefield under an opponent's control each turn, that player loses life equal to its power.
+SVar:TrigLoseLife:DB$ LoseLife | Defined$ TriggeredCardController | LifeAmount$ Y2
+SVar:Y2:TriggeredCard$CardPower
+SVar:Z:Count$ThisTurnEntered_Battlefield_Creature.OppCtrl
 Oracle:Whenever the first creature enters the battlefield under your control each turn, you gain life equal to its power.\nWhenever the first creature enters the battlefield under an opponent's control each turn, that player loses life equal to its power.

@@ -1,4 +1,4 @@
-Name:Mahira,Guardian of the West
+Name:Mahira, Guardian of the West
 ManaCost:W W W
 Types:Legendary Creature Harvin Bird God
 PT:1/5

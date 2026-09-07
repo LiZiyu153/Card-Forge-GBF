@@ -1,4 +1,4 @@
-Name:Enyo,Beast of Destruction and Trampling
+Name:Enyo, Beast of Destruction and Trampling
 ManaCost:2 B G
 Types:Legendary Creature Primal
 PT:3/3

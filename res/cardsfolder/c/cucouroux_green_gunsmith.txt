@@ -1,4 +1,4 @@
-Name:Cucouroux,Green Gunsmith
+Name:Cucouroux, Green Gunsmith
 ManaCost:R
 Types:Legendary Creature Human
 PT:1/2

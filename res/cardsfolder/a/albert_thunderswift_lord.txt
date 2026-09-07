@@ -1,4 +1,4 @@
-Name:Albert,Thunderswift Lord
+Name:Albert, Thunderswift Lord
 ManaCost:5 W W W
 Types:Legendary Creature Human Knight
 PT:3/5

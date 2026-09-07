@@ -1,4 +1,4 @@
-Name:Beatrix,The Immortal Ultramarine
+Name:Beatrix, The Immortal Ultramarine
 ManaCost:2 B G
 Types:Legendary Creature Human Knight
 PT:4/2

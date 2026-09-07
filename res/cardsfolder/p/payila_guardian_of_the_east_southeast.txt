@@ -1,4 +1,4 @@
-Name:Payila,Guardian of the East-Southeast
+Name:Payila, Guardian of the East-Southeast
 ManaCost:B B R R
 Rarity:R
 Types:Legendary Creature Draph God

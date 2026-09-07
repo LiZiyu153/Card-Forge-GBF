@@ -1,4 +1,4 @@
-Name:Stargaze
+Name:Astral Gaze
 ManaCost:1 U
 Types:Instant
 A:SP$ Counter | TargetType$ Spell | ValidTgts$ Card | UnlessCost$ W/U | SpellDescription$ Counter target spell unless its controller pays {W/U}.

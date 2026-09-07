@@ -1,4 +1,4 @@
-Name:Vajra,Guardian of the West-Northwest
+Name:Vajra, Guardian of the West-Northwest
 ManaCost:B B G G
 Types:Legendary Creature Erune God
 PT:2/3
@@ -18,7 +18,7 @@ Oracle:When CARDNAME enters, create a 1/1 black Dog/Ally creature token with lif
 
 ALTERNATE
 
-Name:Basara,Soul Channeler
+Name:Basara, Soul Channeler
 ManaCost:no cost
 Colors:black,green
 Types:Legendary Planeswalker Basara

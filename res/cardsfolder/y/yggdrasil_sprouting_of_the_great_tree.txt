@@ -1,4 +1,4 @@
-Name:Yggdrasil,Sprouting of the Great Tree
+Name:Yggdrasil, Sprouting of the Great Tree
 ManaCost:G
 Types:Legendary Creature Primal Elf
 PT:1/1

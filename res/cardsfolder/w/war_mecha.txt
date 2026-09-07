@@ -2,7 +2,8 @@ Name:War Mecha
 ManaCost:W R
 Types:Artifact Creature Construct
 PT:2/2
-A:AB$ GenericChoice | Cost$ X | Defined$ You | ChoiceAmount$ X | Choices$ DBDoubleStrike,DBVigilance,DBTrample,DBLifelink,DBMenace | ChoicePrompt$ Choose X keyword abilities | SpellDescription$ Choose X keyword abilities from among double strike, vigilance, trample, lifelink, and menace. CARDNAME gains those abilities until end of turn.
+A:AB$ Repeat | Cost$ X | MaxRepeat$ X | RepeatSubAbility$ PickKeyword | SpellDescription$ Choose X keyword abilities from among double strike, vigilance, trample, lifelink, and menace. CARDNAME gains those abilities until end of turn.
+SVar:PickKeyword:DB$ GenericChoice | Defined$ You | ChoicePrompt$ Choose a keyword ability | Choices$ DBDoubleStrike,DBVigilance,DBTrample,DBLifelink,DBMenace | SpellDescription$ Choose a keyword ability from among double strike, vigilance, trample, lifelink, and menace. CARDNAME gains that ability until end of turn.
 SVar:DBDoubleStrike:DB$ Pump | Defined$ Self | KW$ Double Strike | SpellDescription$ Double strike until end of turn.
 SVar:DBVigilance:DB$ Pump | Defined$ Self | KW$ Vigilance | SpellDescription$ Vigilance until end of turn.
 SVar:DBTrample:DB$ Pump | Defined$ Self | KW$ Trample | SpellDescription$ Trample until end of turn.

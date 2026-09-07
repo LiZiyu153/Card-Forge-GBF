@@ -1,4 +1,4 @@
-Name:Leona,Journeying Guardian Lioness
+Name:Leona, Journeying Guardian Lioness
 ManaCost:1 G
 Types:Legendary Creature Human Warrior
 PT:2/1

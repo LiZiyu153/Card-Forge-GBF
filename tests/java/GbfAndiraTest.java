@@ -8,7 +8,7 @@ import forge.game.spellability.SpellAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Andira,Guardian of the West-Southwest (GBF #125)
+ * Headless behavioral test for Andira, Guardian of the West-Southwest (GBF #125)
  * and its attached Prepare spell "Infinite Monkey Hands: Baboon Blast".
  *
  * 1. Andira has Flying and Ninjutsu {1}{U}{B}.
@@ -40,7 +40,7 @@ public class GbfAndiraTest extends GbfTestBase {
     private static boolean testKeywords() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card andira = makeCard("Andira,Guardian of the West-Southwest", p, game);
+        Card andira = makeCard("Andira, Guardian of the West-Southwest", p, game);
         boolean flying = false, ninjutsu = false;
         for (KeywordInterface kw : andira.getKeywords()) {
             if (kw.getKeyword() == Keyword.FLYING) {
@@ -63,7 +63,7 @@ public class GbfAndiraTest extends GbfTestBase {
     private static boolean testPrepareChain() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card andira = makeCard("Andira,Guardian of the West-Southwest", p, game);
+        Card andira = makeCard("Andira, Guardian of the West-Southwest", p, game);
         addToBattlefield(andira);
 
         SpellAbility prepare = AbilityFactory.getAbility(andira, "DBPrepare");
@@ -84,7 +84,7 @@ public class GbfAndiraTest extends GbfTestBase {
     private static boolean testHandNinjutsuGrant() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card andira = makeCard("Andira,Guardian of the West-Southwest", p, game);
+        Card andira = makeCard("Andira, Guardian of the West-Southwest", p, game);
         addToBattlefield(andira);
 
         Card legendary = makeCard("Isamaru, Hound of Konda", p, game); // legendary 2/2 dog
@@ -126,7 +126,7 @@ public class GbfAndiraTest extends GbfTestBase {
         Player q = game.getPlayers().get(0); // target player
 
         // Baboon Blast is the attached spell of Andira's Prepare mechanic
-        Card andira = makeCard("Andira,Guardian of the West-Southwest", p, game);
+        Card andira = makeCard("Andira, Guardian of the West-Southwest", p, game);
         addToBattlefield(andira);
         SpellAbility prepare = AbilityFactory.getAbility(andira, "DBPrepare");
         prepare.setActivatingPlayer(p);

@@ -1,4 +1,4 @@
-Name:Lu Woh,White of the Six Dragons
+Name:Lu Woh, White of the Six Dragons
 ManaCost:3 W W
 Types:Legendary Creature Erune Incarnation
 PT:4/4

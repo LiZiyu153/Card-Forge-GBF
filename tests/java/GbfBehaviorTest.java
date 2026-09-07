@@ -13,7 +13,7 @@ import forge.game.spellability.SpellAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Anthuria,Dancer of the Sun (GBF).
+ * Headless behavioral test for Anthuria, Dancer of the Sun (GBF).
  * 1) Death trigger (sacrifice -> draw -> tokens equal to +0/+1 counters).
  * 2) ETB counter SVar math (difference of mana values of remembered cards).
  */
@@ -33,7 +33,7 @@ public class GbfBehaviorTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
 
-        Card anthuria = makeCard("Anthuria,Dancer of the Sun", p, game);
+        Card anthuria = makeCard("Anthuria, Dancer of the Sun", p, game);
         // dev-mode changeZone: puts her on the battlefield without firing her ETB.
         // Note: the dev path only registers extrinsic triggers, so register the full set explicitly.
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), anthuria, null, null);
@@ -77,7 +77,7 @@ public class GbfBehaviorTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player opp = game.getPlayers().get(0);
 
-        Card anthuria = makeCard("Anthuria,Dancer of the Sun", p, game);
+        Card anthuria = makeCard("Anthuria, Dancer of the Sun", p, game);
         addToBattlefield(anthuria);
 
         // simulate post-bounce state: your creature (CMC 1) in your hand,

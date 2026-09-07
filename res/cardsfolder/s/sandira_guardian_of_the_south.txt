@@ -1,4 +1,4 @@
-Name:Sandira,Guardian of the South
+Name:Sandira, Guardian of the South
 ManaCost:R R R
 Rarity:M
 Types:Legendary Creature Human God

@@ -6,7 +6,7 @@ import forge.game.spellability.SpellAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless regression test for Cerberus,Hadean Watchdog (GBF) after the
+ * Headless regression test for Cerberus, Hadean Watchdog (GBF) after the
  * 0.0.1.8 fix:
  *
  * Original bug (as reported): the searched lands did not gain the "Primal"
@@ -67,7 +67,7 @@ public class GbfCerberusTest extends GbfTestBase {
     private static boolean testSearchedLandsBecomePrimalDog() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card cerberus = makeCard("Cerberus,Hadean Watchdog", p, game);
+        Card cerberus = makeCard("Cerberus, Hadean Watchdog", p, game);
         addToBattlefield(cerberus);
         Card grunt1 = makeCard("Grizzly Bears", p, game);
         Card grunt2 = makeCard("Grizzly Bears", p, game);
@@ -100,7 +100,7 @@ public class GbfCerberusTest extends GbfTestBase {
     private static boolean testSacrificedCreaturesNotAnimated() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card cerberus = makeCard("Cerberus,Hadean Watchdog", p, game);
+        Card cerberus = makeCard("Cerberus, Hadean Watchdog", p, game);
         addToBattlefield(cerberus);
         Card grunt1 = makeCard("Grizzly Bears", p, game);
         Card grunt2 = makeCard("Grizzly Bears", p, game);

@@ -1,4 +1,4 @@
-Name:Anila,Guardian of the South-Southwest
+Name:Anila, Guardian of the South-Southwest
 ManaCost:W W U
 Types:Legendary Creature Draph God
 PT:0/3

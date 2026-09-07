@@ -1,4 +1,4 @@
-Name:Indala,Guardian of the South-Southeast
+Name:Indala, Guardian of the South-Southeast
 ManaCost:W R R
 Rarity:R
 Types:Legendary Creature Human God

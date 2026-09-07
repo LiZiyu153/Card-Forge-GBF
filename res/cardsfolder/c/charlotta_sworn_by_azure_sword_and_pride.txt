@@ -1,4 +1,4 @@
-Name:Charlotta,Sworn by Azure Sword and Pride
+Name:Charlotta, Sworn by Azure Sword and Pride
 ManaCost:1 G G
 Types:Legendary Creature Harvin Knight
 PT:2/2

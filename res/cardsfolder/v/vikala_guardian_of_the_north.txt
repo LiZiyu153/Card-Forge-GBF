@@ -1,4 +1,4 @@
-Name:Vikala,Guardian of the North
+Name:Vikala, Guardian of the North
 ManaCost:B B B
 Types:Legendary Creature Human God
 PT:0/1

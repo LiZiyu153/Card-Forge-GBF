@@ -1,4 +1,4 @@
-Name:Wamdus,Azure of the Six Dragons
+Name:Wamdus, Azure of the Six Dragons
 ManaCost:3 U U
 Types:Legendary Creature Harvin Incarnation
 PT:3/6

@@ -52,7 +52,7 @@ public class GbfParseTest extends GbfTestBase {
                     continue;
                 }
                 ok++;
-                if ("Anthuria,Dancer of the Sun".equals(name)) {
+                if ("Anthuria, Dancer of the Sun".equals(name)) {
                     System.out.println("ANTHURIA parsed OK");
                     System.out.println("  triggers = " + c.getTriggers().size());
                     System.out.println("  statics  = " + c.getStaticAbilities().size());

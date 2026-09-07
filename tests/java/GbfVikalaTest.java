@@ -8,7 +8,7 @@ import forge.game.spellability.SpellAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Vikala,Guardian of the North (GBF).
+ * Headless behavioral test for Vikala, Guardian of the North (GBF).
  *
  * 1. ETB: create a number of 0/1 black Rat tokens equal to the number of
  *    lands you control (real scripted TrigToken chain).
@@ -62,7 +62,7 @@ public class GbfVikalaTest extends GbfTestBase {
             addToBattlefield(makeCard("Swamp", p, game));
         }
 
-        Card vikala = makeCard("Vikala,Guardian of the North", p, game);
+        Card vikala = makeCard("Vikala, Guardian of the North", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), vikala, null, null);
         game.getTriggerHandler().registerActiveTrigger(vikala, false);
 
@@ -96,7 +96,7 @@ public class GbfVikalaTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
 
-        Card vikala = makeCard("Vikala,Guardian of the North", p, game);
+        Card vikala = makeCard("Vikala, Guardian of the North", p, game);
         game.getTriggerHandler().registerActiveTrigger(vikala, false);
         if (game.getZoneOf(vikala) == null) {
             vikala.getController().getZone(ZoneType.Hand).add(vikala);
@@ -120,7 +120,7 @@ public class GbfVikalaTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
 
-        Card vikala = makeCard("Vikala,Guardian of the North", p, game);
+        Card vikala = makeCard("Vikala, Guardian of the North", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), vikala, null, null);
         game.getTriggerHandler().registerActiveTrigger(vikala, false);
 
@@ -146,7 +146,7 @@ public class GbfVikalaTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
 
-        Card vikala = makeCard("Vikala,Guardian of the North", p, game);
+        Card vikala = makeCard("Vikala, Guardian of the North", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), vikala, null, null);
         game.getTriggerHandler().registerActiveTrigger(vikala, false);
 
@@ -182,7 +182,7 @@ public class GbfVikalaTest extends GbfTestBase {
             addToBattlefield(makeCard("Swamp", p, game));
         }
 
-        Card vikala = makeCard("Vikala,Guardian of the North", p, game);
+        Card vikala = makeCard("Vikala, Guardian of the North", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), vikala, null, null);
         game.getTriggerHandler().registerActiveTrigger(vikala, false);
 

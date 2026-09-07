@@ -1,4 +1,4 @@
-Name:Percival,Flames of Nobility
+Name:Percival, Flames of Nobility
 ManaCost:2 R R R
 Types:Legendary Creature Human Noble
 PT:2/4

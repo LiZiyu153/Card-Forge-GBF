@@ -3,5 +3,5 @@ ManaCost:2 U
 Types:Creature Draph Warrior
 PT:2/2
 T:Mode$ Taps | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever CARDNAME becomes tapped, target creature you don't control loses flying until end of turn.
-SVar:TrigPump:DB$ Pump | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | RemoveKeywords$ Flying
+SVar:TrigPump:DB$ Animate | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | RemoveKeywords$ Flying
 Oracle:Whenever Challenger With Footwork becomes tapped, target creature you don't control loses flying until end of turn.

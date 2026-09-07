@@ -1,4 +1,4 @@
-Name:Wulf and Renie,The Werewolf and Little Girl
+Name:Wulf and Renie, The Werewolf and Little Girl
 ManaCost:2 B
 Types:Legendary Creature Wolf Human
 PT:3/3

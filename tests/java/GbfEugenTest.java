@@ -9,7 +9,7 @@ import forge.game.trigger.TriggerType;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless regression test for Eugen,Loyalist of Awakened Blue (GBF) after the
+ * Headless regression test for Eugen, Loyalist of Awakened Blue (GBF) after the
  * 0.0.1.6 rebalance: PT 2/1 -> 2/2 and the trigger changed from
  * "before combat damage is dealt, for each attacking creature you control" to
  * "at the beginning of the combat phase of each turn".
@@ -40,7 +40,7 @@ public class GbfEugenTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card eugen = makeCard("Eugen,Loyalist of Awakened Blue", p, game);
+        Card eugen = makeCard("Eugen, Loyalist of Awakened Blue", p, game);
         addToBattlefield(eugen);
         Card bear = makeCard("Grizzly Bears", q, game);
         addToBattlefield(bear);
@@ -63,7 +63,7 @@ public class GbfEugenTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card eugen = makeCard("Eugen,Loyalist of Awakened Blue", p, game);
+        Card eugen = makeCard("Eugen, Loyalist of Awakened Blue", p, game);
         addToBattlefield(eugen);
 
         SpellAbility trig = AbilityFactory.getAbility(eugen, "TrigBeginCombat");
@@ -87,7 +87,7 @@ public class GbfEugenTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card eugen = makeCard("Eugen,Loyalist of Awakened Blue", p, game);
+        Card eugen = makeCard("Eugen, Loyalist of Awakened Blue", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), eugen, null, null);
         game.getTriggerHandler().registerActiveTrigger(eugen, false);
 

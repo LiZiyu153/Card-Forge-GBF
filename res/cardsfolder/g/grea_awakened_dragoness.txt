@@ -1,4 +1,4 @@
-Name:Grea,Awakened Dragoness
+Name:Grea, Awakened Dragoness
 ManaCost:R R
 Types:Legendary Creature Dragon
 PT:2/1

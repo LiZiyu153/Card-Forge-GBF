@@ -1,4 +1,4 @@
-Name:Galleon,Gold of the Six Dragons
+Name:Galleon, Gold of the Six Dragons
 ManaCost:3 B G
 Types:Legendary Creature Incarnation
 PT:1/8

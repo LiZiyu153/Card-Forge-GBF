@@ -1,4 +1,4 @@
-Name:Aletheia,Sage of the Sword
+Name:Aletheia, Sage of the Sword
 ManaCost:6 B G
 Types:Legendary Creature Human
 PT:5/5

@@ -1,4 +1,4 @@
-Name:Lily,Crystalian Mission
+Name:Lily, Crystalian Mission
 ManaCost:1 U G
 Types:Legendary Creature
 PT:1/2

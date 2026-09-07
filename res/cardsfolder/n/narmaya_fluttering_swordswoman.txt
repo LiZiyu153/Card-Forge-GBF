@@ -1,4 +1,4 @@
-Name:Narmaya,Fluttering Swordswoman
+Name:Narmaya, Fluttering Swordswoman
 ManaCost:4 B R
 Types:Legendary Creature Draph
 PT:3/4

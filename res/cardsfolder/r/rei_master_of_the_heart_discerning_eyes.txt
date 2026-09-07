@@ -1,4 +1,4 @@
-Name:Rei,Master of the Heart-Discerning Eyes
+Name:Rei, Master of the Heart-Discerning Eyes
 ManaCost:B
 Types:Legendary Enchantment Creature Harvin
 PT:1/1

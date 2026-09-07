@@ -10,8 +10,8 @@ import forge.game.trigger.TriggerType;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Vajra,Guardian of the West-Northwest (GBF),
- * a transform DFC whose back face is Basara,Soul Channeler (Planeswalker).
+ * Headless behavioral test for Vajra, Guardian of the West-Northwest (GBF),
+ * a transform DFC whose back face is Basara, Soul Channeler (Planeswalker).
  *
  * Strategy note (dev-mode limitations):
  *  - The back face cannot be fetched standalone via makeCard("Basara,...")
@@ -64,7 +64,7 @@ public class GbfVajraTest extends GbfTestBase {
      * face (Basara) can be exercised.
      */
     private static Card transformVajra(Game game, Player p) {
-        Card vajra = makeCard("Vajra,Guardian of the West-Northwest", p, game);
+        Card vajra = makeCard("Vajra, Guardian of the West-Northwest", p, game);
         addToBattlefield(vajra);
         vajra.changeCardState("Transform", null, null);
         return vajra;
@@ -93,7 +93,7 @@ public class GbfVajraTest extends GbfTestBase {
     private static boolean testVajraETB() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card vajra = makeCard("Vajra,Guardian of the West-Northwest", p, game);
+        Card vajra = makeCard("Vajra, Guardian of the West-Northwest", p, game);
         enterBattlefield(game, vajra);
         game.getTriggerHandler().runWaitingTriggers();
         playUntilStackClear(game);
@@ -128,7 +128,7 @@ public class GbfVajraTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card vajra = makeCard("Vajra,Guardian of the West-Northwest", p, game);
+        Card vajra = makeCard("Vajra, Guardian of the West-Northwest", p, game);
         addToBattlefield(vajra);
         Card bear = makeCard("Grizzly Bears", q, game);
         addToBattlefield(bear);
@@ -177,7 +177,7 @@ public class GbfVajraTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card vajra = makeCard("Vajra,Guardian of the West-Northwest", p, game);
+        Card vajra = makeCard("Vajra, Guardian of the West-Northwest", p, game);
         addToBattlefield(vajra);
         game.getTriggerHandler().registerActiveTrigger(vajra, false);
         Card warleader = makeCard("Kargan Warleader", q, game);

@@ -1,4 +1,4 @@
-Name:Catura,Guardian of the North-Northeast
+Name:Catura, Guardian of the North-Northeast
 ManaCost:W W G
 Rarity:R
 Types:Legendary Creature Draph God
@@ -11,4 +11,4 @@ T:Mode$ Attacks | ValidCard$ Card.Self | Alone$ True | TriggerZones$ Battlefield
 SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ OtherCreatures
 SVar:OtherCreatures:Count$Valid Creature.YouCtrl+Other
 DeckHas:Ability$Counters
-Oracle:Lifelink\nCatura,Guardian of the North-Northeast has protection from black and from colorless. The player who owns and controls it has protection from black and from colorless.\nWhenever Catura,Guardian of the North-Northeast attacks alone, put a number of +1/+1 counters on it equal to the number of other creatures you control.
+Oracle:Lifelink\nCatura, Guardian of the North-Northeast has protection from black and from colorless. The player who owns and controls it has protection from black and from colorless.\nWhenever Catura, Guardian of the North-Northeast attacks alone, put a number of +1/+1 counters on it equal to the number of other creatures you control.

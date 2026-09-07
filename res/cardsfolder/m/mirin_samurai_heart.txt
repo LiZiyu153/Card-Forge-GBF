@@ -1,4 +1,4 @@
-Name:Mirin,Samurai Heart
+Name:Mirin, Samurai Heart
 ManaCost:G G
 Types:Legendary Creature Human Samurai
 PT:0/5

@@ -1,0 +1,8 @@
+Name:Minenwerfer
+ManaCost:3 R
+Types:Sorcery
+S:Mode$ ReduceCost | ValidCard$ Card.Self | Type$ Spell | Amount$ 2 | EffectZone$ All | CheckSVar$ X | SVarCompare$ GE6 | Description$ Minenwerfer costs {2} less to cast if an opponent controls creatures with total toughness 6 or greater.
+SVar:X:Count$Valid Creature.OppCtrl$CardToughness
+A:SP$ DealDamage | ValidTgts$ Creature.OppCtrl | TargetMin$ 0 | TargetMax$ 2 | NumDmg$ 2 | SubAbility$ DBCantBlock
+SVar:DBCantBlock:DB$ Pump | Defined$ Targeted | KW$ CARDNAME can't block.
+Oracle:Minenwerfer costs {2} less to cast if an opponent controls creatures with total toughness 6 or greater.\nMinenwerfer deals 2 damage to each of up to two target creatures an opponent controls. Those creatures can't block this turn.

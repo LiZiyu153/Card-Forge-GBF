@@ -1,4 +1,4 @@
-Name:Yuni,Beloved Child of Arbitration
+Name:Yuni, Beloved Child of Arbitration
 ManaCost:1 WU WU W U
 Types:Legendary Creature Primal Dragon
 PT:0/3

@@ -1,4 +1,4 @@
-Name:Filene,Whitefrost Dragon Maiden
+Name:Filene, Whitefrost Dragon Maiden
 ManaCost:3 R G
 Types:Legendary Creature Dragon
 PT:4/4

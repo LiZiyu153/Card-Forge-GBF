@@ -1,4 +1,4 @@
-Name:Athena,Goddess of Defense
+Name:Athena, Goddess of Defense
 ManaCost:2 W
 Types:Legendary Creature Primal Knight
 PT:1/3

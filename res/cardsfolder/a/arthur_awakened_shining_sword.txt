@@ -1,4 +1,4 @@
-Name:Arthur,Awakened Shining Sword
+Name:Arthur, Awakened Shining Sword
 ManaCost:2 W
 Types:Legendary Creature Human Knight
 PT:2/1

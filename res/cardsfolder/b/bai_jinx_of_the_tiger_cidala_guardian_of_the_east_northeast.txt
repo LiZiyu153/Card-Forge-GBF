@@ -1,4 +1,4 @@
-Name:Bai,Jinx of the Tiger
+Name:Bai, Jinx of the Tiger
 ManaCost:U R
 Rarity:R
 Types:Legendary Creature Erune Incarnation God
@@ -9,16 +9,16 @@ SVar:TrigExile:DB$ ChangeZone | Origin$ Graveyard | Destination$ Exile | ValidTg
 SVar:DBEffect:DB$ Effect | RememberObjects$ Remembered | StaticAbilities$ MayPlay | Duration$ UntilTheEndOfYourNextTurn | SubAbility$ DBCleanup
 SVar:MayPlay:Mode$ Continuous | Affected$ Card.IsRemembered | MayPlay$ True | AffectedZone$ Exile | EffectZone$ Command | Description$ You may cast the exiled card until the end of your next turn.
 SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
-T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ Meld | IsPresent$ Card.Self+YouCtrl+YouOwn | IsPresent2$ Creature.YouCtrl+YouOwn+namedHuang;Tiger's Prosperity | TriggerDescription$ At the beginning of your end step, if you both own and control CARDNAME and a creature named Huang,Tiger's Prosperity, exile them, then meld them into Cidala,Guardian of the East-Northeast.
-SVar:Meld:DB$ Meld | Name$ Cidala,Guardian of the East-Northeast | Primary$ Bai,Jinx of the Tiger | Secondary$ Huang,Tiger's Prosperity
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ Meld | IsPresent$ Card.Self+YouCtrl+YouOwn | IsPresent2$ Creature.YouCtrl+YouOwn+namedHuang; Tiger's Prosperity | TriggerDescription$ At the beginning of your end step, if you both own and control CARDNAME and a creature named Huang, Tiger's Prosperity, exile them, then meld them into Cidala, Guardian of the East-Northeast.
+SVar:Meld:DB$ Meld | Name$ Cidala, Guardian of the East-Northeast | Primary$ Bai, Jinx of the Tiger | Secondary$ Huang, Tiger's Prosperity
 DeckHas:Ability$Graveyard & Type$Instant|Sorcery
-MeldPair:Huang,Tiger's Prosperity
+MeldPair:Huang, Tiger's Prosperity
 AlternateMode:Meld
-Oracle:Haste\nWhenever Bai,Jinx of the Tiger deals combat damage to a player, exile target instant or sorcery card from your graveyard. Until the end of your next turn, you may cast that card.\nAt the beginning of your end step, if you both own and control Bai,Jinx of the Tiger and a creature named Huang,Tiger's Prosperity, exile them, then meld them into Cidala,Guardian of the East-Northeast.
+Oracle:Haste\nWhenever Bai, Jinx of the Tiger deals combat damage to a player, exile target instant or sorcery card from your graveyard. Until the end of your next turn, you may cast that card.\nAt the beginning of your end step, if you both own and control Bai, Jinx of the Tiger and a creature named Huang, Tiger's Prosperity, exile them, then meld them into Cidala, Guardian of the East-Northeast.
 
 ALTERNATE
 
-Name:Cidala,Guardian of the East-Northeast
+Name:Cidala, Guardian of the East-Northeast
 ManaCost:no cost
 Colors:blue,red
 Types:Legendary Creature Erune Incarnation God
@@ -30,4 +30,4 @@ SVar:TrigDamage:DB$ DealDamage | ValidTgts$ Creature | NumDmg$ 2
 S:Mode$ ReduceCost | ValidCard$ Card | Type$ Spell | Activator$ You | Amount$ ArtifactCount | CheckSVar$ CastCount | SVarCompare$ EQ2 | Description$ The third spell you cast each turn has affinity for artifacts. (It costs {1} less to cast for each artifact you control.)
 SVar:ArtifactCount:Count$Valid Artifact.YouCtrl
 SVar:CastCount:Count$ThisTurnCast_Card.YouCtrl
-Oracle:Whenever you cast your first spell each turn, draw a card.\nWhenever you cast your second spell each turn, Cidala,Guardian of the East-Northeast deals 2 damage to target creature.\nThe third spell you cast each turn has affinity for artifacts. (It costs {1} less to cast for each artifact you control.)
+Oracle:Whenever you cast your first spell each turn, draw a card.\nWhenever you cast your second spell each turn, Cidala, Guardian of the East-Northeast deals 2 damage to target creature.\nThe third spell you cast each turn has affinity for artifacts. (It costs {1} less to cast for each artifact you control.)

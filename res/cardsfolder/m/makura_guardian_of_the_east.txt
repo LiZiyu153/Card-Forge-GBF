@@ -1,4 +1,4 @@
-Name:Makura,Guardian of the East
+Name:Makura, Guardian of the East
 ManaCost:G G G
 Rarity:R
 Types:Legendary Creature Erune Rabbit God
@@ -9,4 +9,4 @@ T:Mode$ SpellCast | ValidCard$ Creature | ValidActivatingPlayer$ You | TriggerZo
 SVar:TrigExileSelf:DB$ ChangeZone | Defined$ Self | Origin$ Battlefield | Destination$ Exile
 T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigSearch | TriggerDescription$ When CARDNAME enters, search your library for a green creature card, reveal it, then shuffle and put that card on top.
 SVar:TrigSearch:DB$ ChangeZone | Origin$ Library | Destination$ Library | LibraryPosition$ 0 | ChangeType$ Creature.Green | ChangeNum$ 1 | SpellDescription$ Search your library for a green creature card, reveal it, then shuffle and put that card on top.
-Oracle:You may cast Makura,Guardian of the East from exile.\nEach creature card in your hand has miracle. Its miracle cost is equal to its mana cost reduced by {4}.\nWhenever you cast a creature spell, exile Makura,Guardian of the East.\nWhen Makura,Guardian of the East enters, search your library for a green creature card, reveal it, then shuffle and put that card on top.
+Oracle:You may cast Makura, Guardian of the East from exile.\nEach creature card in your hand has miracle. Its miracle cost is equal to its mana cost reduced by {4}.\nWhenever you cast a creature spell, exile Makura, Guardian of the East.\nWhen Makura, Guardian of the East enters, search your library for a green creature card, reveal it, then shuffle and put that card on top.

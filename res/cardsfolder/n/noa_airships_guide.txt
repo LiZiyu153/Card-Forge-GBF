@@ -1,4 +1,4 @@
-Name:Noa,Airship's Guide
+Name:Noa, Airship's Guide
 ManaCost:4 W U
 Types:Legendary Creature Primal Artificer
 PT:4/5

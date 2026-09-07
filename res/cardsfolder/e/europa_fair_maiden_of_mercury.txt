@@ -1,4 +1,4 @@
-Name:Europa,Fair Maiden of Mercury
+Name:Europa, Fair Maiden of Mercury
 ManaCost:2 U U
 Types:Legendary Creature Primal
 PT:4/4

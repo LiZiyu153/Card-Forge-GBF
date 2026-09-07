@@ -11,7 +11,7 @@ import forge.game.spellability.SpellAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Arriet,Soothing Minstrel (GBF) mode 2:
+ * Headless behavioral test for Arriet, Soothing Minstrel (GBF) mode 2:
  * "Put a +1/+0 counter on one target creature and a +0/+1 counter on
  * another target creature you control."
  *
@@ -42,7 +42,7 @@ public class GbfArrietTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
 
-        Card arriet = makeCard("Arriet,Soothing Minstrel", p, game);
+        Card arriet = makeCard("Arriet, Soothing Minstrel", p, game);
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), arriet, null, null);
         game.getTriggerHandler().registerActiveTrigger(arriet, false);
 

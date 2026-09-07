@@ -1,4 +1,4 @@
-Name:Ragazzo,A Duet of Regulation and Freedom
+Name:Ragazzo, A Duet of Regulation and Freedom
 ManaCost:R R R
 Types:Legendary Creature Human
 PT:2/2

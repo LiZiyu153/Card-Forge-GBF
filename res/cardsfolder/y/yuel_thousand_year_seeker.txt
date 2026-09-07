@@ -1,4 +1,4 @@
-Name:Yuel,Thousand-Year Seeker
+Name:Yuel, Thousand-Year Seeker
 ManaCost:U R
 Types:Legendary Creature Erune
 PT:1/2

@@ -1,4 +1,4 @@
-Name:Huang,Tiger's Prosperity
+Name:Huang, Tiger's Prosperity
 ManaCost:U R
 Rarity:R
 Types:Legendary Creature Erune Incarnation God
@@ -6,6 +6,6 @@ PT:1/2
 K:Double Strike
 T:Mode$ SpellCast | ValidCard$ Card | ValidActivatingPlayer$ You | OpponentTurn$ True | ActivatorThisTurnCast$ EQ1 | TriggerZones$ Battlefield | Execute$ TrigScry | TriggerDescription$ Whenever you cast your first spell during each opponent's turn, scry 2.
 SVar:TrigScry:DB$ Scry | ScryNum$ 2
-MeldPair:Bai,Jinx of the Tiger
+MeldPair:Bai, Jinx of the Tiger
 AlternateMode:Meld
-Oracle:Double strike\nWhenever you cast your first spell during each opponent's turn, scry 2.\n(Melds with Bai,Jinx of the Tiger.)
+Oracle:Double strike\nWhenever you cast your first spell during each opponent's turn, scry 2.\n(Melds with Bai, Jinx of the Tiger.)

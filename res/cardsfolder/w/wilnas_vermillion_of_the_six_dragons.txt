@@ -1,4 +1,4 @@
-Name:Wilnas,Vermillion of the Six Dragons
+Name:Wilnas, Vermillion of the Six Dragons
 ManaCost:3 R R
 Types:Legendary Creature Human Incarnation
 PT:4/4

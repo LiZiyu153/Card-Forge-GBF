@@ -1,4 +1,4 @@
-Name:Cagliostro,Founder Alchemist
+Name:Cagliostro, Founder Alchemist
 ManaCost:2 G
 Types:Legendary Creature Human
 PT:1/1

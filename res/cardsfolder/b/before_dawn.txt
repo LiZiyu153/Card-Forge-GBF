@@ -2,8 +2,8 @@ Name:Before Dawn
 ManaCost:1 U U
 Types:Instant
 S:Mode$ RaiseCost | ValidCard$ Card.Self | Activator$ You | Type$ Spell | Cost$ Tap<2/Creature.nonToken+YouCtrl> | EffectZone$ All | Description$ As an additional cost to cast this spell, tap two untapped nontoken creatures you control.
-A:SP$ DigUntil | Cost$ 1 U U | Valid$ Instant | FoundDestination$ Exile | RememberFound$ True | RevealedDestination$ Exile | SubAbility$ DBPlay | SpellDescription$ Exile cards from the top of your library until you exile an instant card. You may cast that card without paying its mana cost. Then put the rest of the cards exiled this way on the bottom of your library in a random order.
-SVar:DBPlay:DB$ Play | Defined$ Remembered | WithoutManaCost$ True | ValidSA$ Spell | Optional$ True | SubAbility$ DBRest
-SVar:DBRest:DB$ ChangeZoneAll | ChangeType$ Card.IsRemembered+!IsFound | Origin$ Exile | Destination$ Library | LibraryPosition$ -1 | RandomOrder$ True | SubAbility$ DBCleanup
+A:SP$ DigUntil | Cost$ 1 U U | Valid$ Instant | FoundDestination$ Exile | RememberFound$ True | RevealedDestination$ Library | RevealedLibraryPosition$ -1 | RevealRandomOrder$ True | SubAbility$ DBPlay | SpellDescription$ Exile cards from the top of your library until you exile an instant card. You may cast that card without paying its mana cost. Then put the rest of the cards exiled this way on the bottom of your library in a random order.
+SVar:DBPlay:DB$ Play | Defined$ Remembered | ValidSA$ Spell | WithoutManaCost$ True | Optional$ True | SubAbility$ DBRest
+SVar:DBRest:DB$ ChangeZoneAll | ChangeType$ Card.IsRemembered | Origin$ Exile | Destination$ Library | LibraryPosition$ -1 | RandomOrder$ True | SubAbility$ DBCleanup
 SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
 Oracle:As an additional cost to cast this spell, tap two untapped nontoken creatures you control.\nExile cards from the top of your library until you exile an instant card. You may cast that card without paying its mana cost. Then put the rest of the cards exiled this way on the bottom of your library in a random order.

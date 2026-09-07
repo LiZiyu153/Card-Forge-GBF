@@ -1,4 +1,4 @@
-Name:Zeta,Crimson Return
+Name:Zeta, Crimson Return
 ManaCost:2 R
 Types:Legendary Creature Human Soldier
 PT:2/2

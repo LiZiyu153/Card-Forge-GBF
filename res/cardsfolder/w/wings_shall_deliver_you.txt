@@ -5,8 +5,8 @@ K:Chapter:4:DBI,DBII,DBIII,DBIV
 SVar:DBI:DB$ ChangeZone | ValidTgts$ Instant.YouOwn,Sorcery.YouOwn | Origin$ Graveyard | Destination$ Hand | SpellDescription$ I — Return target instant or sorcery card from your graveyard to your hand.
 SVar:DBII:DB$ Scry | ScryNum$ 2 | SubAbility$ DBDraw | SpellDescription$ II — Scry 2, then draw a card.
 SVar:DBDraw:DB$ Draw
-SVar:DBIII:DB$ Effect | StaticAbilities$ Uncounterable | SpellDescription$ III — Noncreature spells you cast can't be countered.
-SVar:Uncounterable:Mode$ CantBeCountered | ValidCard$ Card.nonCreature+YouCtrl
+SVar:DBIII:DB$ Effect | ReplacementEffects$ Uncounterable | SpellDescription$ III — Noncreature spells you cast can't be countered.
+SVar:Uncounterable:Event$ Counter | ValidSA$ Spell.nonCreature+YouCtrl | Layer$ CantHappen | Description$ Noncreature spells you cast can't be countered.
 SVar:DBIV:DB$ Effect | StaticAbilities$ Splice | SpellDescription$ IV — Until end of turn, instant and sorcery cards in your hand have splice onto instant or sorcery {2}{U}.
 SVar:Splice:Mode$ Continuous | Affected$ Instant.YouOwn,Sorcery.YouOwn | AffectedZone$ Hand | AddKeyword$ Splice:Instant,Sorcery:2 U
 Oracle:(As this Saga enters and after your draw step, add a lore counter. At IV, sacrifice it.)\nI — Return target instant or sorcery card from your graveyard to your hand.\nII — Scry 2, then draw a card.\nIII — Noncreature spells you cast can't be countered.\nIV — Until end of turn, instant and sorcery cards in your hand have splice onto instant or sorcery {2}{U}.

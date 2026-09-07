@@ -1,4 +1,4 @@
-Name:Cosmos,Relived Beast of Arbitration
+Name:Cosmos, Relived Beast of Arbitration
 ManaCost:3 R R
 Types:Legendary Creature Primal
 PT:5/5

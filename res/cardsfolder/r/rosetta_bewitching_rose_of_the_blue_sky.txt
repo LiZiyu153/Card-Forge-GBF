@@ -1,4 +1,4 @@
-Name:Rosetta,Bewitching Rose of the Blue Sky
+Name:Rosetta, Bewitching Rose of the Blue Sky
 ManaCost:3 W W
 Types:Legendary Enchantment Creature Primal
 PT:4/4

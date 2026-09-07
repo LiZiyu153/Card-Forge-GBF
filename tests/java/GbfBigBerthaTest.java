@@ -6,8 +6,8 @@ import forge.game.player.Player;
 import forge.game.spellability.SpellAbility;
 
 /**
- * Headless regression test for Big Bertha (GBF) conditional cost reduction:
- * "Big Bertha costs {2} less to cast if an opponent controls creatures with
+ * Headless regression test for Minenwerfer (GBF) conditional cost reduction:
+ * "Minenwerfer costs {2} less to cast if an opponent controls creatures with
  * total toughness 6 or greater."
  *
  * Original bug (fixed in 0.0.1.6): SVar:X was "Count$Min 2 0/CompareY GE6.1.0"
@@ -32,9 +32,9 @@ public class GbfBigBerthaTest extends GbfTestBase {
         System.exit(ok ? 0 : 1);
     }
 
-    /** Adjusted CMC of Big Bertha (base {3}{R} = CMC 4) while q controls 'bears' Grizzly Bears (2/2 each). */
+    /** Adjusted CMC of Minenwerfer (base {3}{R} = CMC 4) while q controls 'bears' Grizzly Bears (2/2 each). */
     private static int adjustedCmc(Game game, Player p, Player q, int bears) {
-        Card bertha = makeCard("Big Bertha", p, game);
+        Card bertha = makeCard("Minenwerfer", p, game);
         addToHand(bertha);
         for (int i = 0; i < bears; i++) {
             Card bear = makeCard("Grizzly Bears", q, game);

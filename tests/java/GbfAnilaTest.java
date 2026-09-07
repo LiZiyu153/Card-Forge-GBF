@@ -12,7 +12,7 @@ import forge.game.staticability.StaticAbility;
 import forge.game.zone.ZoneType;
 
 /**
- * Headless behavioral test for Anila,Guardian of the South-Southwest (GBF).
+ * Headless behavioral test for Anila, Guardian of the South-Southwest (GBF).
  *
  * 1. ETB: target creature loses all abilities and becomes a 0/1 Sheep creature.
  *    That creature's controller may play one card they own from exile this turn
@@ -49,7 +49,7 @@ public class GbfAnilaTest extends GbfTestBase {
     private static boolean testSelfTargetETB() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card anila = makeCard("Anila,Guardian of the South-Southwest", p, game);
+        Card anila = makeCard("Anila, Guardian of the South-Southwest", p, game);
         enterBattlefield(game, anila);
         game.getTriggerHandler().runWaitingTriggers();
         playUntilStackClear(game);
@@ -74,7 +74,7 @@ public class GbfAnilaTest extends GbfTestBase {
         Player p = game.getPlayers().get(1); // Anila's controller
         Player q = game.getPlayers().get(0); // opponent; also controls target creature
 
-        Card anila = makeCard("Anila,Guardian of the South-Southwest", p, game);
+        Card anila = makeCard("Anila, Guardian of the South-Southwest", p, game);
         addToBattlefield(anila);
 
         Card target = makeCard("Serra Angel", q, game); // Flying, Vigilance, 4/4
@@ -136,7 +136,7 @@ public class GbfAnilaTest extends GbfTestBase {
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
 
-        Card anila = makeCard("Anila,Guardian of the South-Southwest", p, game);
+        Card anila = makeCard("Anila, Guardian of the South-Southwest", p, game);
         // dev-mode changeZone: puts her on the battlefield without firing ETB
         game.getAction().changeZone(null, p.getZone(ZoneType.Battlefield), anila, null, null);
         game.getTriggerHandler().registerActiveTrigger(anila, false);
@@ -183,7 +183,7 @@ public class GbfAnilaTest extends GbfTestBase {
     private static boolean testWarpKeywordPresent() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card anila = makeCard("Anila,Guardian of the South-Southwest", p, game);
+        Card anila = makeCard("Anila, Guardian of the South-Southwest", p, game);
         boolean hasWarp = false;
         for (KeywordInterface kw : anila.getKeywords()) {
             if (kw.getKeyword() == Keyword.WARP) {

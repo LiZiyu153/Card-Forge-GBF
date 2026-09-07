@@ -1,4 +1,4 @@
-Name:De La Fille,Princess of Seven Gems
+Name:De La Fille, Princess of Seven Gems
 ManaCost:1 W
 Types:Legendary Creature Human
 PT:1/3

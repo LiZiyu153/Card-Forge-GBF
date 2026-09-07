@@ -1,4 +1,4 @@
-Name:Arriet,Soothing Minstrel
+Name:Arriet, Soothing Minstrel
 ManaCost:W G
 Types:Legendary Creature Human
 PT:0/1

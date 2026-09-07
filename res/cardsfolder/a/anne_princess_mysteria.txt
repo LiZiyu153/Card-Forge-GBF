@@ -1,4 +1,4 @@
-Name:Anne,Princess Mysteria
+Name:Anne, Princess Mysteria
 ManaCost:1 W U
 Types:Legendary Creature Human Wizard
 PT:2/2

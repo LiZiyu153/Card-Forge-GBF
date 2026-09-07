@@ -1,4 +1,4 @@
-Name:Fediel,Black of the Six Dragons
+Name:Fediel, Black of the Six Dragons
 ManaCost:3 B B
 Types:Legendary Creature Draph Incarnation
 PT:3/4

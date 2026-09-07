@@ -5,5 +5,5 @@ PT:3/3
 S:Mode$ Continuous | Affected$ Card.Self | Goad$ True | Description$ CARDNAME is goaded. (It attacks each combat if able and attacks a player other than you if able.)
 T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigDestroy | CheckSVar$ X | SVarCompare$ GE1 | TriggerDescription$ When CARDNAME enters, if a creature you control died this turn, destroy target nonartifact permanent.
 SVar:TrigDestroy:DB$ Destroy | ValidTgts$ Permanent.nonArtifact | TgtPrompt$ Select target nonartifact permanent
-SVar:X:Count$ThisTurnDied_Creature.YouCtrl
+SVar:X:Count$ThisTurnEntered_Graveyard_from_Battlefield_Creature.YouCtrl
 Oracle:CARDNAME is goaded. (It attacks each combat if able and attacks a player other than you if able.)\nWhen Heaven-Piercing Cannonlancer enters, if a creature you control died this turn, destroy target nonartifact permanent.

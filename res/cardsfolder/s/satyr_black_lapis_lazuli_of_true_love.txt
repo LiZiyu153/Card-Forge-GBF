@@ -1,4 +1,4 @@
-Name:Satyr,Black Lapis Lazuli of True Love
+Name:Satyr, Black Lapis Lazuli of True Love
 ManaCost:2 B G
 Types:Legendary Creature Primal
 PT:3/3

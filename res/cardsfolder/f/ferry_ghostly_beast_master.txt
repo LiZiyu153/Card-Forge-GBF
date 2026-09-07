@@ -1,4 +1,4 @@
-Name:Ferry,Ghostly Beast Master
+Name:Ferry, Ghostly Beast Master
 ManaCost:1 W W
 Types:Legendary Creature Erune Spirit
 PT:2/2

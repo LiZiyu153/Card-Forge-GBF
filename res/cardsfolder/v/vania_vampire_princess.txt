@@ -1,4 +1,4 @@
-Name:Vania,Vampire Princess
+Name:Vania, Vampire Princess
 ManaCost:1 B B
 Types:Legendary Creature Vampire
 PT:3/3

@@ -1,4 +1,4 @@
-Name:Pholia,Retired Sovereign
+Name:Pholia, Retired Sovereign
 ManaCost:2 U
 Types:Legendary Creature Ernue Wizard
 PT:2/1

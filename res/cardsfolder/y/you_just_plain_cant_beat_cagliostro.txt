@@ -2,7 +2,7 @@ Name:You Just Plain Can't Beat Cagliostro!
 ManaCost:W
 Types:Instant
 K:Kicker:2
-A:SP$ PumpAll | ValidCards$ Card.Self,You | KW$ Hexproof | Duration$ UntilEndOfTurn | SubAbility$ DBPlot | SpellDescription$ You and creatures you control gain hexproof until end of turn. If this spell was kicked, exile CARDNAME. It becomes plotted.
+A:SP$ Pump | Defined$ You & Valid Creature.YouCtrl | KW$ Hexproof | Duration$ UntilEndOfTurn | SubAbility$ DBPlot | SpellDescription$ You and creatures you control gain hexproof until end of turn. If this spell was kicked, exile CARDNAME. It becomes plotted.
 SVar:DBPlot:DB$ ChangeZone | Condition$ Kicked | Defined$ Self | Origin$ Stack | Destination$ Exile | SubAbility$ DBAlter
 SVar:DBAlter:DB$ AlterAttribute | Condition$ Kicked | Defined$ Self | Attributes$ Plotted | SpellDescription$ If this spell was kicked, exile CARDNAME. It becomes plotted.
 Oracle:Kicker {2} (You may pay an additional {2} as you cast this spell.)\nYou and creatures you control gain hexproof until end of turn. If this spell was kicked, exile You Just Plain Can't Beat Cagliostro!. It becomes plotted.

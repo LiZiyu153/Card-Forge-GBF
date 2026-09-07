@@ -1,4 +1,4 @@
-Name:Lich,Gloomy, Wicked, Tricky Girl
+Name:Lich, Gloomy, Wicked, Tricky Girl
 ManaCost:2 B B
 Types:Legendary Creature Primal
 PT:2/2

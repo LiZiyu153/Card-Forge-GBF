@@ -1,4 +1,4 @@
-Name:Kumbhira,Guardian of the North-Northwest
+Name:Kumbhira, Guardian of the North-Northwest
 ManaCost:R G G
 Types:Legendary Creature Draph God
 PT:2/2

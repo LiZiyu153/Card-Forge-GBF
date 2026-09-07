@@ -164,7 +164,7 @@ public class GbfDiagTest extends GbfTestBase {
         Game game2 = newGame();
         Player p2 = game2.getPlayers().get(1);
         Player q2 = game2.getPlayers().get(0);
-        Card cosmos2 = makeCard("Cosmos,Relived Beast of Arbitration", p2, game2);
+        Card cosmos2 = makeCard("Cosmos, Relived Beast of Arbitration", p2, game2);
         addToBattlefield(cosmos2);
         cosmos2.addCounterInternal(CounterEnumType.M1M1, 3, p2, true, new GameEntityCounterTable(),
                 forge.game.ability.AbilityKey.newMap());
@@ -182,7 +182,7 @@ public class GbfDiagTest extends GbfTestBase {
         Game game3 = newGame();
         Player p3 = game3.getPlayers().get(1);
         Player q3 = game3.getPlayers().get(0);
-        Card cosmos3 = makeCard("Cosmos,Relived Beast of Arbitration", p3, game3);
+        Card cosmos3 = makeCard("Cosmos, Relived Beast of Arbitration", p3, game3);
         addToBattlefield(cosmos3);
         cosmos3.addCounterInternal(CounterEnumType.M1M1, 3, p3, true, new GameEntityCounterTable(),
                 forge.game.ability.AbilityKey.newMap());
@@ -211,7 +211,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean athenaRedirect() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card athena = makeCard("Athena,Goddess of Defense", p, game);
+        Card athena = makeCard("Athena, Goddess of Defense", p, game);
         addToBattlefield(athena);
         Card goblin = makeCard("Raging Goblin", p, game);
         addToBattlefield(goblin);
@@ -279,7 +279,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean galleonDeathReplacement() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card galleon = makeCard("Galleon,Gold of the Six Dragons", p, game);
+        Card galleon = makeCard("Galleon, Gold of the Six Dragons", p, game);
         addToBattlefield(galleon);
         Card bear = makeCard("Grizzly Bears", p, game);
         addToBattlefield(bear);
@@ -301,7 +301,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean fedielDeathReplacement() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card fediel = makeCard("Fediel,Black of the Six Dragons", p, game);
+        Card fediel = makeCard("Fediel, Black of the Six Dragons", p, game);
         addToBattlefield(fediel);
         Card bear = makeCard("Grizzly Bears", p, game);
         addToBattlefield(bear);
@@ -323,7 +323,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean yggdrasilAnimateLand() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card ygg = makeCard("Yggdrasil,Sprouting of the Great Tree", p, game);
+        Card ygg = makeCard("Yggdrasil, Sprouting of the Great Tree", p, game);
         addToBattlefield(ygg);
         Card land = makeCard("Forest", p, game);
         addToBattlefield(land);
@@ -352,7 +352,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean europaManaAbilityAllowed() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card europa = makeCard("Europa,Fair Maiden of Mercury", p, game);
+        Card europa = makeCard("Europa, Fair Maiden of Mercury", p, game);
         addToBattlefield(europa);
         Card forest = makeCard("Forest", p, game);
         addToBattlefield(forest);
@@ -376,7 +376,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean wamdusGraveyardSpellChain() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card wamdus = makeCard("Wamdus,Azure of the Six Dragons", p, game);
+        Card wamdus = makeCard("Wamdus, Azure of the Six Dragons", p, game);
         addToBattlefield(wamdus);
         game.getTriggerHandler().registerActiveTrigger(wamdus, false);
 
@@ -420,7 +420,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean lichRegenerateCost() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card lich = makeCard("Lich,Gloomy, Wicked, Tricky Girl", p, game);
+        Card lich = makeCard("Lich, Gloomy, Wicked, Tricky Girl", p, game);
         addToBattlefield(lich);
         lich.addCounterInternal(CounterEnumType.P1P1, 2, p, true, new GameEntityCounterTable(),
                 forge.game.ability.AbilityKey.newMap());
@@ -442,7 +442,7 @@ public class GbfDiagTest extends GbfTestBase {
         // without a Zombie
         Game game2 = newGame();
         Player p2 = game2.getPlayers().get(1);
-        Card lich2 = makeCard("Lich,Gloomy, Wicked, Tricky Girl", p2, game2);
+        Card lich2 = makeCard("Lich, Gloomy, Wicked, Tricky Girl", p2, game2);
         addToBattlefield(lich2);
         lich2.addCounterInternal(CounterEnumType.P1P1, 1, p2, true, new GameEntityCounterTable(),
                 forge.game.ability.AbilityKey.newMap());
@@ -457,7 +457,7 @@ public class GbfDiagTest extends GbfTestBase {
         boolean withoutZombie = regen2.getPayCosts().canPay(regen2, p2, false);
 
         // without counters on Lich
-        Card lich3 = makeCard("Lich,Gloomy, Wicked, Tricky Girl", p2, game2);
+        Card lich3 = makeCard("Lich, Gloomy, Wicked, Tricky Girl", p2, game2);
         addToBattlefield(lich3);
         Card zombie3 = makeCard("Diregraf Ghoul", p2, game2);
         addToBattlefield(zombie3);
@@ -483,7 +483,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean anneTokenUpkeepExile() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card anne = makeCard("Anne,Princess Mysteria", p, game);
+        Card anne = makeCard("Anne, Princess Mysteria", p, game);
         addToBattlefield(anne);
         // 3 Lesson cards in graveyard
         for (int i = 0; i < 3; i++) {
@@ -529,7 +529,7 @@ public class GbfDiagTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
-        Card wamdus = makeCard("Wamdus,Azure of the Six Dragons", p, game);
+        Card wamdus = makeCard("Wamdus, Azure of the Six Dragons", p, game);
         addToBattlefield(wamdus);
         Card qBear = makeCard("Grizzly Bears", q, game);
         addToBattlefield(qBear);
@@ -543,7 +543,7 @@ public class GbfDiagTest extends GbfTestBase {
         // scenario 2: chosen creature owned by you -> draw (library must have a card to draw)
         Game game2 = newGame();
         Player p2 = game2.getPlayers().get(1);
-        Card wamdus2 = makeCard("Wamdus,Azure of the Six Dragons", p2, game2);
+        Card wamdus2 = makeCard("Wamdus, Azure of the Six Dragons", p2, game2);
         addToBattlefield(wamdus2);
         Card pBear = makeCard("Grizzly Bears", p2, game2);
         addToBattlefield(pBear);
@@ -568,7 +568,7 @@ public class GbfDiagTest extends GbfTestBase {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
         Player q = game.getPlayers().get(0);
-        Card fediel = makeCard("Fediel,Black of the Six Dragons", p, game);
+        Card fediel = makeCard("Fediel, Black of the Six Dragons", p, game);
         addToBattlefield(fediel);
         Card qBear = makeCard("Grizzly Bears", q, game);
         q.getZone(ZoneType.Graveyard).add(qBear);
@@ -593,7 +593,7 @@ public class GbfDiagTest extends GbfTestBase {
         // from hand to graveyard: R2 applies -> exiled, +1/+1 on a creature the owner controls
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card galleon = makeCard("Galleon,Gold of the Six Dragons", p, game);
+        Card galleon = makeCard("Galleon, Gold of the Six Dragons", p, game);
         addToBattlefield(galleon);
         Card bear = makeCard("Grizzly Bears", p, game);
         addToBattlefield(bear);
@@ -608,7 +608,7 @@ public class GbfDiagTest extends GbfTestBase {
         // from battlefield: non-creature permanent destroyed -> normal graveyard (R2 must NOT apply)
         Game game2 = newGame();
         Player p2 = game2.getPlayers().get(1);
-        Card galleon2 = makeCard("Galleon,Gold of the Six Dragons", p2, game2);
+        Card galleon2 = makeCard("Galleon, Gold of the Six Dragons", p2, game2);
         addToBattlefield(galleon2);
         Card ring2 = makeCard("Sol Ring", p2, game2);
         addToBattlefield(ring2);
@@ -629,7 +629,7 @@ public class GbfDiagTest extends GbfTestBase {
     private static boolean reiAttachAndClone() {
         Game game = newGame();
         Player p = game.getPlayers().get(1);
-        Card rei = makeCard("Rei,Master of the Heart-Discerning Eyes", p, game);
+        Card rei = makeCard("Rei, Master of the Heart-Discerning Eyes", p, game);
         addToBattlefield(rei);
         // standing (before {T}): plain Enchantment Creature, NOT an Aura -> 704.5m does not apply
         boolean standing = rei.isCreature() && !rei.isAura();

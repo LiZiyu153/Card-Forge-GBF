@@ -1,4 +1,4 @@
-Name:Drang,Azure Mercenary
+Name:Drang, Azure Mercenary
 ManaCost:1 W U
 Types:Legendary Creature Erune Warrior
 PT:3/2

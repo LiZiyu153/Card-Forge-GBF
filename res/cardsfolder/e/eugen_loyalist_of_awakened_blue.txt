@@ -1,4 +1,4 @@
-Name:Eugen,Loyalist of Awakened Blue
+Name:Eugen, Loyalist of Awakened Blue
 ManaCost:1 R R
 Types:Legendary Creature Human
 PT:2/2

@@ -33,7 +33,7 @@
 
 .EXAMPLE
     tools\run_all_tests.ps1
-    tools\run_all_tests.ps1 -Card "Vikala,Guardian of the North"
+    tools\run_all_tests.ps1 -Card "Vikala, Guardian of the North"
     tools\run_all_tests.ps1 -Quick -SkipStatic
     tools\run_all_tests.ps1 -Lint
 #>
@@ -195,7 +195,8 @@ $behaviorTests = @(
     'GbfWingsTest',
     'GbfFlameArtsTest',
     'GbfCerberusTest',
-    'GbfDiagTest'
+    'GbfDiagTest',
+    'GbfR45RegressionTest'
 )
 if ($Quick) {
     Write-Host "---- [4/6] 行为测试 (跳过, -Quick) ----"

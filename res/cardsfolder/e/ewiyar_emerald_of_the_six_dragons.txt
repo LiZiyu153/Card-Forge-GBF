@@ -1,4 +1,4 @@
-Name:Ewiyar,Emerald of the Six Dragons
+Name:Ewiyar, Emerald of the Six Dragons
 ManaCost:3 G G
 Types:Legendary Creature Cat Incarnation
 PT:3/3

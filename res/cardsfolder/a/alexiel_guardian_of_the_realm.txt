@@ -1,10 +1,10 @@
-Name:Alexiel,Guardian of the Realm
+Name:Alexiel, Guardian of the Realm
 ManaCost:5 W G
 Types:Legendary Creature Primal
 PT:4/4
 K:Ward:4
-R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ You,Permanent.YouCtrl | ReplaceWith$ DBReplace | PreventionEffect$ True | Description$ If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up. For each 1 damage prevented this way, put a +1/+1 counter on CARDNAME.
+R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ You,Permanent.YouCtrl | ReplaceWith$ DBReplace | PreventionEffect$ True | Description$ If a source would deal damage to you or a permanent you control, prevent half that damage, rounded up. Whenever damage is prevented this way, put a +1/+1 counter on CARDNAME.
 SVar:DBReplace:DB$ ReplaceDamage | Amount$ ShieldAmount | SubAbility$ DBPutCounter
 SVar:ShieldAmount:ReplaceCount$DamageAmount/HalfUp
-SVar:DBPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ PreventedDamage
-Oracle:Ward 4 (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {4}.)\nIf a source would deal damage to you or a permanent you control, prevent half that damage, rounded up. For each 1 damage prevented this way, put a +1/+1 counter on Alexiel.
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1
+Oracle:Ward 4 (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {4}.)\nIf a source would deal damage to you or a permanent you control, prevent half that damage, rounded up. Whenever damage is prevented this way, put a +1/+1 counter on Alexiel.

@@ -1,8 +1,8 @@
-Name:Nemone,Like Drifting Clouds
+Name:Nemone, Like Drifting Clouds
 ManaCost:3 G
 Types:Legendary Creature Ernue Warrior
 PT:2/3
-S:Mode$ Continuous | Affected$ Card.Self | ETBWithCounters$ CHARGE:1 | Description$ CARDNAME enters with a charge counter on it.
+K:etbCounter:CHARGE:1
 T:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDouble | TriggerDescription$ Whenever CARDNAME deals combat damage, double the number of charge counters on it.
 SVar:TrigDouble:DB$ PutCounter | Defined$ Self | CounterType$ CHARGE | CounterNum$ X
 SVar:X:Count$CardCounters.CHARGE

@@ -1,4 +1,4 @@
-Name:Orchid,Puppet Girl
+Name:Orchid, Puppet Girl
 ManaCost:3 B B
 Types:Legendary Artifact Creature Construct
 PT:2/2

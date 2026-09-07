@@ -1,4 +1,4 @@
-Name:Andira,Guardian of the West-Southwest
+Name:Andira, Guardian of the West-Southwest
 ManaCost:U U B B
 Types:Legendary Creature Erune Monkey God
 PT:3/3

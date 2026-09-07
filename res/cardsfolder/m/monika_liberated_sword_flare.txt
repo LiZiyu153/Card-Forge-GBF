@@ -1,4 +1,4 @@
-Name:Monika,Liberated Sword Flare
+Name:Monika, Liberated Sword Flare
 ManaCost:1 G
 Types:Legendary Creature Human Knight
 PT:1/3
