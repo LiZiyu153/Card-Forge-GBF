@@ -99,15 +99,17 @@ class Linter:
             self.report(fname, lineno, "WARN",
                         f"valid 限制 '{m.group(0)}' 疑似缺类型/属性分隔点号（小写属性也须点号分隔）")
 
-        # 4) Origin$ Library 无 Shuffle$ True（引擎静默不洗牌）。
-        #    例外：Origin$ Library → Destination$ Library（Tutor 式"洗牌后置顶/置底"）
-        #    走 changeHiddenOriginResolve，引擎在移动前自动洗牌（shuffleMandatory 默认 true，
-        #    NoShuffle/Shuffle False 才会关闭）；写 Shuffle$ True 反而可能触发 known-origin 路径
-        #    的"先移动后洗牌"语义歧义。官方 Mystical/Worldly/Vampiric Tutor 均不写 Shuffle$ True。
-        if re.search(r"Origin\$ Library", line) and "Shuffle$ True" not in line \
+        # 4) 搜寻牌库的洗牌语义。
+        #    凡 Origin$ Library 走 changeHiddenOriginResolve（ChangeZoneEffect L991/L994：
+        #    shuffleMandatory 默认 true），引擎在移动前自动洗牌 —— 所有 Tutor 式
+        #    "搜寻牌库→（上手/置顶/置底/战场）"均不必写 Shuffle$ True（官方 Mystical/
+        #    Worldly/Vampiric Tutor、Three Dreams、Tiamat 均不写；GBF 既有卡亦同）。
+        #    只有显式关闭洗牌（Shuffle$ False / NoShuffle$）才偏离规则。
+        #    注意 Dig 的 Shuffle 参数另有含义，不在此列。
+        if re.search(r"Origin\$ Library", line) \
            and not re.search(r"DB\$ (Dig|Mill)", line) \
-           and not re.search(r"Destination\$ Library\b", line):
-            self.report(fname, lineno, "ERROR", "搜寻牌库（Origin$ Library）缺 Shuffle$ True（引擎静默不洗牌）")
+           and (re.search(r"Shuffle\$ False", line) or "NoShuffle$" in line):
+            self.report(fname, lineno, "WARN", "Origin$ Library 显式关闭洗牌（Shuffle$ False/NoShuffle$）——确认设计确实不洗牌")
 
         # 5) Phase 类触发缺 TriggerZones$（缺省手牌/坟场也会触发，R24 Mahira 教训）。
         #    其余模式不告警：ChangesZone 由 TriggerChangesZone.correctZones 自动修正；

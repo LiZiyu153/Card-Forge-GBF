@@ -14,9 +14,15 @@ import forge.game.keyword.KeywordView;
 public record CounterKeywordType(KeywordView keyword) implements CounterType {
 
     // Rule 122.1b
+    // NOTE (GBF DIY mod / Card-Forge-GBF): "Prowess" is appended on purpose.
+    // 灵技指示物 (a prowess counter) is a GBF DIY design keyword counter; the official
+    // list stops at Vigilance. The engine path is generic --
+    // Card.createCounterStatic() emits "AddKeyword$ <counter name>" for every
+    // isKeywordCounter() type -- so listing Prowess here makes the counter actually
+    // grant prowess. Registered in docs/forge-src-patches.md as P-16.
     static ImmutableList<String> keywordCounter = ImmutableList.of(
             "Flying", "First Strike", "Double Strike", "Deathtouch", "Decayed", "Exalted", "Haste", "Hexproof",
-            "Indestructible", "Lifelink", "Menace", "Reach", "Shadow", "Trample", "Vigilance");
+            "Indestructible", "Lifelink", "Menace", "Reach", "Shadow", "Trample", "Vigilance", "Prowess");
     private static Map<String, CounterKeywordType> sMap = Maps.newHashMap();
 
     public static CounterKeywordType get(String s) {

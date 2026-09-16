@@ -1,0 +1,28 @@
+Name:Feower, Double Blade Flash
+ManaCost:2 U B
+Types:Legendary Planeswalker Feower
+Loyalty:4
+S:Mode$ Continuous | Affected$ Card.Self+counters_GE1_LOYALTY | Condition$ PlayerTurn | SetPower$ 3 | SetToughness$ 3 | AddType$ Creature & Erune | AddKeyword$ Hexproof | Description$ During your turn, as long as CARDNAME has one or more loyalty counters on him, he's a 3/3 Erune creature with hexproof.
+A:AB$ Surveil | Cost$ AddCounter<1/LOYALTY> | Amount$ 1 | Planeswalker$ True | SubAbility$ DBToken | SpellDescription$ Surveil 1. Create a 2/1 blue and black Erune creature token with "When this creature dies, target player mills two cards."
+SVar:DBToken:DB$ Token | TokenAmount$ 1 | TokenScript$ ub_2_1_erune_diesmill | TokenOwner$ You | SubAbility$ DBCleanupToken
+SVar:DBCleanupToken:DB$ Cleanup | ClearRemembered$ True
+A:AB$ Pump | Cost$ SubCounter<2/LOYALTY> | Planeswalker$ True | ValidTgts$ Creature | TgtPrompt$ Select target creature | NumAtt$ -EruneCount | NumDef$ -EruneCount | IsCurse$ True | SpellDescription$ Target creature gets -X/-X until end of turn, where X is the number of Erune creatures you control.
+SVar:EruneCount:Count$Valid Creature.Erune+YouCtrl
+AlternateMode:Modal
+Oracle:During your turn, as long as Feower, Double Blade Flash has one or more loyalty counters on him, he's a 3/3 Erune creature with hexproof.\n[+1]: Surveil 1. Create a 2/1 blue and black Erune creature token with "When this creature dies, target player mills two cards."\n[-2]: Target creature gets -X/-X until end of turn, where X is the number of Erune creatures you control.
+
+ALTERNATE
+
+Name:Four-Sky's Sorrow
+ManaCost:1 U B
+Types:Sorcery
+A:SP$ NameCard | Defined$ You | SubAbility$ ExileYard | StackDescription$ SpellDescription | SpellDescription$ Choose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles.
+SVar:ExileYard:DB$ ChangeZone | Origin$ Graveyard | Destination$ Exile | ValidTgts$ Opponent | ChangeType$ Card.NamedCard | Chooser$ You | ChangeNum$ 4 | Hidden$ True | RememberChanged$ True | SubAbility$ ExileHand | StackDescription$ None
+SVar:ExileHand:DB$ ChangeZone | Origin$ Hand | Destination$ Exile | DefinedPlayer$ Targeted | ChangeType$ Card.NamedCard | ChangeNum$ SorrowLeft | Chooser$ You | RememberChanged$ True | Imprint$ True | SubAbility$ ExileLib | StackDescription$ None
+SVar:ExileLib:DB$ ChangeZone | Origin$ Library | Destination$ Exile | DefinedPlayer$ Targeted | ChangeType$ Card.NamedCard | ChangeNum$ SorrowLeft | Chooser$ You | RememberChanged$ True | Shuffle$ True | SubAbility$ SorrowCleanup | StackDescription$ None
+SVar:SorrowCleanup:DB$ Cleanup | ClearRemembered$ True | ClearImprinted$ True
+SVar:SorrowFound:Remembered$Amount
+SVar:SorrowLeft:SVar$SorrowFound/NMinus.4
+Oracle:Cast Four-Sky's Sorrow only if you control four or more Erune creatures.\nChoose a card name. Search target opponent's graveyard, hand, and library for up to four cards with that name and exile them. That player shuffles.
+S:Mode$ CantBeCast | ValidCard$ Card.Self | EffectZone$ All | CheckSVar$ X | SVarCompare$ LT4 | Description$ Can't be cast while you control fewer than four Erune creatures.
+SVar:X:Count$Valid Creature.Erune+YouCtrl

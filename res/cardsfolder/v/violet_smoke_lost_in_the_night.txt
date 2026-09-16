@@ -1,6 +1,6 @@
 Name:Violet Smoke Lost in the Night
 ManaCost:1 U
-Types:Creature Ernue
+Types:Creature Erune
 PT:2/2
 A:AB$ GainControl | Cost$ 5 U T | ValidTgts$ Creature.OppCtrl+!powerLTtoughness | TgtPrompt$ Select target creature an opponent controls with power greater than or equal to its toughness | LoseControl$ LeavesPlay,LoseControl | SpellDescription$ Gain control of target creature an opponent controls with power greater than or equal to its toughness for as long as you control Violet Smoke Lost in the Night.
 Oracle:{5}{U}, {T}: Gain control of target creature an opponent controls with power greater than or equal to its toughness for as long as you control Violet Smoke Lost in the Night.

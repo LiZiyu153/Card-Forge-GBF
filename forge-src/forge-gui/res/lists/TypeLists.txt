@@ -388,6 +388,16 @@ Treasure:Treasures
 Vehicle:Vehicles
 Vibranium
 [WalkerTypes]
+Anre
+Eahta
+Feower
+Fif
+Niyon
+Seofon
+Seox
+Threo
+Tien
+Tweyen
 Ajani
 Aminatou
 Angrath

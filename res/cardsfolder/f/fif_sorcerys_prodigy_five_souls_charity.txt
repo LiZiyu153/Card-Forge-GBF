@@ -1,0 +1,24 @@
+Name:Fif, Sorcery's Prodigy
+ManaCost:G W
+Types:Legendary Planeswalker Fif
+Loyalty:3
+T:Mode$ LifeGained | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever you gain life, put a loyalty counter on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ LOYALTY | CounterNum$ 1
+A:AB$ Pump | Cost$ AddCounter<1/LOYALTY> | Planeswalker$ True | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | KW$ Lifelink | SpellDescription$ Target creature you control gains lifelink until end of turn.
+A:AB$ Untap | Cost$ SubCounter<3/LOYALTY> | Planeswalker$ True | ValidTgts$ Permanent.YouCtrl | TgtPrompt$ Select up to two target permanents you control | TargetMin$ 0 | TargetMax$ 2 | SpellDescription$ Untap up to two target permanents you control.
+A:AB$ ChangeZone | Cost$ SubCounter<9/LOYALTY> | Planeswalker$ True | Ultimate$ True | ValidTgts$ Creature.YouOwn | TgtPrompt$ Select target creature card in your graveyard | Origin$ Graveyard | Destination$ Battlefield | SubAbility$ DBPutP1P1 | SpellDescription$ Return target creature card from your graveyard to the battlefield with X +1/+1 counters on it, where X is your life total. Put a trample counter and a hexproof counter on that creature.
+SVar:DBPutP1P1:DB$ PutCounter | Defined$ Targeted | CounterType$ P1P1 | CounterNum$ X | SubAbility$ DBPutTrample
+SVar:DBPutTrample:DB$ PutCounter | Defined$ Targeted | CounterType$ Trample | CounterNum$ 1 | SubAbility$ DBPutHexproof
+SVar:DBPutHexproof:DB$ PutCounter | Defined$ Targeted | CounterType$ Hexproof | CounterNum$ 1
+SVar:X:Count$YourLifeTotal
+AlternateMode:Modal
+Oracle:Whenever you gain life, put a loyalty counter on Fif, Sorcery's Prodigy.\n[+1]: Target creature you control gains lifelink until end of turn.\n[-3]: Untap up to two target permanents you control.\n[-9]: Return target creature card from your graveyard to the battlefield with X +1/+1 counters on it, where X is your life total. Put a trample counter and a hexproof counter on that creature.
+
+ALTERNATE
+
+Name:Five-Soul's Charity
+ManaCost:5 G W
+Types:Enchantment
+S:Mode$ Continuous | Affected$ Permanent.Other+YouCtrl | AddKeyword$ Indestructible | CheckSVar$ CharityDevotion | SVarCompare$ GE5 | Description$ As long as your devotion to green and white is five or greater, other permanents you control have indestructible.
+SVar:CharityDevotion:Count$DevotionDual.Green.White
+Oracle:As long as your devotion to green and white is five or greater, other permanents you control have indestructible.

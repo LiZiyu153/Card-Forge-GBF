@@ -1,0 +1,25 @@
+Name:Seox, Heavenly Howl of Karm
+ManaCost:5 B G
+Types:Legendary Planeswalker Seox
+Loyalty:6
+T:Mode$ DamageDone | ValidSource$ Creature | ValidTarget$ Card.Self | TriggerZones$ Battlefield | CombatDamage$ True | Execute$ TrigDestroyAttacker | TriggerDescription$ Whenever a creature deals combat damage to CARDNAME, destroy that creature.
+SVar:TrigDestroyAttacker:DB$ Destroy | Defined$ TriggeredSourceLKICopy
+A:AB$ Mill | Cost$ AddCounter<2/LOYALTY> | Planeswalker$ True | Defined$ You | NumCards$ 3 | SubAbility$ DBGainLife | SpellDescription$ Mill three cards. You gain 1 life.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 1
+A:AB$ ChangeZone | Cost$ SubCounter<X/LOYALTY> | Planeswalker$ True | ValidTgts$ Permanent.YouOwn+cmcLEX | TgtPrompt$ Select target permanent card in your graveyard with mana value X or less | Origin$ Graveyard | Destination$ Battlefield | SpellDescription$ Return target permanent card with mana value X or less from your graveyard to the battlefield.
+A:AB$ Effect | Cost$ SubCounter<11/LOYALTY> | Planeswalker$ True | Ultimate$ True | Name$ Emblem — Seox, Heavenly Howl of Karm | Image$ emblem_seox_heavenly_howl_of_karm | Triggers$ TrigETBCounter | Duration$ Permanent | AILogic$ Always | SpellDescription$ You get an emblem with "Whenever a creature enters the battlefield under your control, put five +1/+1 counters on it."
+SVar:TrigETBCounter:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.YouCtrl | TriggerZones$ Command | Execute$ DBPutCounters | TriggerDescription$ Whenever a creature enters the battlefield under your control, put five +1/+1 counters on it.
+SVar:DBPutCounters:DB$ PutCounter | Defined$ TriggeredCardLKICopy | CounterType$ P1P1 | CounterNum$ 5
+SVar:X:Count$xPaid
+AlternateMode:Modal
+Oracle:Whenever a creature deals combat damage to Seox, Heavenly Howl of Karm, destroy that creature.\n[+2]: Mill three cards. You gain 1 life.\n[-X]: Return target permanent card with mana value X or less from your graveyard to the battlefield.\n[-11]: You get an emblem with "Whenever a creature enters the battlefield under your control, put five +1/+1 counters on it."
+
+ALTERNATE
+
+Name:Six-Ruin's Enlightenment
+ManaCost:3 B G
+Types:Instant
+R:Event$ Counter | ValidCard$ Card.Self | ValidSA$ Spell | Layer$ CantHappen | Description$ This spell can't be countered.
+A:SP$ DestroyAll | ValidCards$ Permanent.nonLand+cmcLE6 | NoRegen$ True | SubAbility$ DBLoseLife | SpellDescription$ Destroy all nonland permanents with mana value 6 or less. You lose 6 life.
+SVar:DBLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ 6
+Oracle:This spell can't be countered.\nDestroy all nonland permanents with mana value 6 or less. You lose 6 life.

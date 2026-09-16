@@ -1,0 +1,26 @@
+Name:Threo, Supernatural
+ManaCost:3 B R
+Types:Legendary Planeswalker Threo
+Loyalty:4
+T:Mode$ ChangesZoneAll | ValidCards$ Creature | Origin$ Any | Destination$ Graveyard | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever one or more creature cards are put into graveyards from anywhere, put that many loyalty counters on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ LOYALTY | CounterNum$ ThreoLoyaltyAmount
+SVar:ThreoLoyaltyAmount:TriggerCount$Amount
+A:AB$ Mill | Cost$ AddCounter<0/LOYALTY> | Planeswalker$ True | ValidTgts$ Player | TgtPrompt$ Select target player | NumCards$ 1 | SubAbility$ DBGainLife | SpellDescription$ Target player mills a card. You gain 2 life.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 2
+A:AB$ Destroy | Cost$ SubCounter<3/LOYALTY> | Planeswalker$ True | ValidTgts$ Artifact,Creature | TgtPrompt$ Select target artifact or creature | NoRegen$ True | SpellDescription$ Destroy target artifact or creature. It can't be regenerated.
+A:AB$ DealDamage | Cost$ SubCounter<7/LOYALTY> | Planeswalker$ True | Ultimate$ True | ValidTgts$ Player | TgtPrompt$ Select target player | NumDmg$ ThreoGraveCount | SpellDescription$ CARDNAME deals X damage to target player, where X is the number of cards in your graveyard.
+SVar:ThreoGraveCount:Count$ValidGraveyard Card.YouOwn
+AlternateMode:Modal
+Oracle:Whenever one or more creature cards are put into graveyards from anywhere, put that many loyalty counters on Threo, Supernatural.\n[0]: Target player mills a card. You gain 2 life.\n[-3]: Destroy target artifact or creature. It can't be regenerated.\n[-7]: Threo, Supernatural deals X damage to target player, where X is the number of cards in your graveyard.
+
+ALTERNATE
+
+Name:Three-Tiger's Blessing
+ManaCost:B R
+Types:Sorcery
+A:SP$ SetLife | Defined$ Player | LifeAmount$ 3 | SubAbility$ DBEffect | SpellDescription$ Each player's life total becomes 3. Damage can't be prevented this turn.
+SVar:DBEffect:DB$ Effect | StaticAbilities$ STCantPrevent
+SVar:STCantPrevent:Mode$ CantPreventDamage | Description$ Damage can't be prevented this turn.
+Oracle:Cast Three-Tiger's Blessing only if your library has three or fewer cards in it.\nEach player's life total becomes 3. Damage can't be prevented this turn.
+S:Mode$ CantBeCast | ValidCard$ Card.Self | EffectZone$ All | CheckSVar$ X | SVarCompare$ GT3 | Description$ Can't be cast while your library has more than three cards in it.
+SVar:X:Count$ValidLibrary Card.YouOwn

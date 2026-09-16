@@ -265,6 +265,16 @@ BoosterBox=36
 255 R Yuni, Beloved Child of Arbitration
 256 R Zeta, Crimson Return
 257 U Beach Quarter-Note
+258 M Anre, Enlightened One
+259 M Tweyen, Dark Huntress
+260 M Threo, Supernatural
+261 M Feower, Double Blade Flash
+262 M Fif, Sorcery's Prodigy
+263 M Seox, Heavenly Howl of Karm
+264 M Seofon, Star Sword Sovereign
+265 M Eahta, Blade God
+266 M Niyon, Mystic Musician
+267 M Tien, Treacherous Trigger
 
 [tokens]
 #1 b_1_1_bird_flying 表示它是一张黑色 1/1 的飞行鸟
@@ -286,3 +296,5 @@ BoosterBox=36
 16 w_1_2_human_soldier_vigilance
 17 r_1_1_elemental_flying
 18 b_2_2_primal_zombie
+19 ub_2_1_erune_diesmill
+20 rw_3_3_erune_vigilance

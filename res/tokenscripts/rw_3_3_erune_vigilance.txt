@@ -1,0 +1,7 @@
+Name:Erune Token
+ManaCost:no cost
+Colors:red,white
+Types:Creature Erune
+PT:3/3
+K:Vigilance
+Oracle:Vigilance

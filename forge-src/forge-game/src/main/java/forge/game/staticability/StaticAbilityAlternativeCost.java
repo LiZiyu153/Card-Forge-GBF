@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.google.common.collect.Lists;
 
+import forge.card.mana.ManaCost;
 import forge.card.mana.ManaCostParser;
 import forge.game.card.Card;
 import forge.game.card.CardCollection;
@@ -31,12 +32,38 @@ public class StaticAbilityAlternativeCost {
                     continue;
                 }
 
-                String costTemplate = stAb.getParam("Cost");
-                costTemplate = costTemplate.replace("ConvertedManaCost", Integer.toString(source.getCMC()));
+                final String costTemplateParam = stAb.getParam("Cost");
+                // NOTE (GBF DIY mod, Card-Forge-GBF - P-17): for ACTIVATED ABILITIES
+                // "ConvertedManaCost" must mean the cost of THAT ABILITY, not the mana
+                // value of the permanent that has it. Using source.getCMC() made every
+                // activated ability of a 2-drop cost a fixed 2 life.
+                String costTemplate;
+                if (sa.isAbility() && costTemplateParam.contains("ConvertedManaCost")) {
+                    final Cost abilityCosts = sa.getPayCosts();
+                    final ManaCost abilityMana = abilityCosts == null ? null : abilityCosts.getTotalMana();
+                    final int abilityCmc = abilityMana == null ? 0 : abilityMana.getCMC();
+                    costTemplate = costTemplateParam.replace("ConvertedManaCost",
+                            Integer.toString(abilityCmc));
+                } else {
+                    costTemplate = costTemplateParam.replace("ConvertedManaCost",
+                            Integer.toString(source.getCMC()));
+                }
 
                 Cost cost = new Cost(costTemplate, sa.isAbility());
-                // set the cost to this directly to bypass non mana cost
-                final SpellAbility newSA = sa.isAbility() ? sa.copyWithDefinedCost(cost) : sa.copyWithManaCostReplaced(pl, cost);
+                // For ACTIVATED ABILITIES only the MANA part of the cost may be
+                // replaced. Replacing the whole payCosts (copyWithDefinedCost) silently
+                // dropped non-mana components such as the tap symbol, so the permanent
+                // no longer tapped. Mirror copyWithManaCostReplaced(): keep every
+                // non-mana cost, add ours.
+                final SpellAbility newSA;
+                if (sa.isAbility()) {
+                    newSA = sa.copy();
+                    final Cost newCost = newSA.getPayCosts().copyWithNoMana();
+                    newCost.add(cost);
+                    newSA.setPayCosts(newCost);
+                } else {
+                    newSA = sa.copyWithManaCostReplaced(pl, cost);
+                }
                 newSA.setActivatingPlayer(pl);
                 newSA.setBasicSpell(false);
 
@@ -71,7 +98,6 @@ public class StaticAbilityAlternativeCost {
                     newSA.putParam("CostDesc", stAb.hasParam("CostDesc") ? ManaCostParser.parse(stAb.getParam("CostDesc")) : cost.toSimpleString());
                     sb.append(newSA.getCostDescription());
                 }
-
                 // skip reminder text for now, Keywords might be too complicated
                 //sb.append("(").append(newKi.getReminderText()).append(")");
                 if (sa.isSpell()) {

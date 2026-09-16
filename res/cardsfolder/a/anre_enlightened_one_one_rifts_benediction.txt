@@ -1,0 +1,26 @@
+Name:Anre, Enlightened One
+ManaCost:1 W U
+Types:Legendary Planeswalker Anre
+Loyalty:3
+A:AB$ Effect | Cost$ AddCounter<1/LOYALTY> | Planeswalker$ True | ValidTgts$ Creature | TgtPrompt$ Select target creature | RememberObjects$ Targeted | ReplacementEffects$ RPrevent | Duration$ UntilTheEndOfYourNextTurn | SpellDescription$ Until the end of your next turn, prevent all damage that would be dealt by target creature.
+SVar:RPrevent:Event$ DamageDone | Prevent$ True | ValidSource$ Card.IsRemembered | Description$ Until the end of your next turn, prevent all damage that would be dealt by target creature.
+A:AB$ Tap | Cost$ SubCounter<1/LOYALTY> | Planeswalker$ True | ValidTgts$ Permanent.YouDontCtrl | TgtPrompt$ Select target permanent you don't control | SubAbility$ DBPutCounter | SpellDescription$ Tap target permanent you don't control. Put a stun counter on it.
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Targeted | CounterType$ Stun | CounterNum$ 1
+A:AB$ Dig | Cost$ SubCounter<4/LOYALTY> | Planeswalker$ True | Ultimate$ True | Defined$ You | DigNum$ 1 | ChangeNum$ All | DestinationZone$ Exile | RememberChanged$ True | SubAbility$ DBEffect | SpellDescription$ Exile the top card of your library. Until the end of your next turn, if it's a nonland card, you may cast it without paying its mana cost.
+SVar:DBEffect:DB$ Effect | StaticAbilities$ STPlay | Duration$ UntilTheEndOfYourNextTurn | RememberObjects$ Remembered | ForgetOnMoved$ Exile | SubAbility$ DBCleanup
+SVar:STPlay:Mode$ Continuous | Affected$ Card.IsRemembered+nonLand | AffectedZone$ Exile | MayPlay$ True | MayPlayWithoutManaCost$ True | MayPlayIgnoreType$ True | Description$ Until the end of your next turn, you may cast the exiled nonland card without paying its mana cost.
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+AlternateMode:Modal
+Oracle:[+1]: Until the end of your next turn, prevent all damage that would be dealt by target creature.\n[-1]: Tap target permanent you don't control. Put a stun counter on it.\n[-4]: Exile the top card of your library. Until the end of your next turn, if it's a nonland card, you may cast it without paying its mana cost.
+
+ALTERNATE
+
+Name:One-Rift's Benediction
+ManaCost:2 W U
+Types:Instant
+A:SP$ ChangeZoneAll | ChangeType$ Card.Other | Origin$ Stack | Destination$ Exile | SubAbility$ DBPump | SpellDescription$ Exile all other spells. You gain protection from each color until end of turn. Exile CARDNAME.
+SVar:DBPump:DB$ Pump | Defined$ You | KW$ Protection from each color | SubAbility$ DBExile
+SVar:DBExile:DB$ ChangeZone | Defined$ Self | Origin$ Stack | Destination$ Exile
+Oracle:Cast this spell only if there's a spell on the stack.\nExile all other spells. You gain protection from each color until end of turn.\nExile One-Rift's Benediction.
+S:Mode$ CantBeCast | ValidCard$ Card.Self | EffectZone$ All | CheckSVar$ X | SVarCompare$ EQ0 | Description$ Can't be cast while no other spell is on the stack.
+SVar:X:Count$ValidStack Spell.Other

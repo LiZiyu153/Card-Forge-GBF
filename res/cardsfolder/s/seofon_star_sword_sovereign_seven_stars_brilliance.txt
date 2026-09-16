@@ -1,0 +1,25 @@
+Name:Seofon, Star Sword Sovereign
+ManaCost:2 G U
+Types:Legendary Planeswalker Seofon
+Loyalty:5
+S:Mode$ Continuous | Affected$ You | SetMaxHandSize$ Unlimited | Description$ You have no maximum hand size.
+A:AB$ Scry | Cost$ AddCounter<2/LOYALTY> | Planeswalker$ True | ScryNum$ 1 | SubAbility$ DBDraw | SpellDescription$ Scry 1. Draw a card, then discard a card.
+SVar:DBDraw:DB$ Draw | SubAbility$ DBDiscard
+SVar:DBDiscard:DB$ Discard | Mode$ TgtChoose | NumCards$ 1
+A:AB$ Mana | Cost$ AddCounter<1/LOYALTY> | Planeswalker$ True | Produced$ Any | Amount$ 1 | SpellDescription$ Add one mana of any color.
+A:AB$ ChangeZone | Cost$ SubCounter<10/LOYALTY> | Planeswalker$ True | Ultimate$ True | Origin$ Library | Destination$ Hand | ChangeType$ Card | ChangeNum$ 9 | DifferentNames$ True | Reveal$ True | SpellDescription$ Search your library for up to nine cards with different names, reveal them, put them into your hand, then shuffle.
+AlternateMode:Modal
+Oracle:You have no maximum hand size.\n[+2]: Scry 1. Draw a card, then discard a card.\n[+1]: Add one mana of any color.\n[-10]: Search your library for up to nine cards with different names, reveal them, put them into your hand, then shuffle.
+
+ALTERNATE
+
+Name:Seven-Star's Brilliance
+ManaCost:5 G U
+Types:Sorcery
+A:SP$ Draw | SubAbility$ DBManifestHand | SpellDescription$ Draw a card, then manifest each card in your hand. Put a prowess counter on each card manifested this way.
+SVar:DBManifestHand:DB$ Manifest | DefinedPlayer$ You | ChoiceZone$ Hand | Choices$ Card | Amount$ 7 | RememberManifested$ True | SubAbility$ DBPutProwess
+SVar:DBPutProwess:DB$ PutCounter | Defined$ Remembered | CounterType$ Prowess | CounterNum$ 1 | SubAbility$ BrillianceCleanup
+SVar:BrillianceCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Cast Seven-Star's Brilliance only if you have exactly seven cards in hand.\nDraw a card, then manifest each card in your hand. Put a prowess counter on each card manifested this way.
+S:Mode$ CantBeCast | ValidCard$ Card.Self | EffectZone$ All | CheckSVar$ X | SVarCompare$ NE6 | Description$ Can't be cast unless you have exactly seven cards in hand.
+SVar:X:Count$ValidHand Card.YouOwn

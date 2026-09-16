@@ -1,6 +1,6 @@
 Name:Ilsa, Ruthless Drill Sergeant
 ManaCost:3 B
-Types:Legendary Creature Ernue Warrior
+Types:Legendary Creature Erune Warrior
 PT:2/4
 K:Deathtouch
 S:Mode$ Continuous | Affected$ Creature.YouCtrl+equipped+!Primal | AddPower$ 1 | AddToughness$ 1 | AddKeyword$ Vigilance | Description$ Equipped non-Primal creatures you control get +1/+1 and have vigilance.

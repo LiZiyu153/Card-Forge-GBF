@@ -1,0 +1,24 @@
+Name:Eahta, Blade God
+ManaCost:3 W B
+Types:Legendary Planeswalker Eahta
+Loyalty:5
+A:AB$ Pump | Cost$ AddCounter<1/LOYALTY> | Planeswalker$ True | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | KW$ Deathtouch | Duration$ UntilTheEndOfYourNextTurn | SpellDescription$ Until the end of your next turn, target creature you control gains deathtouch.
+A:AB$ Destroy | Cost$ SubCounter<3/LOYALTY> | Planeswalker$ True | ValidTgts$ Permanent | TgtPrompt$ Select target permanent | SpellDescription$ Destroy target permanent.
+A:AB$ Effect | Cost$ SubCounter<8/LOYALTY> | Planeswalker$ True | Ultimate$ True | ValidTgts$ Opponent | TgtPrompt$ Select target opponent | EffectOwner$ Targeted | Name$ Emblem — Eahta, Blade God | Image$ emblem_eahta_blade_god | Triggers$ TrigDiscard | Duration$ Permanent | AILogic$ Always | SpellDescription$ Target opponent gets an emblem with "Whenever you draw a card, if it's not the first card you draw in each of your draw steps, discard a card."
+SVar:TrigDiscard:Mode$ Drawn | ValidCard$ Card | FirstCardInDrawStep$ False | TriggerZones$ Command | Execute$ DBDiscard | TriggerDescription$ Whenever you draw a card, if it's not the first card you draw in each of your draw steps, discard a card.
+SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1
+AlternateMode:Modal
+Oracle:[+1]: Until the end of your next turn, target creature you control gains deathtouch.\n[-3]: Destroy target permanent.\n[-8]: Target opponent gets an emblem with "Whenever you draw a card, if it's not the first card you draw in each of your draw steps, discard a card."
+
+ALTERNATE
+
+Name:Eight-Life's Pilgrimage
+ManaCost:1 W B
+Types:Enchantment
+K:Shroud
+K:etbCounter:INCARNATION:1
+A:AB$ PutCounter | Cost$ Sac<1/Creature.powerEQX> | Defined$ Self | CounterType$ INCARNATION | CounterNum$ 1 | SorcerySpeed$ True | SpellDescription$ Sacrifice a creature with power equal to the number of incarnation counters on CARDNAME: Put an incarnation counter on CARDNAME. Activate only as a sorcery.
+SVar:X:Count$CardCounters.INCARNATION
+T:Mode$ Always | TriggerZones$ Battlefield | IsPresent$ Card.Self+counters_GE8_INCARNATION | Execute$ TrigWinGame | TriggerDescription$ When CARDNAME has eight or more incarnation counters on it, you win the game.
+SVar:TrigWinGame:DB$ WinsGame | Defined$ You
+Oracle:Shroud (This permanent can't be the target of spells or abilities.)\nCARDNAME enters with an incarnation counter on it.\nSacrifice a creature with power equal to the number of incarnation counters on CARDNAME: Put an incarnation counter on CARDNAME. Activate only as a sorcery.\nWhen CARDNAME has eight or more incarnation counters on it, you win the game.

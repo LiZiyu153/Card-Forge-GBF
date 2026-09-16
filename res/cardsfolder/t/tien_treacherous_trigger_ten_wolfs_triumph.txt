@@ -1,0 +1,25 @@
+Name:Tien, Treacherous Trigger
+ManaCost:2 R W
+Types:Legendary Planeswalker Tien
+Loyalty:3
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.Erune+YouCtrl | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ Whenever an Erune creature enters the battlefield under your control, put a loyalty counter on CARDNAME.
+SVar:TrigPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ LOYALTY | CounterNum$ 1
+A:AB$ Token | Cost$ AddCounter<0/LOYALTY> | Planeswalker$ True | TokenAmount$ 1 | TokenScript$ rw_3_3_erune_vigilance | TokenOwner$ You | SpellDescription$ Create a 3/3 red and white Erune creature token with vigilance.
+A:AB$ DealDamage | Cost$ SubCounter<X/LOYALTY> | Planeswalker$ True | ValidTgts$ Any | NumDmg$ X | SubAbility$ DBGainLife | SpellDescription$ CARDNAME deals X damage to any target and you gain X life.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ X
+A:AB$ Effect | Cost$ SubCounter<7/LOYALTY> | Planeswalker$ True | Ultimate$ True | Name$ Emblem — Tien, Treacherous Trigger | Image$ emblem_tien_treacherous_trigger | StaticAbilities$ STBoost | Duration$ Permanent | AILogic$ Always | SpellDescription$ You get an emblem with "Creatures you control get +2/+0 and have haste."
+SVar:STBoost:Mode$ Continuous | Affected$ Creature.YouCtrl | AddPower$ 2 | AddKeyword$ Haste | Description$ Creatures you control get +2/+0 and have haste.
+AlternateMode:Modal
+Oracle:Whenever an Erune creature enters the battlefield under your control, put a loyalty counter on Tien, Treacherous Trigger.\n[0]: Create a 3/3 red and white Erune creature token with vigilance.\n[-X]: Tien, Treacherous Trigger deals X damage to any target and you gain X life.\n[-7]: You get an emblem with "Creatures you control get +2/+0 and have haste."
+
+ALTERNATE
+
+Name:Ten-Wolf's Triumph
+ManaCost:3 R W
+Types:Sorcery
+A:SP$ PumpAll | ValidCards$ Creature.YouCtrl | NumAtt$ +2 | NumDef$ +2 | SubAbility$ DBUntapAll | SpellDescription$ Creatures you control get +2/+2 until end of turn. Then untap all creatures you control. After this main phase, there is an additional combat phase followed by an additional main phase.
+SVar:DBUntapAll:DB$ UntapAll | ValidCards$ Creature.YouCtrl | SubAbility$ DBAddCombat
+SVar:DBAddCombat:DB$ AddPhase | ExtraPhase$ Combat | FollowedBy$ Main2 | ConditionPhases$ Main1,Main2
+Oracle:Cast Ten-Wolf's Triumph only if there are ten or more cards in your graveyard.\nCreatures you control get +2/+2 until end of turn. Then untap all creatures you control. After this main phase, there is an additional combat phase followed by an additional main phase.
+S:Mode$ CantBeCast | ValidCard$ Card.Self | EffectZone$ All | CheckSVar$ X | SVarCompare$ LT10 | Description$ Can't be cast while you have fewer than ten cards in your graveyard.
+SVar:X:Count$ValidGraveyard Card.YouOwn

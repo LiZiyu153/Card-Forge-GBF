@@ -1,0 +1,28 @@
+Name:Tweyen, Dark Huntress
+ManaCost:2 R G
+Types:Legendary Planeswalker Tweyen
+Loyalty:5
+A:AB$ Surveil | Cost$ AddCounter<2/LOYALTY> | Amount$ 1 | Planeswalker$ True | RememberMoved$ True | SubAbility$ DBChangeZoneAll | SpellDescription$ Surveil 1. If a creature card is put into your graveyard this way, put that card into your hand.
+SVar:DBChangeZoneAll:DB$ ChangeZoneAll | Origin$ Graveyard | Destination$ Hand | ChangeType$ Card.Creature+IsRemembered+YouOwn | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+A:AB$ DealDamage | Cost$ SubCounter<2/LOYALTY> | Planeswalker$ True | ValidTgts$ Any | NumDmg$ 3 | SpellDescription$ CARDNAME deals 3 damage to any target.
+A:AB$ Effect | Cost$ SubCounter<10/LOYALTY> | Planeswalker$ True | Ultimate$ True | Name$ Emblem — Tweyen, Dark Huntress | Image$ emblem_tweyen_dark_huntress | ReplacementEffects$ DoubleDamage | Duration$ Permanent | AILogic$ Always | SpellDescription$ You get an emblem with "If a source you control would deal damage to a permanent or player, it deals double that damage to that permanent or player instead."
+SVar:DoubleDamage:Event$ DamageDone | ValidSource$ Card.YouCtrl,Emblem.YouCtrl | ValidTarget$ Permanent,Player | ReplaceWith$ DmgTwice | Description$ If a source you control would deal damage to a permanent or player, it deals double that damage to that permanent or player instead.
+SVar:DmgTwice:DB$ ReplaceEffect | VarName$ DamageAmount | VarValue$ X
+SVar:X:ReplaceCount$DamageAmount/Twice
+AlternateMode:Modal
+Oracle:[+2]: Surveil 1. If a creature card is put into your graveyard this way, put that card into your hand.\n[-2]: Tweyen, Dark Huntress deals 3 damage to any target.\n[-10]: You get an emblem with "If a source you control would deal damage to a permanent or player, it deals double that damage to that permanent or player instead."
+
+ALTERNATE
+
+Name:Two-Crown's Strife
+ManaCost:R G
+Types:Sorcery
+A:SP$ Pump | ValidTgts$ Creature.Legendary+YouCtrl | TgtPrompt$ Select target legendary creature you control | NumAtt$ +2 | NumDef$ +2 | SubAbility$ DBChooseOpp | SpellDescription$ Target legendary creature you control gets +2/+2 until end of turn. Then it fights target legendary creature an opponent controls. When that creature is destroyed this way, you may gain control of target artifact an opponent controls.
+SVar:DBChooseOpp:DB$ Pump | ValidTgts$ Creature.Legendary+OppCtrl | TgtPrompt$ Select target legendary creature an opponent controls | IsCurse$ True | RememberTargets$ True | SubAbility$ DBFight | StackDescription$ None
+SVar:DBFight:DB$ Fight | Defined$ Targeted | SubAbility$ DBBranch
+SVar:DBBranch:DB$ Branch | BranchConditionSVar$ Y | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBGainControl | SubAbility$ DBCleanup
+SVar:DBGainControl:DB$ GainControl | ValidTgts$ Artifact.OppCtrl | TgtPrompt$ Select target artifact an opponent controls | Optional$ True
+SVar:Y:Count$ValidGraveyard Creature.IsRemembered
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Target legendary creature you control gets +2/+2 until end of turn. Then it fights target legendary creature an opponent controls. When that creature is destroyed this way, you may gain control of target artifact an opponent controls.
