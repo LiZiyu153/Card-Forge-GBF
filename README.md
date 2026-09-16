@@ -20,7 +20,7 @@
 3. 第二轮设计：添加了六龙系列Mythic Rare‌牌6张、其他Rare牌18张、Uncommon牌36张、Common牌60张共计120张卡牌。
 4. 十天众补充包：添加了10张Mythic Rare模式双面卡牌。
 
-当前系列注册卡牌 **256 张**（Mythic 14 / Rare 50 / Uncommon 72 / Common 120），另有 18 个 GBF 衍生物脚本。
+当前系列注册卡牌 **266 张**（Mythic 24 / Rare 50 / Uncommon 72 / Common 120），另有 18 个 GBF 衍生物脚本。
 
 ### 计划更新
 
