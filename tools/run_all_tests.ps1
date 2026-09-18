@@ -199,7 +199,8 @@ $behaviorTests = @(
     'GbfR45RegressionTest',
     'GbfR46EternalsTest',
     'GbfR46FixTest',
-    'GbfP17AltCostTest'
+    'GbfP17AltCostTest',
+    'GbfR47FixesTest'
 )
 if ($Quick) {
     Write-Host "---- [4/6] 行为测试 (跳过, -Quick) ----"

@@ -36,6 +36,10 @@ tools\run_all_tests.cmd -Card "Vikala, Guardian of the North"   :: 只解析指�
 | `GbfCerberusTest` | 行为 | Hadean Watchdog,Cerberus 搜索链回归（R38）：搜索到的地变 1/1 黑 Primal Dog（仍为地）；被牺牲的生物不再被 `Defined$ Remembered` 误变形（`ForgetOtherRemembered$ True`） |
 | `GbfDiagTest` | 行为 | Batch 3 实测失败修复回归（R40/R41，17 项）：Trilok 可选费用注册 + Charm X1/X3 全模式、Cosmos 结束步链（ChoosePlayer+RememberAmount）、Athena 伤害重定向（Shining Shoal 模板）、Protect 磨牌→选永久物链（引擎 P-12）、Galleon/Fediel 死亡改放逐（Origin$ All）、Yggdrasil 地变仍为地、Europa 法力异能例外（!ManaAbility）、Wamdus 坟场咒语置底+弹+抓（Feather 替换链）+ 抓牌条件（ChosenCard 归属）、Fediel ETB 双方坟场全放逐、Galleon R2 来源区限制（手牌→放逐+指示物/战场→正常死）、Lich 重生费用可付性（SubCounter<1/ANY/CARDNAME>）、Anne token 维持自放逐、Rei {T} 动态灵气化（R41 三修方案 A：站场纯生物 → Animate 转纯 Aura 结附 → 宿主死 704.5m 进坟 → 离场还原形态） |
 | `GbfR45RegressionTest` | 行为 | R45 debug.txt 批量修复回归（12 项）：Alexiel 防伤每次 1 指示物（非 PreventedDamage）、Nemone K:etbCounter:CHARGE:1 进场充电、Soul Forge 不灭+死触+神器（AddKeyword$ " & " 合并）、Unconditional Friend 每回合首次 ETB（CheckSVar EQ1 门控）、Before Dawn 放逐牌返库（RememberRevealed$）、Wings 第三章结算不崩（Event$ Counter CantHappen 替换）、Ilsa 结束步（Count$ThisTurnEntered_Graveyard_from_Battlefield）、Cannonlancer ETB 消灭、rat ears 任意牌手牺牲（SacrificeAll|Defined$ Self）、War Mecha X=2 Repeat 链、Challenger 失去飞行（Animate RemoveKeywords$）、Story 历险授予返照（KW$ Flashback） |
+| `GbfR46EternalsTest` | 行为 | R46 十天众回归（21 项）：种族 `Erune` 而非 Draph、`Ernue` 拼写修复、模式双面牌背面 SVar/守卫须在**背面**段、正面不被背面条件限制、6 张背面的 `CantBeCast` **双向真值表**、Threo 等量忠诚指示物、灵技指示物（引擎 P-16 Prowess） |
+| `GbfR46FixTest` | 行为 | R46 四修：Anre 背面空堆叠可放/有咒语禁放（`EQ0`）、Seven-Star 三值（7/3/8）、Two-Crown's Strife 施放期目标节点=2、Eahta 背面 Eight-Life's Pilgrimage 新稿结构 |
+| `GbfP17AltCostTest` | 行为 | 引擎补丁 P-17 回归：`StaticAbilityAlternativeCost` 的 `{2}, Pay 2 life` 须用**该异能的法术力费用**（非 `source.getCMC()`）+ 保留非法术力费用（横置不被替换掉） |
+| `GbfR47FixesTest` | 行为 | R47（v0.0.2.5 后两 bug）：① Descent of the Flames `Announce$ X` + `SVar:X:Count$xPaid` + 无残留 ChooseNumber 弹窗；② Two-Crown's Strife 施放期只 2 个目标、神器在延迟触发结算期选；③ **真实互斗击杀链**（对手传奇死亡 → 延迟触发 → 神器换控）；④ **反例**（对手生物存活 → 不换控） |
 | `GbfTestBase` | 基类 | 公共样板：FModel 初始化、dev 双人局、makeCard/addToBattlefield/enterBattlefield、playUntilStackClear |
 
 ## 新增测试的步骤

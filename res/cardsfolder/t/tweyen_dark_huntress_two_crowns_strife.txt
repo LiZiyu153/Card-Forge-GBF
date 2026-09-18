@@ -19,10 +19,8 @@ Name:Two-Crown's Strife
 ManaCost:R G
 Types:Sorcery
 A:SP$ Pump | ValidTgts$ Creature.Legendary+YouCtrl | TgtPrompt$ Select target legendary creature you control | NumAtt$ +2 | NumDef$ +2 | SubAbility$ DBChooseOpp | SpellDescription$ Target legendary creature you control gets +2/+2 until end of turn. Then it fights target legendary creature an opponent controls. When that creature is destroyed this way, you may gain control of target artifact an opponent controls.
-SVar:DBChooseOpp:DB$ Pump | ValidTgts$ Creature.Legendary+OppCtrl | TgtPrompt$ Select target legendary creature an opponent controls | IsCurse$ True | RememberTargets$ True | SubAbility$ DBFight | StackDescription$ None
-SVar:DBFight:DB$ Fight | Defined$ Targeted | SubAbility$ DBBranch
-SVar:DBBranch:DB$ Branch | BranchConditionSVar$ Y | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBGainControl | SubAbility$ DBCleanup
-SVar:DBGainControl:DB$ GainControl | ValidTgts$ Artifact.OppCtrl | TgtPrompt$ Select target artifact an opponent controls | Optional$ True
-SVar:Y:Count$ValidGraveyard Creature.IsRemembered
-SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:DBChooseOpp:DB$ Pump | ValidTgts$ Creature.Legendary+OppCtrl | TgtPrompt$ Select target legendary creature an opponent controls | IsCurse$ True | SubAbility$ DBFight | StackDescription$ None
+SVar:DBFight:DB$ Fight | Defined$ Targeted | SubAbility$ DBWhenDies
+SVar:DBWhenDies:DB$ DelayedTrigger | Mode$ ChangesZone | ValidCard$ Card.IsTriggerRemembered+OppCtrl | Origin$ Battlefield | Destination$ Graveyard | Execute$ TrigGainArtifact | RememberObjects$ Targeted | TriggerDescription$ When that creature is destroyed this way, you may gain control of target artifact an opponent controls.
+SVar:TrigGainArtifact:DB$ GainControl | ValidTgts$ Artifact.OppCtrl | TgtPrompt$ Select target artifact an opponent controls | Optional$ True | Hidden$ True
 Oracle:Target legendary creature you control gets +2/+2 until end of turn. Then it fights target legendary creature an opponent controls. When that creature is destroyed this way, you may gain control of target artifact an opponent controls.
