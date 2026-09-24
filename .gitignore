@@ -89,3 +89,8 @@ tests/probe*.txt
 res/languages/*
 !res/languages/cardnames-zh-CN.txt
 !res/languages/zh-CN.properties
+
+# ==== AGENT toolchain (local dev helper, unrelated to the game; not tracked) ====
+# DSH project-level skill: card-scripting workflow / template lookup / single-card preflight.
+# Excluded so the skill never pollutes the release history.
+/.dsh/
