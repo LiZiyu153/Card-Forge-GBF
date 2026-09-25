@@ -11,6 +11,12 @@
 
 本项目仍然在不断更新，欢迎游玩体验并给出建议。
 
+## 本项目现已引入独弈进行UI包装，独立分发
+独弈官网：https://silver-daifuku-ca3228.netlify.app/
+食用方法：在release页面下载SoloArcanum-GBF-Setup.exe，运行安装即可。默认卡图目录为安装目录。
+原desktop.exe仍然为其官方引擎，游玩GBF版本需要双击安装目录下的“启动-GBF引擎.cmd”
+Card-Forge-GBF仍然更新，可以随时下载release中对应版本的便携压缩包切换回旧UI。
+
 ## 内容总览
 
 ### 目前的内容
