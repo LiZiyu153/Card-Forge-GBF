@@ -3,13 +3,13 @@ ManaCost:W U
 Types:Legendary Creature Human Knight
 PT:1/2
 K:Flash
-T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigDiscard | TriggerDescription$ When CARDNAME enters, discard a nonland card. If you do, search your library for a Human creature card with mana value 3 or less, reveal it, and put it into your hand, then shuffle.
 SVar:HandBefore:Number$0
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigDiscard | TriggerDescription$ When CARDNAME enters, you may discard a nonland card. When you do, search your library for a Human creature card with mana value 3 or less, reveal it, and put it into your hand. If it's an opponent's turn, you may also search your library for a basic land card. Then shuffle.
 SVar:TrigDiscard:DB$ StoreSVar | SVar$ HandBefore | Type$ Count | Expression$ Count$ValidHand Card.YouOwn | SubAbility$ DBDiscard
-SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1 | DiscardValid$ Card.nonLand | SubAbility$ DBBranch
+SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | Optional$ True | NumCards$ 1 | DiscardValid$ Card.nonLand | SubAbility$ DBBranch
 SVar:DBBranch:DB$ Branch | BranchConditionSVar$ X | BranchConditionSVarCompare$ LT0 | TrueSubAbility$ DBSearch
 SVar:X:Count$ValidHand Card.YouOwn/Minus.SVar$HandBefore
-SVar:DBSearch:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Creature.Human+cmcLE3 | Shuffle$ True
-T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | OpponentTurn$ True | Execute$ TrigSearchLand | TriggerDescription$ If it's an opponent's turn, you may also search for a basic land card, then shuffle.
-SVar:TrigSearchLand:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Land.Basic | Shuffle$ True
-Oracle:Flash\nWhen Katalina enters, discard a nonland card. If you do, search your library for a Human creature card with mana value 3 or less, reveal it, and put it into your hand, then shuffle. If it's an opponent's turn, you may also search for a basic land card, then shuffle.
+SVar:DBSearch:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Creature.Human+cmcLE3 | ChangeNum$ 1 | SubAbility$ TrigSearchLand
+SVar:TrigSearchLand:DB$ ChangeZone | Origin$ Library | Destination$ Hand | ChangeType$ Land.Basic | ChangeNum$ 1 | ConditionPlayerTurn$ False | Optional$ True | OptionalPrompt$ Search your library for a basic land card? | StackDescription$ If it's an opponent's turn, you may search your library for a basic land card. | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Flash\nWhen Katalina enters, you may discard a nonland card. When you do, search your library for a Human creature card with mana value 3 or less, reveal it, and put it into your hand. If it's an opponent's turn, you may also search your library for a basic land card. Then shuffle.
