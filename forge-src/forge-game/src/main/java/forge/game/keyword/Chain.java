@@ -209,9 +209,14 @@ public class Chain extends KeywordInstance<Chain> {
         }
     }
 
-    /** Renders the generated trigger description for a Chain N ability. */
+    /**
+     * Renders the generated trigger description for a Chain N ability. {@code ABILITY} is the
+     * official placeholder Forge substitutes with the effect's own description, so the stack/log
+     * line reads "Chain 3 — Whenever you attack with 3 or more creatures you control with power
+     * greater than 2, this deals 2 damage to target creature you don't control."
+     */
     public static String getTriggerDescription(final int amount) {
-        return "Chain " + amount + " \u2014 Triggers when you attack with " + amount
-                + " or more creatures you control with power greater than 2 in the same combat phase.";
+        return "Chain " + amount + " \u2014 Whenever you attack with " + amount
+                + " or more creatures you control with power greater than 2, ABILITY";
     }
 }

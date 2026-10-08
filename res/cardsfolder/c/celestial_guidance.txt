@@ -5,4 +5,4 @@ K:Enchant:Creature
 S:Mode$ Continuous | Affected$ Card.AttachedBy | AddPower$ 2 | AddToughness$ 0 | Description$ Enchanted creature gets +2/+0.
 K:Chain:3:TrigChainBolt
 SVar:TrigChainBolt:DB$ DealDamage | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | NumDmg$ 2 | SpellDescription$ CARDNAME deals 2 damage to target creature you don't control.
-Oracle:Enchant creature\nEnchanted creature gets +2/+0.\nChain 3 — Celestial Guidance deals 2 damage to target creature you don't control. (Triggers when you attack with three or more creatures you control with power greater than 2 in the same combat phase.)
+Oracle:Enchant creature\nEnchanted creature gets +2/+0.\nChain 3 — Whenever you attack with three or more creatures you control with power greater than 2, Celestial Guidance deals 2 damage to target creature you don't control. (Triggers once per combat phase.)

@@ -308,11 +308,28 @@ public class GbfChainTest extends GbfTestBase {
         // stack entries; move them onto the stack so they can be counted before resolution.
         game.getStack().addAllTriggeredAbilitiesToStack();
         int onStack = abilitiesOfOnStack(game, host);
+        String onStackText = "";
+        for (SpellAbilityStackInstance si : game.getStack()) {
+            SpellAbility sa = si.getSpellAbility();
+            if (sa != null && sa.getHostCard() != null && sa.getHostCard().getId() == host.getId()) {
+                onStackText = si.getStackDescription();   // what the log/stack panel shows
+            }
+        }
         playUntilStackClear(game);
         int gained = p.getLife() - before;
 
-        return report("Chain3Three", onStack == 1 && gained == 4,
-                "chainTriggersOnStack=" + onStack + " (expect 1) lifeGained=" + gained + " (expect 4)");
+        // the description the player sees on the stack: "Chain 3 — Whenever you attack with 3 or
+        // more creatures you control with power greater than 2, <effect>." The ABILITY placeholder
+        // must have been substituted with the effect's own description (Trigger.getTriggerDescription
+        // lower-cases the first letter unless the effect starts with the card name).
+        boolean textOk = onStackText.contains("Whenever you attack with 3 or more")
+                && !onStackText.contains("ABILITY") && onStackText.contains("gain 4 life")
+                && onStackText.contains("Number Attackers");
+        System.out.println("[ChainText] stackText=\"" + onStackText + "\"");
+
+        return report("Chain3Three", onStack == 1 && gained == 4 && textOk,
+                "chainTriggersOnStack=" + onStack + " (expect 1) lifeGained=" + gained
+                        + " (expect 4) textOk=" + textOk);
     }
 
     /* ------------------------------------------------------------------ */

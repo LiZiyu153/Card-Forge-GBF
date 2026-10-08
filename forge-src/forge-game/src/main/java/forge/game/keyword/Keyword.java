@@ -33,7 +33,7 @@ public enum Keyword {
     // GBF DIY keyword (Card-Forge-GBF): "Chain N — <effect>" — triggers once per combat phase
     // when you attack with N or more creatures you control with power greater than 2.
     // See forge.game.keyword.Chain.
-    CHAIN("Chain", Chain.class, false, "Triggers when you attack with %s or more creatures you control with power greater than 2 in the same combat phase."),
+    CHAIN("Chain", Chain.class, false, "Whenever you attack with %s or more creatures you control with power greater than 2. (Triggers once per combat phase.)"),
     CASUALTY("Casualty", KeywordWithAmount.class, false, "As you cast this spell, you may sacrifice a creature with power %1$d or greater. When you do, copy this spell."),
     CHAMPION("Champion", KeywordWithType.class, false, "When this permanent enters, sacrifice it unless you exile another %s you control. When this permanent leaves the battlefield, return the exiled card to the battlefield under its owner's control."),
     CHANGELING("Changeling", SimpleKeyword.class, true, "This card is every creature type."),
