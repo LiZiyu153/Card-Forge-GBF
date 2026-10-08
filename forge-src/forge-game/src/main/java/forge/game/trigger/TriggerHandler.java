@@ -415,12 +415,21 @@ public class TriggerHandler {
         // trigger type, and because trigger time is the only moment the engine knows which
         // attacker this particular trigger belongs to (CombatUtil.checkDeclaredAttacker fires
         // the Attacks trigger BEFORE recording the attacker, so this count excludes it).
+        // GBF DIY Chain (engine P-19, R51 hotfix): Chain$ N fires only for the attacker whose
+        // ordinal among this turn's qualifying attacks (creatures this controller controls with
+        // power > 2) equals N. Checked here rather than in Trigger.performTest because that method
+        // is abstract per trigger type — this funnel is the one place that sees both the trigger
+        // and the event's runParams for every mode. The ordinal is membership-based
+        // (Chain.qualifyingAttackOrdinal) so it is correct whether or not the live attacker has
+        // already been recorded — the live game DOES record it before this check, which is what
+        // caused the reported off-by-one (Chain 3 firing on the 2nd attacker).
         if (regtrig.hasParam("Chain")) {
             if (!Chain.meetsChain(regtrig.getHostCard().getController(),
                     (Card) runParams.get(AbilityKey.Attacker), regtrig.getParam("Chain"))) {
                 return false;
             }
         }
+
 
         if (TriggerType.Always.equals(regtrig.getMode()) && game.getStack().hasStateTrigger(regtrig.getId())) {
             return false; // State triggers that are already on the stack

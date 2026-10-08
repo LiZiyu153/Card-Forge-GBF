@@ -44,6 +44,7 @@ public class GbfChainTest extends GbfTestBase {
         ok &= testPower2DoesNotCount();
         ok &= testOpponentAttackersDoNotCount();
         ok &= testCountApi();
+        ok &= testOrdinalBothOrderings();
         ok &= testResetsNextTurn();
         ok &= testRealCardScript();
         System.out.println(ok ? "ALL PASS" : "SOME FAILED");
@@ -137,29 +138,36 @@ public class GbfChainTest extends GbfTestBase {
     }
 
     /**
-     * Declares {@code c} as an attacker.
+     * Declares {@code c} as an attacker, in the order the live game uses.
      * <p>
-     * <b>Dev-mode note (R51):</b> the real entry point {@code CombatUtil.checkDeclaredAttacker}
+     * <b>R51 hotfix:</b> the live-game ordering is <i>record first, then fire the trigger</i> —
+     * which is what made {@code Chain 3} fire on the 2nd attacker (the gate assumed the attacker
+     * was NOT yet recorded, an off-by-one). This helper therefore records, then fires, so the
+     * tests exercise the ordering that actually happens in a game.
+     * <p>
+     * <b>Dev-mode note:</b> the real entry point {@code CombatUtil.checkDeclaredAttacker} also
      * dereferences {@code game.getCombat()}, which is null in a dev game that never started a
-     * combat phase (assigning one is unsupported in this harness). This helper therefore
-     * mirrors those two lines in the documented order — fire {@code TriggerType.Attacks} with
-     * the engine's own runParams keys, then record the attacker in the turn history, which is
-     * precisely the ordering that makes the {@code Chain N} ordinal computable.
+     * combat phase. The two lines below mirror the engine's own bookkeeping instead, and
+     * {@code Chain.qualifyingAttackOrdinal} is membership-based so both orderings are correct.
      */
     private static void declareAttacker(Game game, Card c) {
         Player controller = c.getController();
-        // dev mode: nothing registers triggers automatically, and TriggerHandler.runTrigger only
-        // consults registered active triggers — so register everything on the battlefield first.
         for (Card bf : game.getCardsIn(forge.game.zone.ZoneType.Battlefield)) {
             game.getTriggerHandler().registerActiveTrigger(bf, false);
         }
+        controller.addCreaturesAttackedThisTurn(forge.game.card.CardCopyService.getLKICopy(c),
+                controller.getOpponents().getFirst());
+        fireAttacks(game, c);
+    }
+
+    /** Fires only the {@code Attacks} event (no bookkeeping) — the synthetic ordering. */
+    private static void fireAttacks(Game game, Card c) {
+        Player controller = c.getController();
         Map<AbilityKey, Object> runParams = AbilityKey.newMap();
         runParams.put(AbilityKey.Attacker, c);
         runParams.put(AbilityKey.DefendingPlayer, controller.getOpponents().getFirst());
         runParams.put(AbilityKey.Attacked, controller.getOpponents().getFirst());
         game.getTriggerHandler().runTrigger(TriggerType.Attacks, runParams, false);
-        controller.addCreaturesAttackedThisTurn(forge.game.card.CardCopyService.getLKICopy(c),
-                controller.getOpponents().getFirst());
     }
 
     private static void resolveTriggers(Game game) {
@@ -372,16 +380,73 @@ public class GbfChainTest extends GbfTestBase {
         }
 
         Card a = attacker(game, p, 3);
-        int beforeCount = Chain.countPreviousQualifyingAttackers(p);
+        int beforeCount = Chain.countQualifyingAttackers(p);
+        int beforeOrdinal = Chain.qualifyingAttackOrdinal(p, a);
         declareAttacker(game, a);
-        int afterCount = Chain.countPreviousQualifyingAttackers(p);
-        boolean countingOk = beforeCount == 0 && afterCount == 1;
+        int afterCount = Chain.countQualifyingAttackers(p);
+        boolean countingOk = beforeCount == 0 && afterCount == 1 && beforeOrdinal == 1;
 
         boolean ok = keywordOk && parseOk && countingOk
                 && reminder != null && reminder.contains("2nd");
         System.out.println("[API] keyword=" + keywordOk + " parse=" + parseOk
                 + " countBefore=" + beforeCount + " countAfter=" + afterCount
+                + " ordinalWhenRecordingFirst=" + beforeOrdinal
                 + " reminder=\"" + reminder + "\" -> " + (ok ? "PASS" : "FAIL"));
+        return ok;
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* 9b. the R51 off-by-one: both record/fire orderings give an ordinal */
+    /* ------------------------------------------------------------------ */
+
+    /**
+     * Regression for the reported bug "Chain 3 triggers when only TWO creatures attacked":
+     * the live game records the attacker <i>before</i> the Attacks trigger is checked, while a
+     * synthetic driver may fire it first. The ordinal must be identical either way.
+     */
+    private static boolean testOrdinalBothOrderings() {
+        // (a) record first, then fire (live ordering) — Chain 3 must NOT fire on the 2nd attacker
+        Game g1 = newGame();
+        Player p1 = g1.getPlayers().get(1);
+        Card host1 = makeChainCard(g1, p1, "Chain Host I", gain4("TrigChain"), "Chain:3:TrigChain");
+        addToBattlefield(host1);
+        Card x1 = attacker(g1, p1, 3);
+        Card x2 = attacker(g1, p1, 3);
+        Card x3 = attacker(g1, p1, 3);
+
+        int life1 = p1.getLife();
+        declareAttacker(g1, x1);
+        resolveTriggers(g1);
+        boolean silentOnFirst = p1.getLife() == life1;
+        declareAttacker(g1, x2);
+        resolveTriggers(g1);
+        boolean silentOnSecond = p1.getLife() == life1;   // <- the reported bug made this fire
+        declareAttacker(g1, x3);
+        resolveTriggers(g1);
+        boolean firesOnThird = p1.getLife() == life1 + 4;
+
+        // (b) fire first, then record (synthetic ordering) — same ordinals
+        Game g2 = newGame();
+        Player p2 = g2.getPlayers().get(1);
+        Card host2 = makeChainCard(g2, p2, "Chain Host J", gain4("TrigChain"), "Chain:3:TrigChain");
+        addToBattlefield(host2);
+        Card y1 = attacker(g2, p2, 3);
+        Card y2 = attacker(g2, p2, 3);
+        Card y3 = attacker(g2, p2, 3);
+        int[] ordinals = new int[3];
+        int i = 0;
+        for (Card y : new Card[] { y1, y2, y3 }) {
+            ordinals[i++] = Chain.qualifyingAttackOrdinal(p2, y);
+            fireAttacks(g2, y);
+            p2.addCreaturesAttackedThisTurn(forge.game.card.CardCopyService.getLKICopy(y),
+                    p2.getOpponents().getFirst());
+        }
+        boolean ordinalSeq = ordinals[0] == 1 && ordinals[1] == 2 && ordinals[2] == 3;
+
+        boolean ok = silentOnFirst && silentOnSecond && firesOnThird && ordinalSeq;
+        System.out.println("[BothOrderings] silent1=" + silentOnFirst + " silent2=" + silentOnSecond
+                + " fires3=" + firesOnThird + " fireFirstOrdinals=" + ordinals[0] + "/" + ordinals[1]
+                + "/" + ordinals[2] + " -> " + (ok ? "PASS" : "FAIL"));
         return ok;
     }
 
@@ -415,7 +480,7 @@ public class GbfChainTest extends GbfTestBase {
         }
         p.onCleanupPhase();
 
-        int afterReset = Chain.countPreviousQualifyingAttackers(p);
+        int afterReset = Chain.countQualifyingAttackers(p);
         declareAttacker(game, a3);
         resolveTriggers(game);
         boolean silentUnderChain2 = p.getLife() == before + 4;
