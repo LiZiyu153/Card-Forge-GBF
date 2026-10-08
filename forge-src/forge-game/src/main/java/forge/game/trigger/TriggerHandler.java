@@ -408,24 +408,20 @@ public class TriggerHandler {
             return false; // Test failed.
         }
 
-        // GBF DIY Chain (engine P-19): Chain$ N fires only when the attacking creature is the
-        // Nth creature this turn (the controller's creatures with power > 2 that already
-        // attacked). Checked here — after the per-subclass performTest — because this funnel
-        // is the single place that sees both the trigger and the event's runParams for every
-        // trigger type, and because trigger time is the only moment the engine knows which
-        // attacker this particular trigger belongs to (CombatUtil.checkDeclaredAttacker fires
-        // the Attacks trigger BEFORE recording the attacker, so this count excludes it).
-        // GBF DIY Chain (engine P-19, R51 hotfix): Chain$ N fires only for the attacker whose
-        // ordinal among this turn's qualifying attacks (creatures this controller controls with
-        // power > 2) equals N. Checked here rather than in Trigger.performTest because that method
-        // is abstract per trigger type — this funnel is the one place that sees both the trigger
-        // and the event's runParams for every mode. The ordinal is membership-based
-        // (Chain.qualifyingAttackOrdinal) so it is correct whether or not the live attacker has
-        // already been recorded — the live game DOES record it before this check, which is what
-        // caused the reported off-by-one (Chain 3 firing on the 2nd attacker).
+        // GBF DIY Chain (engine P-19, reworked in R52): Chain$ N is true when the declaration
+        // batch in runParams holds at least N creatures this controller controls with power > 2
+        // (the generated T:Mode$ AttackersDeclared form), or, for a hand-written per-attacker
+        // T:Mode$ Attacks trigger, when the event's attacker is the Nth qualifying attacker of
+        // the combat that is declaring.
+        // Checked here rather than in Trigger.performTest because that method is abstract per
+        // trigger type: this funnel is the one place that sees both the trigger and the event's
+        // runParams for every mode. It must NOT be derived from Player#getCreaturesAttackedThisTurn
+        // — during the declare-attackers step the stack is frozen, so Attacks triggers are parked
+        // in waitingTriggers and checked only after the whole batch has been recorded (that made a
+        // Chain 3 ability fire once per attacker: three attackers, three triggers).
         if (regtrig.hasParam("Chain")) {
-            if (!Chain.meetsChain(regtrig.getHostCard().getController(),
-                    (Card) runParams.get(AbilityKey.Attacker), regtrig.getParam("Chain"))) {
+            if (!Chain.meetsChain(game, regtrig.getHostCard().getController(), runParams,
+                    regtrig.getParam("Chain"))) {
                 return false;
             }
         }

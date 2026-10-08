@@ -849,9 +849,15 @@ public class CardFactoryUtil {
             inst.addTrigger(conspireTrigger);
         } else if (inst instanceof Chain chain) {
             // GBF DIY "Chain N — <effect>": the keyword carries N and the SVar holding the
-            // effect; the trigger fires whenever a creature you control with power > 2 attacks
-            // and the Chain$ gate (evaluated in Trigger.performTest) lets only the Nth through.
-            String trigStr = "Mode$ Attacks | ValidCard$ Creature.YouCtrl+powerGE" + Chain.MIN_POWER
+            // effect. "Whenever a creature you control with power > 2 attacks, if this is the
+            // Nth such attack" is judged on the declaration batch of one combat phase, which is
+            // exactly what the engine's native AttackersDeclared + ValidAttackersAmount fence
+            // does (the shape ~30 official cards use, e.g. Escarpment Fortress and Inniaz).
+            // The Chain$ param re-checks it in TriggerHandler.canRunTrigger, so the K: keyword
+            // also works if someone writes the trigger by hand.
+            String trigStr = "Mode$ AttackersDeclared | AttackingPlayer$ You"
+                    + " | ValidAttackers$ Creature.YouCtrl+powerGE" + Chain.MIN_POWER
+                    + " | ValidAttackersAmount$ GE" + chain.getAmount()
                     + " | TriggerZones$ Battlefield | Chain$ " + chain.getAmount()
                     + " | Execute$ " + chain.getEffect()
                     + " | TriggerDescription$ " + Chain.getTriggerDescription(chain.getAmount());
