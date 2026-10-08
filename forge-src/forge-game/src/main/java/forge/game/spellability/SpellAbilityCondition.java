@@ -25,6 +25,7 @@ import forge.game.GameObjectPredicates;
 import forge.game.GameType;
 import forge.game.ability.AbilityUtils;
 import forge.game.card.Card;
+import forge.game.keyword.Specialty;
 import forge.game.phase.PhaseHandler;
 import forge.game.phase.PhaseType;
 import forge.game.player.Player;
@@ -93,6 +94,11 @@ public class SpellAbilityCondition extends SpellAbilityVariables {
             }
             if (value.equals("Blessing")) {
                 this.setBlessing(true);
+            }
+            // GBF DIY: Condition$ Specialty — the "<type>:<amount>" spec rides in the
+            // "Specialty" parameter (set by K:Specialty / Specialty$).
+            if (value.equals("Specialty")) {
+                this.setSpecialty(params.get("Specialty"));
             }
             if (value.equals("Kicked")) {
                 this.kicked = true;
@@ -270,6 +276,14 @@ public class SpellAbilityCondition extends SpellAbilityVariables {
         if (this.isRevolt() && !activator.hasRevolt()) return false;
         if (this.isDesert() && !activator.hasDesert()) return false;
         if (this.isBlessing() && !activator.hasBlessing()) return false;
+
+        // GBF DIY: Condition$ Specialty — falls back to the granting static ability
+        // (K:Specialty carries the "<type>:<amount>" spec once, for all granted traits).
+        String specialty = getSpecialty();
+        if (specialty == null && sa.getGrantorStatic() != null) {
+            specialty = sa.getGrantorStatic().getParam("Specialty");
+        }
+        if (specialty != null && !Specialty.meetsCondition(activator, specialty)) return false;
 
         if (this.kicked && !sa.isKicked()) return false;
         if (this.kicked1 && !sa.isOptionalCostPaid(OptionalCost.Kicker1)) return false;

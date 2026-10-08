@@ -10,7 +10,8 @@
       3) 衍生物解析测试 GbfTokenParseTest（[tokens] 段 5 个脚本）
       4) 全部行为测试（GbfBehaviorTest / GbfArrietTest / GbfLeJardinTest /
          GbfAnilaTest / GbfAndiraTest / GbfVajraTest / GbfVikalaTest /
-         GbfBigBerthaTest / GbfEugenTest / GbfPerpetualTailwindTest）
+         GbfBigBerthaTest / GbfEugenTest / GbfPerpetualTailwindTest /
+         GbfSpecialtyTest〔引擎 P-18 得意关键词〕…）
       5) 静态验证（python D:/forge-analysis/verify_gbf_scripts.py，可跳过）
 
     内部自动固定：CWD=安装目录（Localizer 依赖）、fat jar classpath、
@@ -200,7 +201,8 @@ $behaviorTests = @(
     'GbfR46EternalsTest',
     'GbfR46FixTest',
     'GbfP17AltCostTest',
-    'GbfR47FixesTest'
+    'GbfR47FixesTest',
+    'GbfSpecialtyTest'
 )
 if ($Quick) {
     Write-Host "---- [4/6] 行为测试 (跳过, -Quick) ----"

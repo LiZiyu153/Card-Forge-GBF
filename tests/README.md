@@ -40,6 +40,7 @@ tools\run_all_tests.cmd -Card "Vikala, Guardian of the North"   :: 只解析指�
 | `GbfR46FixTest` | 行为 | R46 四修：Anre 背面空堆叠可放/有咒语禁放（`EQ0`）、Seven-Star 三值（7/3/8）、Two-Crown's Strife 施放期目标节点=2、Eahta 背面 Eight-Life's Pilgrimage 新稿结构 |
 | `GbfP17AltCostTest` | 行为 | 引擎补丁 P-17 回归：`StaticAbilityAlternativeCost` 的 `{2}, Pay 2 life` 须用**该异能的法术力费用**（非 `source.getCMC()`）+ 保留非法术力费用（横置不被替换掉） |
 | `GbfR47FixesTest` | 行为 | R47（v0.0.2.5 后两 bug）：① Descent of the Flames `Announce$ X` + `SVar:X:Count$xPaid` + 无残留 ChooseNumber 弹窗；② Two-Crown's Strife 施放期只 2 个目标、神器在延迟触发结算期选；③ **真实互斗击杀链**（对手传奇死亡 → 延迟触发 → 神器换控）；④ **反例**（对手生物存活 → 不换控） |
+| `GbfSpecialtyTest` | 行为 | **引擎 P-18 得意 Specialty 关键词**（9 组，R50）：条件达成/未达成、进出场动态授予与撤销、裸子类自动补 `Creature.`、卡类型计数、复合限制（`Enchantment.Primal`）、授予触发式异能效果、授予起动式异能效果、授予嵌套静态泵牌（含 intrinsic 对照组）、`Condition$ Specialty` 门控（条件不满足时该异能**根本不存在于卡上**）、关键词渲染与 `countPermanents/meetsCondition` API。**测试写法**：用公开 `Card` API 造合成卡 + `addIntrinsicKeyword`（与真实 `K:` 行同一 `createTraits` 路径）+ `refresh(game, card...)`（`checkStaticAbilities()` layer pass，dev 直接写 zone 不会自动跑）；效果断言走 `resolveDirect()`（见 `docs/dev-mode-limitations.md` 盲区 6） |
 | `GbfTestBase` | 基类 | 公共样板：FModel 初始化、dev 双人局、makeCard/addToBattlefield/enterBattlefield、playUntilStackClear |
 
 ## 新增测试的步骤

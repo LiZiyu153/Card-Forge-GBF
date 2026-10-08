@@ -24,6 +24,7 @@ import forge.game.card.CardView;
 import forge.game.card.IHasCardView;
 import forge.game.keyword.Keyword;
 import forge.game.keyword.KeywordInterface;
+import forge.game.keyword.Specialty;
 import forge.game.player.GameLossReason;
 import forge.game.player.Player;
 import forge.game.spellability.SpellAbility;
@@ -340,6 +341,12 @@ public abstract class CardTraitBase implements GameObject, IHasCardView, IHasSVa
         }
         if (params.containsKey("Blessing")) {
             if ("True".equalsIgnoreCase(params.get("Blessing")) != hostController.hasBlessing()) return false;
+        }
+
+        // GBF DIY: Specialty$ <type>:<amount> — "as long as you control <amount> or more
+        // <type> permanents". Used by the Specialty keyword and available to any trait.
+        if (params.containsKey("Specialty")) {
+            if (!Specialty.meetsCondition(hostController, params.get("Specialty"))) return false;
         }
 
         if (params.containsKey("DayTime")) {

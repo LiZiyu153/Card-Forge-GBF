@@ -93,6 +93,9 @@ public class SpellAbilityVariables implements Cloneable {
     private boolean blessing = false;
     private boolean solved = false;
 
+    /** GBF DIY: Specialty ("X Specialty N") condition, "<type>:<amount>". */
+    private String specialty = null;
+
     /** The s is present. */
     private String isPresent = null;
     private String isPresent2 = null;
@@ -325,6 +328,9 @@ public class SpellAbilityVariables implements Cloneable {
     public void setBlessing(final boolean bBlessing) { blessing = bBlessing; }
     public void setSolved(final boolean bSolved) { solved = bSolved; }
 
+    /** GBF DIY Specialty condition, "<type>:<amount>" (see forge.game.keyword.Specialty). */
+    public final void setSpecialty(final String sSpecialty) { this.specialty = sSpecialty; }
+
     /** Optional Costs */
     protected boolean kicked = false;
     protected boolean kicked1 = false; // http://magiccards.info/query?q=o%3A%22kicker%22+not+o%3A%22multikicker%22+o%3A%22and%2For+{%22
@@ -514,6 +520,9 @@ public class SpellAbilityVariables implements Cloneable {
 
     public final boolean isDesert() {     return this.desert;  }
     public final boolean isBlessing() {     return this.blessing;  }
+
+    /** GBF DIY Specialty condition, "<type>:<amount>"; null when not used. */
+    public final String getSpecialty() {     return this.specialty;  }
 
     public final boolean isSolved() {     return this.solved;  }
 

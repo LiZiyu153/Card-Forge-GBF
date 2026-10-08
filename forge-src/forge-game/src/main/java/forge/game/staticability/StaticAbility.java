@@ -39,6 +39,7 @@ import forge.game.card.CardLists;
 import forge.game.card.CardState;
 import forge.game.cost.Cost;
 import forge.game.cost.CostPart;
+import forge.game.keyword.Specialty;
 import forge.game.phase.PhaseHandler;
 import forge.game.phase.PhaseType;
 import forge.game.player.Player;
@@ -366,6 +367,14 @@ public class StaticAbility extends CardTraitBase implements IIdentifiable, Clone
 
         if (!zonesCheck()) {
             return false;
+        }
+
+        // GBF DIY: Specialty$ <type>:<amount> — "as long as you control <amount> or more
+        // <type> permanents". Gates the whole static ability (used by the Specialty keyword).
+        if (hasParam("Specialty")) {
+            if (!Specialty.meetsCondition(controller, getParam("Specialty"))) {
+                return false;
+            }
         }
 
         String condition = getParam("Condition");

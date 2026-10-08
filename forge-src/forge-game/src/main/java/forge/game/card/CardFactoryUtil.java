@@ -3736,7 +3736,22 @@ public class CardFactoryUtil {
     public static void addStaticAbility(final KeywordInterface inst, final CardState state, final boolean intrinsic) {
         String keyword = inst.getOriginal();
 
-        if (inst instanceof Affinity affinity) {
+        if (inst instanceof Specialty specialty) {
+            // GBF DIY "X Specialty N": the keyword itself only carries the condition
+            // (<type>:<amount>); everything after it ("AddKeyword$ Flying" etc.) is handed to
+            // the generated continuous ability verbatim, exactly like K:Class does.
+            final String pre = "Specialty:" + specialty.getRawType() + ":" + specialty.getAmount();
+            final String extra = keyword.length() > pre.length()
+                    ? " | " + keyword.substring(pre.length() + 1).trim() : "";
+
+            final String effect = "Mode$ Continuous | Affected$ Card.Self"
+                    + " | Specialty$ " + specialty.getConditionParam()
+                    + extra
+                    + " | Secondary$ True"
+                    + " | Description$ " + Specialty.getTitleWithReminder(specialty.getTypeDescription(), specialty.getAmount());
+
+            inst.addStaticAbility(StaticAbility.create(effect, state.getCard(), state, intrinsic));
+        } else if (inst instanceof Affinity affinity) {
             final String t = affinity.getValidType();
 
             StringBuilder sb = new StringBuilder();
