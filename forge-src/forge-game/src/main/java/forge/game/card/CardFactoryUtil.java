@@ -847,6 +847,17 @@ public class CardFactoryUtil {
             conspireTrigger.setSVar("Conspire", "Count$OptionalKeywordAmount");
 
             inst.addTrigger(conspireTrigger);
+        } else if (inst instanceof Chain chain) {
+            // GBF DIY "Chain N — <effect>": the keyword carries N and the SVar holding the
+            // effect; the trigger fires whenever a creature you control with power > 2 attacks
+            // and the Chain$ gate (evaluated in Trigger.performTest) lets only the Nth through.
+            String trigStr = "Mode$ Attacks | ValidCard$ Creature.YouCtrl+powerGE" + Chain.MIN_POWER
+                    + " | TriggerZones$ Battlefield | Chain$ " + chain.getAmount()
+                    + " | Execute$ " + chain.getEffect()
+                    + " | TriggerDescription$ " + Chain.getTriggerDescription(chain.getAmount());
+
+            final Trigger chainTrigger = TriggerHandler.parseTrigger(trigStr, card, intrinsic);
+            inst.addTrigger(chainTrigger);
         } else if (keyword.startsWith("Cumulative upkeep")) {
             final String[] k = keyword.split(":");
             final Cost cost = new Cost(k[1], false);

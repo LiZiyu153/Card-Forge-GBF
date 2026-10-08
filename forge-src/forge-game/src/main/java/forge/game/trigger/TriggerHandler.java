@@ -29,6 +29,7 @@ import forge.game.ability.AbilityFactory;
 import forge.game.ability.AbilityKey;
 import forge.game.ability.AbilityUtils;
 import forge.game.card.*;
+import forge.game.keyword.Chain;
 import forge.game.player.Player;
 import forge.game.spellability.AbilitySub;
 import forge.game.spellability.SpellAbility;
@@ -405,6 +406,20 @@ public class TriggerHandler {
 
         if (!regtrig.performTest(runParams)) {
             return false; // Test failed.
+        }
+
+        // GBF DIY Chain (engine P-19): Chain$ N fires only when the attacking creature is the
+        // Nth creature this turn (the controller's creatures with power > 2 that already
+        // attacked). Checked here — after the per-subclass performTest — because this funnel
+        // is the single place that sees both the trigger and the event's runParams for every
+        // trigger type, and because trigger time is the only moment the engine knows which
+        // attacker this particular trigger belongs to (CombatUtil.checkDeclaredAttacker fires
+        // the Attacks trigger BEFORE recording the attacker, so this count excludes it).
+        if (regtrig.hasParam("Chain")) {
+            if (!Chain.meetsChain(regtrig.getHostCard().getController(),
+                    (Card) runParams.get(AbilityKey.Attacker), regtrig.getParam("Chain"))) {
+                return false;
+            }
         }
 
         if (TriggerType.Always.equals(regtrig.getMode()) && game.getStack().hasStateTrigger(regtrig.getId())) {

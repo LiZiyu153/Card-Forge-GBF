@@ -275,6 +275,7 @@ BoosterBox=36
 265 M Eahta, Blade God
 266 M Niyon, Mystic Musician
 267 M Tien, Treacherous Trigger
+268 U Celestial Guidance
 
 [tokens]
 #1 b_1_1_bird_flying 表示它是一张黑色 1/1 的飞行鸟

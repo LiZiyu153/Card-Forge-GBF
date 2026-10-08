@@ -425,6 +425,15 @@ public class Card extends GameEntity implements Comparable<Card>, IHasSVars, ITr
         return view.getHiddenId();
     }
 
+    /**
+     * Whether this creature has already been declared as an attacker during the current turn.
+     * <p>GBF DIY "Chain" support (engine P-19): usable from card scripts as the card property
+     * {@code attackedThisTurn} (e.g. {@code Count$Valid Creature.YouCtrl+attackedThisTurn}).
+     */
+    public boolean hasAttackedThisTurn() {
+        return damageHistory != null && getDamageHistory().getCreatureAttacksThisTurn() > 0;
+    }
+
     public long getPrototypeTimestamp() { return prototypeTimestamp; }
 
     public long getTransformedTimestamp() { return transformedTimestamp; }
