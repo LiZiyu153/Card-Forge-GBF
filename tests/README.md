@@ -41,6 +41,7 @@ tools\run_all_tests.cmd -Card "Vikala, Guardian of the North"   :: 只解析指�
 | `GbfP17AltCostTest` | 行为 | 引擎补丁 P-17 回归：`StaticAbilityAlternativeCost` 的 `{2}, Pay 2 life` 须用**该异能的法术力费用**（非 `source.getCMC()`）+ 保留非法术力费用（横置不被替换掉） |
 | `GbfR47FixesTest` | 行为 | R47（v0.0.2.5 后两 bug）：① Descent of the Flames `Announce$ X` + `SVar:X:Count$xPaid` + 无残留 ChooseNumber 弹窗；② Two-Crown's Strife 施放期只 2 个目标、神器在延迟触发结算期选；③ **真实互斗击杀链**（对手传奇死亡 → 延迟触发 → 神器换控）；④ **反例**（对手生物存活 → 不换控） |
 | `GbfSpecialtyTest` | 行为 | **引擎 P-18 得意 Specialty 关键词**（9 组，R50）：条件达成/未达成、进出场动态授予与撤销、裸子类自动补 `Creature.`、卡类型计数、复合限制（`Enchantment.Primal`）、授予触发式异能效果、授予起动式异能效果、授予嵌套静态泵牌（含 intrinsic 对照组）、`Condition$ Specialty` 门控（条件不满足时该异能**根本不存在于卡上**）、关键词渲染与 `countPermanents/meetsCondition` API。**测试写法**：用公开 `Card` API 造合成卡 + `addIntrinsicKeyword`（与真实 `K:` 行同一 `createTraits` 路径）+ `refresh(game, card...)`（`checkStaticAbilities()` layer pass，dev 直接写 zone 不会自动跑）；效果断言走 `resolveDirect()`（见 `docs/dev-mode-limitations.md` 盲区 6） |
+| `GbfSpecialtyCardTest` | 行为 | **P-18 得意关键词的真实卡脚本验证**（3 组，R50 补充）：把《Kimi to Boku no Concert of Miracles》原本的 `IsPresent$ Creature.YouCtrl \| PresentCompare$ GE4` 门控改成 `K:Specialty:Creature:4:AddStaticAbility$ SGraveDredge` 后逐项断言等价——① K: 行产出 SPECIALTY 关键字 + 生成静态；② **真值双向**：3 生物时坟场生物无 Dredge 关键字/无 Dredge 替换效应，第 4 个生物进场后恰好 1 个替换效应，回落时同时撤销，对手坟场始终不受影响；③ 同卡不相干的第一句（召集）不受影响。覆盖 `K:` → `createTraits` → 生成静态 → 嵌套 `AddStaticAbility$` → `AddKeyword$ Dredge:5` → Dredge 自建替换效应全链 |
 | `GbfTestBase` | 基类 | 公共样板：FModel 初始化、dev 双人局、makeCard/addToBattlefield/enterBattlefield、playUntilStackClear |
 
 ## 新增测试的步骤
@@ -53,6 +54,12 @@ tools\run_all_tests.cmd -Card "Vikala, Guardian of the North"   :: 只解析指�
 3. 断言失败打印 `[名称] ... -> FAIL`，全部通过时 main 末尾打印 `ALL PASS` 并
    `System.exit(ok ? 0 : 1)`（运行器按退出码判定）。
 4. 在运行器 `$BehaviorTests` 列表注册新类名。
+5. **需要 layer pass 的效果**（静态能力/关键字授予/`K:` 生成的静态）：dev 直接写 zone **不会**跑
+   `checkStaticAbilities()`，断言前要自己跑一遍
+   （`game.getAction().checkStaticAbilities()` + `card.updateKeywordsCache()`，见
+   `GbfSpecialtyTest.refresh`）；走 `enterBattlefield`（真实 `moveTo`）时引擎会自己跑。
+6. **`Player.getZone(ZoneType.Stack)` 返回 null**（Stack 是**游戏级** zone，不是玩家 zone）——
+   放"堆叠上的牌"必须用 `game.getStackZone()`，否则 NPE 弹出 Forge 错误框。
 
 ## 关键规则（踩过的坑，勿重复）
 
