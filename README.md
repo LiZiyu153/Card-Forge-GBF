@@ -16,7 +16,7 @@
 ### 目前的内容
 
 1. 第一轮设计：添加了Mythic Rare‌牌7张、Rare牌20张、Uncommon牌36张、Common牌60张共计123张卡牌。
-2. 十二神将补充包：添加了Mythic Rare1张、Rare牌12张共计14张卡牌。
+2. 十二神将补充包：添加了Mythic Rare1张、Rare牌12张共计13张卡牌。
 3. 第二轮设计：添加了六龙系列Mythic Rare‌牌6张、其他Mythic Rare‌牌6张、Rare牌18张、Uncommon牌36张、Common牌48张共计120张卡牌。
 4. 十天众补充包：添加了10张Mythic Rare模式双面卡牌。
 5. 第三轮设计：添加了Mythic Rare‌牌12张、Rare牌18张、Uncommon牌36张、Common牌48张共计120张卡牌。
