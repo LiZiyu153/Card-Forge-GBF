@@ -1,0 +1,7 @@
+Name:Ancient Perseus
+ManaCost:2
+Types:Artifact Equipment Harp
+K:Equip:2
+T:Mode$ Attached | ValidSource$ Card.Self | ValidTarget$ Creature | TriggerZones$ Battlefield | OptionalDecider$ You | Execute$ TrigExplore | TriggerDescription$ Whenever CARDNAME becomes attached to a creature, you may have that creature explore.
+SVar:TrigExplore:DB$ Explore | Defined$ TriggeredTarget
+Oracle:Whenever Ancient Perseus becomes attached to a creature, you may have that creature explore. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on this creature, then put the card back or put it into your graveyard.)\nEquip {2}

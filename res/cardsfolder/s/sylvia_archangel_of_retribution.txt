@@ -1,0 +1,10 @@
+Name:Sylvia, Archangel of Retribution
+ManaCost:3 U B B
+Types:Legendary Creature Primal Primarch
+PT:4/4
+S:Mode$ ReduceCost | ValidCard$ Card.Self | Type$ Spell | Amount$ X | EffectZone$ All | Description$ CARDNAME costs {X} less to cast, where X is the number of Primal cards in your graveyard with different names.
+R:Event$ Moved | ValidCard$ Card.Self | Destination$ Battlefield | ReplaceWith$ DBTapIn | ReplacementResult$ Updated | Description$ CARDNAME enters the battlefield tapped.
+SVar:DBTapIn:DB$ Tap | Defined$ Self | ETB$ True
+S:Mode$ CantBeCast | ValidCard$ Card.cmcLTX | Caster$ Opponent | IsPresent$ Card.Self+untapped | Description$ As long as CARDNAME is untapped, your opponents can't cast spells with mana value less than X, where X is the number of Primal cards in your graveyard with different names.
+SVar:X:Count$ValidGraveyard Card.Primal+YouOwn$DifferentCardNames
+Oracle:CARDNAME costs {X} less to cast, where X is the number of Primal cards in your graveyard with different names.\nCARDNAME enters the battlefield tapped.\nAs long as CARDNAME is untapped, your opponents can't cast spells with mana value less than X, where X is the number of Primal cards in your graveyard with different names.

@@ -1,0 +1,16 @@
+Name:Girlboss Gal ☆
+ManaCost:W U B R G
+Types:Creature Erune
+PT:5/5
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigBecomeCute | TriggerDescription$ At the beginning of your upkeep, you may become cute. If you do, you get two cute counters.
+SVar:TrigBecomeCute:DB$ PutCounter | Defined$ You | CounterType$ Cute | CounterNum$ 2 | Optional$ True
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ CuteCount | SVarCompare$ GE4 | Execute$ TrigBecomeOshi | TriggerDescription$ At the beginning of your end step, if you have four or more cute counters, you become oshi.
+SVar:TrigBecomeOshi:DB$ PutCounter | Defined$ You | CounterType$ Oshi | CounterNum$ 1 | ConditionCheckSVar$ OshiCount | ConditionSVarCompare$ EQ0
+T:Mode$ DamageDone | ValidTarget$ You | TriggerZones$ Battlefield | Execute$ TrigLoseCute | TriggerDescription$ Whenever you're dealt damage, remove a cute counter from yourself.
+SVar:TrigLoseCute:DB$ RemoveCounter | Defined$ You | CounterType$ Cute | CounterNum$ 1
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ OshiCount | SVarCompare$ GE1 | Execute$ TrigPumpAll | TriggerDescription$ At the beginning of your upkeep, if you're oshi, put a +1/+1 counter on each creature you control.
+SVar:TrigPumpAll:DB$ PutCounterAll | ValidCards$ Creature.YouCtrl | CounterType$ P1P1 | CounterNum$ 1
+SVar:CuteCount:Count$YourCountersCute
+SVar:OshiCount:Count$YourCountersOshi
+DeckHas:Ability$Counters
+Oracle:At the beginning of your upkeep, you may become cute. If you do, you get two cute counters.\nAt the beginning of your end step, if you have four or more cute counters, you become oshi.\nWhenever you're dealt damage, remove a cute counter from yourself.\nAt the beginning of your upkeep, if you're oshi, put a +1/+1 counter on each creature you control.

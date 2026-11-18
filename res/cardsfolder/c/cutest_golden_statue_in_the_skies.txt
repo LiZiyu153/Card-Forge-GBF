@@ -1,0 +1,11 @@
+Name:Cutest Golden Statue in the Skies
+ManaCost:3
+Types:Kindred Instant Human
+K:A deck can have any number of cards named CARDNAME.
+A:SP$ PutCounter | ValidTgts$ Land.YouCtrl | TgtPrompt$ Select target land you control | CounterType$ Alchemic | CounterNum$ 1 | SubAbility$ DBGrantTypes | SpellDescription$ Put an Alchemic counter on target land you control. As long as that land has an Alchemic counter on it, it has all basic land types. Then draw a card for each Alchemic counter on permanents you control.
+SVar:DBGrantTypes:DB$ Animate | Defined$ ParentTarget | staticAbilities$ SAllLandTypes | Duration$ Permanent | SubAbility$ DBDraw
+SVar:SAllLandTypes:Mode$ Continuous | Affected$ Card.Self+counters_GE1_Alchemic | AddType$ AllBasicLandType | Description$ As long as this land has an Alchemic counter on it, it has all basic land types.
+SVar:DBDraw:DB$ Draw | Defined$ You | NumCards$ AlchemicTotal
+SVar:AlchemicTotal:Count$Valid Permanent.YouCtrl$CardCounters.Alchemic
+DeckHas:Ability$Counters
+Oracle:Put an Alchemic counter on target land you control. As long as that land has an Alchemic counter on it, it has all basic land types. Then draw a card for each Alchemic counter on permanents you control.\nA deck can have any number of cards named Cutest Golden Statue in the Skies.

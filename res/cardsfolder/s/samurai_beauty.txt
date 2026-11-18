@@ -1,0 +1,8 @@
+Name:Samurai Beauty
+ManaCost:R R
+Rarity:U
+Types:Creature Human Samurai
+PT:2/2
+K:Chain:3:TrigChainPump
+SVar:TrigChainPump:DB$ Pump | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumAtt$ +3 | NumDef$ +0 | SpellDescription$ Target creature you control gets +3/+0 until end of turn.
+Oracle:Chain 3 — Whenever you attack with three or more creatures you control with power greater than 2, target creature you control gets +3/+0 until end of turn. (Triggers once per combat phase.)

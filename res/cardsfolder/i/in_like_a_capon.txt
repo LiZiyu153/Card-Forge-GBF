@@ -1,0 +1,7 @@
+Name:In Like a Capon
+ManaCost:2 U
+Types:Sorcery
+K:Kicker:3
+A:SP$ Token | TokenAmount$ X | TokenScript$ c_2_2_a_construct_flying | TokenOwner$ You | SpellDescription$ Create a 2/2 colorless Construct artifact creature token with flying. If this spell was kicked, create two of those tokens instead.
+SVar:X:Count$Kicked.2.1
+Oracle:Kicker {3}\nCreate a 2/2 colorless Construct artifact creature token with flying. If this spell was kicked, create two of those tokens instead.

@@ -1,0 +1,6 @@
+Name:Rose Queen
+ManaCost:W
+Types:Kindred Instant Primal
+A:SP$ Effect | ValidTgts$ Creature.YouDontCtrl | TgtPrompt$ Select target creature you don't control | RememberObjects$ Targeted | ReplacementEffects$ RPrevent | SpellDescription$ Prevent all damage that would be dealt to you this turn by target creature you don't control.
+SVar:RPrevent:Event$ DamageDone | Prevent$ True | ActiveZones$ Command | ValidSource$ Card.IsRemembered | ValidTarget$ You | Description$ Prevent all damage that would be dealt to you this turn by target creature you don't control.
+Oracle:Prevent all damage that would be dealt to you this turn by target creature you don't control.

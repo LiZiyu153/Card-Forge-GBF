@@ -1,0 +1,14 @@
+Name:Vane, Indomitable Guardian Knight
+ManaCost:3 G
+Types:Legendary Creature Human Knight
+PT:3/3
+K:Kicker:3 G
+K:Vigilance
+K:Reach
+K:Trample
+K:etbCounter:Shield:3:CheckSVar$ WasKicked:If CARDNAME was kicked, it enters the battlefield with three shield counters on it.
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.Knight+YouCtrl+Other | Execute$ TrigShieldCounter | TriggerZones$ Battlefield | TriggerDescription$ Whenever another Knight creature enters the battlefield under your control, put a shield counter on it.
+SVar:TrigShieldCounter:DB$ PutCounter | Defined$ TriggeredCard | CounterType$ Shield | CounterNum$ 1
+SVar:WasKicked:Count$Kicked.1.0
+DeckHas:Ability$Counters
+Oracle:Kicker {3}{G} (You may pay an additional {3}{G} as you cast this spell.)\nVigilance, reach, trample\nWhenever another Knight creature enters the battlefield under your control, put a shield counter on it. (If it would be dealt damage or be destroyed, remove a shield counter from it instead.)\nIf Vane, Indomitable Guardian Knight was kicked, it enters the battlefield with three shield counters on it.

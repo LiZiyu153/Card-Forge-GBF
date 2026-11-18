@@ -1,0 +1,22 @@
+Name:Siegfried, Loyal Knight of Daybreak
+ManaCost:4 B B B
+Rarity:M
+Types:Legendary Creature Human Knight
+PT:5/4
+K:Ward:2
+R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ You | ReplaceWith$ DBAddCounters | PreventionEffect$ True | AlwaysReplace$ True | Description$ If you would be dealt damage, prevent that damage and put that many +1/+1 counters on CARDNAME.
+SVar:DBAddCounters:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ Counters
+SVar:Counters:ReplaceCount$DamageAmount
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigDraw | TriggerDescription$ Whenever CARDNAME attacks, draw a card and reveal it. If it's a creature card, CARDNAME gets +X/+Y until end of turn and gains flying and trample until end of turn, where X is that card's power and Y is its toughness.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1 | Reveal$ True | RememberDrawn$ True | SubAbility$ DBBranch
+SVar:DBBranch:DB$ Branch | BranchConditionSVar$ IsCreature | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBPump | FalseSubAbility$ DBCleanup
+SVar:DBPump:DB$ Pump | Defined$ Self | NumAtt$ +X | NumDef$ +Y | KW$ Flying & Trample | SubAbility$ DBCleanup
+SVar:IsCreature:Count$ValidHand Creature.IsRemembered
+SVar:X:Count$ValidHand Creature.IsRemembered$CardPower
+SVar:Y:Count$ValidHand Creature.IsRemembered$CardToughness
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | CheckSVar$ NoCombatDamage | SVarCompare$ EQ0 | Execute$ TrigLoseLife | TriggerDescription$ At the beginning of your end step, if CARDNAME didn't deal combat damage to a player this turn, you lose life equal to its power.
+SVar:TrigLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ Power
+SVar:Power:Count$CardPower
+SVar:NoCombatDamage:Count$Valid Creature.Self+dealtCombatDamageThisTurn Player
+Oracle:Ward {2}\nIf you would be dealt damage, prevent that damage and put that many +1/+1 counters on Siegfried, Loyal Knight of Daybreak.\nWhenever Siegfried attacks, draw a card and reveal it. If it's a creature card, Siegfried gets +X/+Y until end of turn and gains flying and trample until end of turn, where X is that card's power and Y is its toughness.\nAt the beginning of your end step, if Siegfried didn't deal combat damage to a player this turn, you lose life equal to its power.

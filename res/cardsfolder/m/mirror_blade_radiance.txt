@@ -1,0 +1,13 @@
+Name:Mirror-Blade Radiance
+ManaCost:1 R R
+Types:Enchantment
+K:Multikicker:R
+K:Vanishing
+K:ETBReplacement:Other:DBTimeCounters
+SVar:DBTimeCounters:DB$ PutCounter | Defined$ Self | CounterType$ TIME | CounterNum$ X | ETB$ True | SpellDescription$ CARDNAME enters with a number of time counters on it equal to the number of times it was kicked plus one.
+SVar:X:Count$TimesKicked/Plus.1
+A:AB$ Discard | Cost$ T | Defined$ You | Mode$ TgtChoose | SubAbility$ DBDraw | SorcerySpeed$ True | SpellDescription$ Discard a card, then draw two cards and create a Treasure token. Activate only as a sorcery.
+SVar:DBDraw:DB$ Draw | NumCards$ 2 | SubAbility$ DBToken
+SVar:DBToken:DB$ Token | TokenScript$ c_a_treasure_sac | TokenOwner$ You
+DeckHas:Ability$Discard|Token
+Oracle:Multikicker {R} (You may pay an additional {R} any number of times as you cast this spell.)\nMirror-Blade Radiance enters with a number of time counters on it equal to the number of times it was kicked plus one.\nVanishing (At the beginning of your upkeep, remove a time counter from this enchantment. When the last is removed, sacrifice it.)\n{T}: Discard a card, then draw two cards and create a Treasure token. Activate only as a sorcery.

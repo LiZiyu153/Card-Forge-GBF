@@ -1,0 +1,14 @@
+Name:Uruki, Cardinal Saint of Xuan Emperor
+ManaCost:2 U U
+Types:Legendary Creature Harvin
+PT:3/3
+K:Trample
+K:Reach
+R:Event$ Moved | ValidCard$ Card.Self | Destination$ Battlefield | ReplaceWith$ ETBTap | ReplacementResult$ Updated | Description$ CARDNAME enters the battlefield tapped.
+SVar:ETBTap:DB$ Tap | Defined$ Self | ETB$ True
+R:Event$ Untap | ActiveZones$ Battlefield | ValidCard$ Card.Self | ValidStepTurnToController$ You | Layer$ CantHappen | CheckSVar$ SnowCount | SVarCompare$ GE1 | Description$ As long as you control a snow permanent, CARDNAME doesn't untap during your untap step.
+SVar:SnowCount:Count$Valid Permanent.Snow+YouCtrl
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigToken | TriggerDescription$ When CARDNAME enters, create a 3/3 blue snow creature token with reach and trample.
+SVar:TrigToken:DB$ Token | TokenAmount$ 1 | TokenScript$ u_3_3_snow_reach_trample | TokenOwner$ You
+DeckHas:Ability$Token
+Oracle:CARDNAME enters the battlefield tapped.\nTrample, reach\nAs long as you control a snow permanent, CARDNAME doesn't untap during your untap step.\nWhen CARDNAME enters, create a 3/3 blue snow creature token with reach and trample.

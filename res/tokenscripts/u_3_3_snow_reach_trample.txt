@@ -1,0 +1,8 @@
+Name:Snow Creature Token
+ManaCost:no cost
+Colors:blue
+Types:Snow Creature
+PT:3/3
+K:Reach
+K:Trample
+Oracle:Reach, trample

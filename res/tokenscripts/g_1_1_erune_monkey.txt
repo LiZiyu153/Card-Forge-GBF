@@ -1,0 +1,6 @@
+Name:Erune Monkey Token
+ManaCost:no cost
+Colors:green
+Types:Creature Erune Monkey
+PT:1/1
+Oracle:

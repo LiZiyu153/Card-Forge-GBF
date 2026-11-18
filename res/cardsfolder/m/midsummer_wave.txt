@@ -1,0 +1,10 @@
+Name:Midsummer Wave
+ManaCost:X X U
+Types:Sorcery
+A:SP$ PutCounter | ValidTgts$ Island.YouCtrl | TgtPrompt$ Choose X Islands you control | TargetMin$ 0 | TargetMax$ X | CounterType$ Bonsai | CounterNum$ 1 | SubAbility$ DBAnimate | SpellDescription$ Choose X Islands you control and put a bonsai counter on each of them. Lands with bonsai counters on them become Equipment/Katana artifacts with equip {1} and "Equipped creature gets +1/+1 and has flying."
+SVar:DBAnimate:DB$ AnimateAll | ValidCards$ Land.counters_GE1_Bonsai | Types$ Artifact,Equipment,Katana | Abilities$ ABEquip | staticAbilities$ STPump | Duration$ Permanent
+SVar:ABEquip:AB$ Attach | Cost$ 1 | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | SorcerySpeed$ True | AILogic$ Pump | PrecostDesc$ Equip | SpellDescription$ Equip {1}
+SVar:STPump:Mode$ Continuous | Affected$ Creature.EquippedBy | AddPower$ 1 | AddToughness$ 1 | AddKeyword$ Flying | Description$ Equipped creature gets +1/+1 and has flying.
+DeckHas:Ability$Counters
+SVar:X:Count$xPaid
+Oracle:Choose X Islands you control and put a bonsai counter on each of them. Lands with bonsai counters on them become Equipment/Katana artifacts with equip {1} and "Equipped creature gets +1/+1 and has flying."

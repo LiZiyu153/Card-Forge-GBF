@@ -1,0 +1,11 @@
+Name:Forte, Sky Supremacy
+ManaCost:4 B R R
+Types:Legendary Creature Draph Warrior
+PT:4/4
+K:Haste
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigToken | TriggerDescription$ Whenever CARDNAME attacks, create a 4/4 red Dragon creature token with flying that's tapped and attacking.
+SVar:TrigToken:DB$ Token | TokenScript$ r_4_4_dragon_flying | TokenOwner$ You | TokenTapped$ True | TokenAttacking$ True
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigEach | TriggerDescription$ At the beginning of your upkeep, for each Dragon you control, sacrifice it unless you pay 2 life.
+SVar:TrigEach:DB$ RepeatEach | RepeatCards$ Dragon.YouCtrl | Zone$ Battlefield | RepeatSubAbility$ DBSacUnless
+SVar:DBSacUnless:DB$ Sacrifice | Defined$ You | SacValid$ Dragon.IsRemembered | UnlessCost$ PayLife<2> | UnlessPayer$ You
+Oracle:Haste\nWhenever Forte, Sky Supremacy attacks, create a 4/4 red Dragon creature token with flying that's tapped and attacking.\nAt the beginning of your upkeep, for each Dragon you control, sacrifice it unless you pay 2 life.

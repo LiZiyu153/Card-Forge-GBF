@@ -1,0 +1,6 @@
+Name:Ancient Artemis
+ManaCost:2
+Types:Artifact Equipment Bow
+K:Equip:2
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | Condition$ PlayerTurn | AddPower$ 1 | AddKeyword$ First Strike | Description$ During your turn, equipped creature gets +1/+0 and has first strike.
+Oracle:During your turn, equipped creature gets +1/+0 and has first strike.\nEquip {2}

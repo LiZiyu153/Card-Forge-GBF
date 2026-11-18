@@ -1,0 +1,6 @@
+Name:Godsworn Edge
+ManaCost:1
+Types:Artifact Equipment Sabre
+K:Equip:1
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddKeyword$ Ward:1 | Description$ Equipped creature has ward {1}.
+Oracle:Equipped creature has ward {1}.\nEquip {1}

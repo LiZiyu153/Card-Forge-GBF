@@ -1,0 +1,7 @@
+Name:Abies Lucens
+ManaCost:3 G
+Types:Sorcery
+K:Replicate:1 G
+A:SP$ PutCounter | ValidTgts$ Land.Forest+YouCtrl | TgtPrompt$ Select target Forest you control | CounterType$ P1P1 | CounterNum$ 3 | SubAbility$ DBAnimate | SpellDescription$ Put three +1/+1 counters on target Forest you control. It becomes a 0/0 Elemental creature with haste. It's still a land.
+SVar:DBAnimate:DB$ Animate | Defined$ ParentTarget | Power$ 0 | Toughness$ 0 | Types$ Creature,Elemental | Duration$ Permanent | Keywords$ Haste
+Oracle:Replicate {1}{G} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)\nPut three +1/+1 counters on target Forest you control. It becomes a 0/0 Elemental creature with haste. It's still a land.

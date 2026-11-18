@@ -1,0 +1,7 @@
+Name:Sirius Nova: Last Dive
+ManaCost:U
+Rarity:C
+Types:Instant
+A:SP$ Pump | ValidTgts$ Creature.tapped | TgtPrompt$ Select target tapped creature | NumAtt$ -5 | NumDef$ 0 | IsCurse$ True | SpellDescription$ Target tapped creature gets -5/-0 until end of turn.
+K:Overload:3 U
+Oracle:Target tapped creature gets -5/-0 until end of turn.\nOverload {3}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")

@@ -1,0 +1,11 @@
+Name:Amelia, Captain of Aelvoth's Knights
+ManaCost:1 G G
+Types:Legendary Creature Human Knight
+PT:2/4
+K:Ward:3
+S:Mode$ Continuous | Affected$ Card.Self | IsPresent$ Card.Self+enchanted+equipped+HasCounters | AddStaticAbility$ STTrample | AddTrigger$ TrigCombatDamage | Description$ As long as CARDNAME is enchanted, equipped, and has a counter on it, creatures you control have trample and "Whenever a creature you control deals combat damage, draw cards equal to the number of those creatures."
+SVar:STTrample:Mode$ Continuous | Affected$ Creature.YouCtrl | AddKeyword$ Trample | Secondary$ True | Description$ Creatures you control have trample.
+SVar:TrigCombatDamage:Mode$ DamageDoneOnce | ValidSource$ Creature.YouCtrl | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDraw | Secondary$ True | TriggerDescription$ Whenever a creature you control deals combat damage, draw cards equal to the number of those creatures.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ DmgSourceCount
+SVar:DmgSourceCount:TriggerObjectsSources$Amount
+Oracle:Ward {3} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {3}.)\nAs long as Amelia, Captain of Aelvoth's Knights is enchanted, equipped, and has a counter on it, creatures you control have trample and "Whenever a creature you control deals combat damage, draw cards equal to the number of those creatures."

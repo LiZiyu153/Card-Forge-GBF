@@ -1,0 +1,8 @@
+Name:Phantom of Fighting Spirit
+ManaCost:1 U B
+Types:Creature Human Illusion
+PT:1/4
+K:Flash
+K:Menace
+A:AB$ Pump | Cost$ 1 U | Defined$ Self | AILogic$ SwitchPT | KW$ HIDDEN CARDNAME's power and toughness are switched | SpellDescription$ Switch CARDNAME's power and toughness until end of turn.
+Oracle:Flash, menace\n{1}{U}: Switch Phantom of Fighting Spirit's power and toughness until end of turn.

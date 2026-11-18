@@ -1,0 +1,7 @@
+Name:King of the Eve
+ManaCost:2 G
+Types:Creature Human
+PT:2/3
+A:AB$ Mana | Cost$ T | Produced$ Combo Any | Amount$ X | SpellDescription$ For each color among permanents you control, add one mana of any color.
+SVar:X:Count$ValidBattlefield Permanent.YouCtrl$Colors
+Oracle:{T}: For each color among permanents you control, add one mana of any color.

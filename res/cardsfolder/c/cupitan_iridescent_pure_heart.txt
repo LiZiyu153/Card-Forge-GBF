@@ -1,0 +1,14 @@
+Name:Cupitan, Iridescent Pure Heart
+ManaCost:X X U
+Types:Legendary Creature Human Archer
+PT:1/1
+K:etbCounter:Rainbow:Y:no Condition:Converge — CARDNAME enters with a Rainbow counter on it for each color of mana spent to cast it.
+T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigCopy | TriggerDescription$ Whenever you cast an instant or sorcery spell, if the number of colors of mana spent to cast that spell is equal to the number of Rainbow counters on CARDNAME, copy it. You may choose new targets for the copy.
+SVar:TrigCopy:DB$ CopySpellAbility | Defined$ TriggeredSpellAbility | MayChooseTarget$ True | ConditionCheckSVar$ Diff | ConditionSVarCompare$ EQ0
+SVar:Y:Count$Converge
+SVar:Diff:SVar$SpellColors/Minus.SVar$Rainbows
+SVar:SpellColors:TriggeredCard$Converge
+SVar:Rainbows:Count$CardCounters.Rainbow
+SVar:X:Count$xPaid
+DeckHas:Ability$Counters
+Oracle:Converge — Cupitan, Iridescent Pure Heart enters with a Rainbow counter on it for each color of mana spent to cast it.\\nWhenever you cast an instant or sorcery spell, if the number of colors of mana spent to cast that spell is equal to the number of Rainbow counters on Cupitan, copy it. You may choose new targets for the copy.

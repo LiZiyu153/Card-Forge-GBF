@@ -1,0 +1,8 @@
+Name:Stan and Aliza
+ManaCost:4 R G
+Types:Creature Erune Draph Warrior
+PT:4/4
+K:Riot
+K:Menace
+K:Trample
+Oracle:Riot (This creature enters with your choice of a +1/+1 counter or haste.)\nMenace, trample

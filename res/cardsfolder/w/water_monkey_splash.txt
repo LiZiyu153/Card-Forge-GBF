@@ -1,0 +1,13 @@
+Name:Water Monkey Splash
+ManaCost:3 G U
+Types:Enchantment Saga
+K:Read ahead
+K:Chapter:3:DBIDraw,DBIIToken,DBIIIReturn
+SVar:DBIDraw:DB$ Draw | Defined$ Player | NumCards$ 2 | SpellDescription$ Each player draws two cards.
+SVar:DBIIToken:DB$ Token | TokenScript$ g_1_1_erune_monkey | TokenAmount$ X | TokenOwner$ You | SpellDescription$ Create X 1/1 green Erune Monkey creature tokens, where X is the number of Islands and Forests you control.
+SVar:DBIIIReturn:DB$ ChooseCard | Defined$ You | Choices$ Card.YouOwn | ChoiceZone$ Graveyard | Amount$ 3 | Mandatory$ True | SubAbility$ DBReturnChosen | SpellDescription$ Choose three cards in your graveyard. Return them to your hand.
+SVar:DBReturnChosen:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Graveyard | Destination$ Hand
+SVar:X:Count$Valid Land.Island+YouCtrl/Plus.SVar$Y
+SVar:Y:Count$Valid Land.Forest+YouCtrl
+DeckHas:Ability$Token
+Oracle:Read ahead (Choose a chapter and start with that many lore counters. Add one after your draw step. Skipped chapters don't trigger. Sacrifice after III.)\nI — Each player draws two cards.\nII — Create X 1/1 green Erune Monkey creature tokens, where X is the number of Islands and Forests you control.\nIII — Choose three cards in your graveyard. Return them to your hand.

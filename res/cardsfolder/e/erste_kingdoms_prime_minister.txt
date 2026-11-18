@@ -1,0 +1,7 @@
+Name:Erste Kingdom's Prime Minister
+ManaCost:8
+Types:Artifact Creature Golem
+PT:7/7
+K:Trample
+K:Ward:PayLife<2>
+Oracle:Trample\nWard—Pay 2 life. (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays 2 life.)

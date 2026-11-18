@@ -1,0 +1,9 @@
+Name:Moonlight on Glistening White
+ManaCost:2 B
+Types:Instant
+A:SP$ Draw | NumCards$ 2 | SubAbility$ DBBranch | SpellDescription$ Draw two cards. If you lost life this turn, you gain 2 life. Otherwise, you lose 2 life.
+SVar:DBBranch:DB$ Branch | BranchConditionSVar$ LifeLost | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBGainLife | FalseSubAbility$ DBLoseLife
+SVar:LifeLost:Count$LifeYouLostThisTurn
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 2
+SVar:DBLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ 2
+Oracle:Draw two cards. If you lost life this turn, you gain 2 life. Otherwise, you lose 2 life.

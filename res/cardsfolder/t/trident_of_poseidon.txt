@@ -1,0 +1,6 @@
+Name:Trident of Poseidon
+ManaCost:1 U U
+Types:Kindred Instant Primal
+A:SP$ Counter | TargetType$ Spell | ValidTgts$ Creature | TgtPrompt$ Select target creature spell | SubAbility$ DBReturn | SpellDescription$ Counter target creature spell. Then you may return target creature to its owner's hand.
+SVar:DBReturn:DB$ ChangeZone | Origin$ Battlefield | Destination$ Hand | ValidTgts$ Creature | TgtPrompt$ Select target creature to return to its owner's hand | TargetMin$ 0 | TargetMax$ 1
+Oracle:Counter target creature spell. Then you may return target creature to its owner's hand.

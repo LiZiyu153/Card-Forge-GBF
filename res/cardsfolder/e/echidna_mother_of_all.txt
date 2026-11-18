@@ -1,0 +1,10 @@
+Name:Echidna, Mother of All
+ManaCost:WU WU UB UB BR BR RG RG GW GW
+Types:Legendary Creature Primal Avatar
+PT:11/11
+K:Protection from each color
+R:Event$ DamageDone | ActiveZones$ Battlefield | ValidTarget$ You,Creature.YouCtrl+Other | ReplaceWith$ DBPutCounter | PreventionEffect$ True | ExecuteMode$ PerTarget | Description$ If you or another creature you control would be dealt damage, prevent that damage and put a -1/-1 counter on CARDNAME. Then you may put a permanent card from your hand onto the battlefield with mana value less than or equal to CARDNAME's power.
+SVar:DBPutCounter:DB$ PutCounter | Defined$ Self | CounterType$ M1M1 | CounterNum$ 1 | SubAbility$ DBChangeZone
+SVar:DBChangeZone:DB$ ChangeZone | Origin$ Hand | Destination$ Battlefield | ChangeType$ Permanent.cmcLEX | ChangeNum$ 1 | Optional$ True
+SVar:X:Count$CardPower
+Oracle:Protection from each color\nIf you or another creature you control would be dealt damage, prevent that damage and put a -1/-1 counter on Echidna, Mother of All. Then you may put a permanent card from your hand onto the battlefield with mana value less than or equal to Echidna, Mother of All's power.

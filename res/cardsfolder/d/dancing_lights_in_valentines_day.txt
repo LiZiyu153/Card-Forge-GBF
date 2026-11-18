@@ -1,0 +1,9 @@
+Name:Dancing Lights in Valentine's Day
+ManaCost:R
+Types:Sorcery
+K:Gift
+SVar:GiftAbility:DB$ Token | TokenScript$ c_a_food_sac | TokenOwner$ Promised | GiftDescription$ a Food
+A:SP$ Draw | Defined$ You | NumCards$ 1 | SubAbility$ DBPump | SpellDescription$ Draw a card. If the gift was promised, target creature you control gets +2/+0 and gains first strike until end of turn.
+SVar:DBPump:DB$ Pump | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumAtt$ +2 | KW$ First Strike | TargetMin$ Promised | TargetMax$ Promised | SpellDescription$ If the gift was promised, target creature you control gets +2/+0 and gains first strike until end of turn.
+SVar:Promised:Count$PromisedGift.1.0
+Oracle:Gift a Food (You may promise an opponent a gift as you cast this spell. If you do, they create a Food token before its other effects. It's an artifact with "{2}, {T}, Sacrifice this artifact: You gain 3 life.")\nDraw a card. If the gift was promised, target creature you control gets +2/+0 and gains first strike until end of turn.

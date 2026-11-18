@@ -1,0 +1,11 @@
+Name:Kaguya, Exquisite Moon Princess
+ManaCost:U R G
+Types:Legendary Creature Primal
+PT:1/3
+K:Defender
+A:AB$ PutCounter | Cost$ 3 | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1 | Activator$ Player | SorcerySpeed$ True | SubAbility$ DBDraw | SpellDescription$ Put a +1/+1 counter on CARDNAME. Draw a card. Any player may activate this ability, but only as a sorcery.
+SVar:DBDraw:DB$ Draw | Defined$ You | NumCards$ 1
+A:AB$ PeekAndReveal | Cost$ 2 T SubCounter<1/P1P1> | NoPeek$ True | Activator$ Player | SorcerySpeed$ True | SubAbility$ DBCast | SpellDescription$ Reveal the top card of your library. If it's a nonland card with mana value less than or equal to CARDNAME's power, you may cast it without paying its mana cost. Otherwise, put it back on top of your library. Any player may activate this ability, but only as a sorcery.
+SVar:DBCast:DB$ Play | Defined$ TopOfLibrary | WithoutManaCost$ True | ValidSA$ Spell | Optional$ True | ConditionDefined$ TopOfLibrary | ConditionPresent$ Card.nonLand+cmcLEX
+SVar:X:Count$CardPower
+Oracle:Defender\nAny player may activate Kaguya, Exquisite Moon Princess's abilities, but only as a sorcery.\n{3}: Put a +1/+1 counter on Kaguya, Exquisite Moon Princess. Draw a card.\n{2}, {T}, Remove a +1/+1 counter from Kaguya, Exquisite Moon Princess: Reveal the top card of your library. If it's a nonland card with mana value less than or equal to Kaguya, Exquisite Moon Princess's power, you may cast it without paying its mana cost. Otherwise, put it back on top of your library.

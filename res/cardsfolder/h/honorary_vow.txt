@@ -1,0 +1,9 @@
+Name:Honorary Vow
+ManaCost:2 B B
+Types:Enchantment
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature.Vampire+YouCtrl+!token | TriggerZones$ Battlefield | ResolvedLimit$ 1 | Execute$ TrigPayLife | TriggerDescription$ Whenever a nontoken Vampire enters the battlefield under your control, you may pay X life, where X is that creature's mana value. If you do, create X 1/1 black Bat creature tokens. Do this only once each turn.
+SVar:TrigPayLife:DB$ Token | TokenScript$ b_1_1_bat | TokenAmount$ X | TokenOwner$ You | UnlessCost$ PayLife<X> | UnlessPayer$ You | UnlessSwitched$ True | SpellDescription$ You may pay X life, where X is that creature's mana value. If you do, create X 1/1 black Bat creature tokens.
+SVar:X:TriggeredCard$CardManaCost
+DeckHas:Ability$Token
+DeckHints:Type$Vampire
+Oracle:Whenever a nontoken Vampire enters the battlefield under your control, you may pay X life, where X is that creature's mana value. If you do, create X 1/1 black Bat creature tokens. Do this only once each turn.

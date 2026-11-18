@@ -1,0 +1,7 @@
+Name:Beach Mummy
+ManaCost:1 W W
+Types:Creature Draph Berserker
+PT:3/3
+T:Mode$ Attacks | ValidCard$ Card.Self+modified | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever CARDNAME attacks while it's modified, it gains indestructible until end of turn.
+SVar:TrigPump:DB$ Pump | Defined$ Self | KW$ Indestructible
+Oracle:Whenever Beach Mummy attacks while it's modified, it gains indestructible until end of turn. (Equipment, Auras you control, and counters are modifications.)

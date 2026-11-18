@@ -1,0 +1,13 @@
+Name:Michael, Primarch of Fire
+ManaCost:R R
+Types:Legendary Enchantment Creature Primal Primarch
+PT:2/1
+K:Bestow:3 R R
+K:Flying
+K:Mentor
+T:Mode$ ChangesZone | Origin$ Battlefield | Destination$ Any | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigDiscard | TriggerDescription$ When CARDNAME leaves the battlefield, you may discard a card. If you do, draw a card.
+SVar:TrigDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | Optional$ True | RememberDiscarded$ True | SubAbility$ DBDraw
+SVar:DBDraw:DB$ Draw | NumCards$ 1 | ConditionCheckSVar$ Discarded | ConditionSVarCompare$ GE1
+SVar:Discarded:Remembered$Amount
+S:Mode$ Continuous | Affected$ Creature.EnchantedBy+Other | AddPower$ 2 | AddToughness$ 1 | AddKeyword$ Flying & Mentor | Description$ Enchanted creature gets +2/+1 and has flying and mentor.
+Oracle:Bestow {3}{R}{R}\nFlying, mentor (Whenever this creature attacks, put a +1/+1 counter on target attacking creature with lesser power.)\nWhen Michael, Primarch of Fire leaves the battlefield, you may discard a card. If you do, draw a card.\nEnchanted creature gets +2/+1 and has flying and mentor.

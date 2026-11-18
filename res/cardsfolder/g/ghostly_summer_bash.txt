@@ -1,0 +1,10 @@
+Name:Ghostly Summer Bash
+ManaCost:UR
+Types:Instant
+K:Spree
+A:SP$ Charm | Choices$ DBReturnSpell,DBDamageBiggest | MinCharmNum$ 1 | CharmNum$ 2 | SpellDescription$ Spree (Choose one or more additional costs.)\n+ {U}{U} — Return target spell to the top of its owner's library.\n+ {R}{R} — Choose a creature an opponent controls with the greatest power among creatures that player controls. CARDNAME deals damage equal to that creature's power to the chosen creature.
+SVar:DBReturnSpell:DB$ ChangeZone | ValidTgts$ Card.inZoneStack | TgtZone$ Stack | TgtPrompt$ Select target spell | Origin$ Stack | Destination$ Library | LibraryPosition$ 0 | ModeCost$ U U | SpellDescription$ Return target spell to the top of its owner's library.
+SVar:DBDamageBiggest:DB$ ChooseCard | Defined$ You | Choices$ Creature.OppCtrl+greatestPowerControlledByOpponent | ChoiceTitle$ Choose a creature an opponent controls with the greatest power among creatures that player controls | ChoiceAmount$ 1 | Mandatory$ True | RememberChosen$ True | ModeCost$ R R | SubAbility$ DBDealDamage | SpellDescription$ Choose a creature an opponent controls with the greatest power among creatures that player controls. CARDNAME deals damage equal to that creature's power to the chosen creature.
+SVar:DBDealDamage:DB$ DealDamage | Defined$ Remembered | NumDmg$ Remembered$CardPower | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Spree (Choose one or more additional costs.)\n+ {U}{U} — Return target spell to the top of its owner's library.\n+ {R}{R} — Choose a creature an opponent controls with the greatest power among creatures that player controls. Ghostly Summer Bash deals damage equal to that creature's power to the chosen creature.

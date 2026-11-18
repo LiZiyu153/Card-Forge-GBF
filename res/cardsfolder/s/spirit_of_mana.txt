@@ -1,0 +1,5 @@
+Name:Spirit of Mana
+ManaCost:U
+Types:Artifact Melee
+A:AB$ Scry | Cost$ 1 T | ScryNum$ 1 | SorcerySpeed$ True | SpellDescription$ Scry 1. Activate only as a sorcery.
+Oracle:{1}, {T}: Scry 1. Activate only as a sorcery.

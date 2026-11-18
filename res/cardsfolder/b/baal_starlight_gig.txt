@@ -1,0 +1,19 @@
+Name:Baal, Starlight Gig
+ManaCost:1 U G
+Types:Legendary Creature Primal
+PT:3/4
+K:Flash
+K:Chain:2:TrigPrepared
+SVar:TrigPrepared:DB$ AlterAttribute | Attributes$ Prepared | SpellDescription$ CARDNAME becomes prepared.
+AlternateMode:Prepare
+Oracle:Flash\nChain 2 — Whenever you attack with two or more creatures you control with power greater than 2, Baal, Starlight Gig becomes prepared. (Triggers once per combat phase.)\n\nSoulful Duet {3}{G} — Affinity for artifacts. Put a +1/+1 counter on each of two target creatures you control. Those creatures gain trample until end of turn.
+
+ALTERNATE
+
+Name:Soulful Duet
+ManaCost:3 G
+Types:Instant
+K:Affinity:Artifact
+A:SP$ PutCounter | CounterType$ P1P1 | CounterNum$ 1 | ValidTgts$ Creature.YouCtrl | TargetMin$ 2 | TargetMax$ 2 | TgtPrompt$ Select two target creatures you control | SubAbility$ DBPump | SpellDescription$ Put a +1/+1 counter on each of two target creatures you control. Those creatures gain trample until end of turn.
+SVar:DBPump:DB$ Pump | Defined$ Targeted | KW$ Trample | Duration$ UntilEndOfTurn
+Oracle:Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)\nPut a +1/+1 counter on each of two target creatures you control. Those creatures gain trample until end of turn.

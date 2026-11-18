@@ -1,0 +1,9 @@
+Name:Terra Misericordia
+ManaCost:2 2G U
+Types:Enchantment Aura
+K:Enchant:Creature
+SVar:AttachAILogic:Pump
+S:Mode$ Continuous | Affected$ Creature.EnchantedBy | AddKeyword$ Defender & Flying | AddTrigger$ TrigWall | AddSVar$ TrigToken | Description$ Enchanted creature has defender and flying and has "Whenever this creature is dealt combat damage, create a 0/4 white Wall creature token with defender and flying."
+SVar:TrigWall:Mode$ DamageDone | ValidTarget$ Card.Self | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigToken | TriggerDescription$ Whenever this creature is dealt combat damage, create a 0/4 white Wall creature token with defender and flying.
+SVar:TrigToken:DB$ Token | TokenAmount$ 1 | TokenScript$ w_0_4_wall_defender_flying | TokenOwner$ You | SpellDescription$ Create a 0/4 white Wall creature token with defender and flying.
+Oracle:Enchant creature\nEnchanted creature has defender and flying and has "Whenever this creature is dealt combat damage, create a 0/4 white Wall creature token with defender and flying."

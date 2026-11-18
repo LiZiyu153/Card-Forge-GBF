@@ -1,0 +1,10 @@
+Name:Tikoh, Magic Surgeon
+ManaCost:1 W W W
+Types:Legendary Creature Erune Doctor
+PT:2/4
+K:Lifelink
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ DBGainLife | TriggerDescription$ At the beginning of your upkeep, if an opponent has more life than you, you gain 4 life.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 4 | ConditionCheckSVar$ XLife | ConditionSVarCompare$ GTYLife
+SVar:XLife:PlayerCountOpponents$HighestLifeTotal
+SVar:YLife:Count$YourLifeTotal
+Oracle:Lifelink\nAt the beginning of your upkeep, if an opponent has more life than you, you gain 4 life.

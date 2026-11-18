@@ -1,0 +1,10 @@
+Name:Warrior Wielding a Magic Sword
+ManaCost:3 R
+Types:Creature Human Warrior
+PT:3/1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigToken | TriggerZones$ Battlefield | TriggerDescription$ When CARDNAME enters the battlefield, create a red Equipment artifact token named Primal Sword with "Equipped creature has double strike" and equip {2}. Then attach it to CARDNAME.
+SVar:TrigToken:DB$ Token | TokenScript$ r_artifact_equipment_primal_sword | TokenOwner$ You | RememberTokens$ True | SubAbility$ DBAttach
+SVar:DBAttach:DB$ Attach | Object$ Remembered | Defined$ Self | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+DeckHas:Ability$Token & Type$Artifact
+Oracle:When Warrior Wielding a Magic Sword enters the battlefield, create a red Equipment artifact token named Primal Sword with "Equipped creature has double strike" and equip {2}. Then attach it to Warrior Wielding a Magic Sword.

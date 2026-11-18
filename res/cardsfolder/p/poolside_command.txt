@@ -1,0 +1,8 @@
+Name:Poolside Command
+ManaCost:1 U
+Types:Enchantment
+A:AB$ Effect | Cost$ 2 | StaticAbilities$ STCantAttackBlock | SpellDescription$ Creatures that are equipped or have a +1/+1 counter on them can't attack or block this turn.
+SVar:STCantAttackBlock:Mode$ CantAttack,CantBlock | ValidCard$ Creature.equipped,Creature.counters_GE1_P1P1 | Description$ Creatures that are equipped or have a +1/+1 counter on them can't attack or block this turn.
+A:AB$ Effect | Cost$ 2 | StaticAbilities$ STCantBeActivated | SpellDescription$ Activated abilities of creatures that are neither equipped nor have a +1/+1 counter on them can't be activated this turn unless they're mana abilities.
+SVar:STCantBeActivated:Mode$ CantBeActivated | ValidCard$ Creature.!equipped+!counters_GE1_P1P1 | ValidSA$ Activated.!ManaAbility | Description$ Activated abilities of creatures that are neither equipped nor have a +1/+1 counter on them can't be activated this turn unless they're mana abilities.
+Oracle:{2}: Creatures that are equipped or have a +1/+1 counter on them can't attack or block this turn.\n{2}: Activated abilities of creatures that are neither equipped nor have a +1/+1 counter on them can't be activated this turn unless they're mana abilities.

@@ -1,0 +1,12 @@
+Name:The Witch and the Reaper
+ManaCost:2 G
+Types:Creature Human Draph Soldier Berserker
+PT:1/1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigCharm | TriggerDescription$ When CARDNAME enters, choose one —\n• Put three +1/+0 counters and a haste counter on CARDNAME.\n• Put three +0/+1 counters and a vigilance counter on CARDNAME.
+SVar:TrigCharm:DB$ Charm | Choices$ DBP1P0,DBP0P1 | SpellDescription$ When CARDNAME enters, choose one — Put three +1/+0 counters and a haste counter on CARDNAME, or put three +0/+1 counters and a vigilance counter on CARDNAME.
+SVar:DBP1P0:DB$ PutCounter | Defined$ Self | CounterType$ P1P0 | CounterNum$ 3 | SubAbility$ DBHaste | SpellDescription$ Put three +1/+0 counters and a haste counter on CARDNAME.
+SVar:DBHaste:DB$ PutCounter | Defined$ Self | CounterType$ Haste | CounterNum$ 1
+SVar:DBP0P1:DB$ PutCounter | Defined$ Self | CounterType$ P0P1 | CounterNum$ 3 | SubAbility$ DBVigilance | SpellDescription$ Put three +0/+1 counters and a vigilance counter on CARDNAME.
+SVar:DBVigilance:DB$ PutCounter | Defined$ Self | CounterType$ Vigilance | CounterNum$ 1
+DeckHas:Ability$Counters
+Oracle:When CARDNAME enters, choose one —\n• Put three +1/+0 counters and a haste counter on CARDNAME.\n• Put three +0/+1 counters and a vigilance counter on CARDNAME.

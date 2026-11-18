@@ -1,0 +1,11 @@
+Name:Sandalphon, Twelve Majestic Wings
+ManaCost:2 U R W
+Rarity:M
+Types:Legendary Creature Primal Primarch
+PT:3/3
+K:Flying
+S:Mode$ Continuous | Affected$ Card.TopLibrary+YouCtrl | AffectedZone$ Library | MayLookAt$ Player | Description$ Play with the top card of your library revealed.
+S:Mode$ CantBeCast | ValidCard$ Card.sharesCardTypeWith TopOfLibrary+nonLand | Caster$ Player | TopCardOfLibraryIs$ Card.nonLand | Description$ As long as the top card of your library isn't a land card, players can't cast spells that share a card type with it.
+T:Mode$ BecomesTarget | ValidTarget$ You,Permanent.YouCtrl+inZoneBattlefield | ValidSource$ SpellAbility.OppCtrl | TriggerZones$ Battlefield | Execute$ TrigCopy | TriggerDescription$ Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may copy that spell or ability. You may choose new targets for the copy.
+SVar:TrigCopy:DB$ CopySpellAbility | Defined$ TriggeredSourceSA | Optional$ True | MayChooseTarget$ True
+Oracle:Flying\nPlay with the top card of your library revealed.\nAs long as the top card of your library isn't a land card, players can't cast spells that share a card type with it.\nWhenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may copy that spell or ability. You may choose new targets for the copy.

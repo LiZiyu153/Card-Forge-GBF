@@ -22,7 +22,7 @@ import forge.model.FModel;
  */
 public class GbfTokenParseTest extends GbfTestBase {
 
-    /** All 18 scripts registered in editions [tokens] (kept in sync with that section). */
+    /** All 28 scripts registered in editions [tokens] (kept in sync with that section). */
     private static final String[] GBF_TOKENS = {
         "c_0_0_a_construct_flying_artifactcount",   // Mahira (GBF #126)
         "b_1_1_dog_ally_lifelink_deathtouch",       // Vajra (GBF #127)
@@ -42,6 +42,16 @@ public class GbfTokenParseTest extends GbfTestBase {
         "w_1_2_human_soldier_vigilance",            // batch-2
         "r_1_1_elemental_flying",                   // batch-2
         "b_2_2_primal_zombie",                      // batch-2
+        "ub_2_1_erune_diesmill",                    // R46 (Tien/Feower 十天众)
+        "rw_3_3_erune_vigilance",                   // R46 (Tien/Feower 十天众)
+        "b_3_3_demon_flying",                       // R53 batch-3 Devilish Priest
+        "b_1_1_bat",                                // R53 batch-3 Honorary Vow
+        "c_2_2_a_construct_flying",                 // R53 batch-3 In Like a Capon
+        "rw_2_2_knight_vigilance",                  // R53 batch-3 Lord's Strike
+        "c_1_1_a_construct_floating",               // R53 batch-3 Luminiera Sword Omega
+        "r_artifact_equipment_primal_sword",        // R53 batch-3 Warrior Wielding a Magic Sword
+        "g_1_1_erune_monkey",                       // R53 batch-3 Water Monkey Splash
+        "u_3_3_snow_reach_trample",                 // R53 batch-3 Uruki
     };
 
     public static void main(String[] args) {

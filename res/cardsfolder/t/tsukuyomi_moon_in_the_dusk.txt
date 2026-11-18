@@ -1,0 +1,8 @@
+Name:Tsukuyomi, Moon in the Dusk
+ManaCost:3 B B
+Types:Legendary Creature Primal
+PT:5/5
+K:Lifelink
+A:AB$ LoseLife | Cost$ 6 B T | ValidTgts$ Opponent | TgtPrompt$ Select target opponent | LifeAmount$ X | SpellDescription$ Target opponent loses life equal to the number of creature cards in your graveyard.
+SVar:X:Count$ValidGraveyard Creature.YouOwn
+Oracle:Lifelink\n{6}{B}, {T}: Target opponent loses life equal to the number of creature cards in your graveyard.

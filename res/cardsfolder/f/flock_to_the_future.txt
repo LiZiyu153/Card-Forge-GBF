@@ -1,0 +1,6 @@
+Name:Flock to the Future
+ManaCost:2 G
+Types:Sorcery
+A:SP$ Dig | DigNum$ 5 | ChangeNum$ 1 | ChangeValid$ Creature,Enchantment | Optional$ True | ForceRevealToController$ True | SubAbility$ DBProliferate | SpellDescription$ Look at the top five cards of your library. You may reveal a creature or enchantment card from among them and put that card into your hand. Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)
+SVar:DBProliferate:DB$ Proliferate | StackDescription$ None
+Oracle:Look at the top five cards of your library. You may reveal a creature or enchantment card from among them and put that card into your hand. Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)

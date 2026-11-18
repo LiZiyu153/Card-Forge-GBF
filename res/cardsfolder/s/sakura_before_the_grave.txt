@@ -1,0 +1,11 @@
+Name:Sakura before the Grave
+ManaCost:5 R
+Rarity:U
+Types:Creature Erune
+PT:4/4
+K:Haste
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigUntapAll | TriggerDescription$ When CARDNAME enters, if a creature you controlled died this turn, untap all creatures you control. If it's your main phase, after this phase there is an additional combat phase.
+SVar:TrigUntapAll:DB$ UntapAll | ValidCards$ Creature.YouCtrl | ConditionCheckSVar$ DiedThisTurn | ConditionSVarCompare$ GE1 | SubAbility$ DBAddCombat
+SVar:DBAddCombat:DB$ AddPhase | ExtraPhase$ Combat | ConditionPlayerTurn$ True | ConditionPhases$ Main1,Main2
+SVar:DiedThisTurn:Count$ThisTurnEntered_Graveyard_from_Battlefield_Creature.YouCtrl
+Oracle:Haste\nWhen Sakura before the Grave enters, if a creature you controlled died this turn, untap all creatures you control. If it's your main phase, after this phase there is an additional combat phase.

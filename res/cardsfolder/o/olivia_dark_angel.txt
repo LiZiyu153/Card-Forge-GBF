@@ -1,0 +1,18 @@
+Name:Olivia, Dark Angel
+ManaCost:1 B R G
+Types:Legendary Creature Primal Primarch
+PT:4/4
+K:Flying
+S:Mode$ Continuous | AffectedZone$ Hand | MayLookAt$ Player | Description$ Players play with their hands revealed.
+S:Mode$ Continuous | Affected$ Card.TopLibrary | AffectedZone$ Library | MayLookAt$ Player | Description$ Players play with the top card of their libraries revealed.
+S:Mode$ CantBeCast | ValidCard$ Card | Caster$ Player | Origin$ Hand | Description$ Players can't cast spells from their hands.
+S:Mode$ Continuous | Affected$ Card.TopLibrary | AffectedZone$ Library | MayPlay$ True | MayPlayPlayer$ CardOwner | Description$ Players may play the top card of their libraries.
+R:Event$ Draw | ActiveZones$ Battlefield | ValidPlayer$ Player | ReplaceWith$ DBChooseFromHand | Description$ If a player would draw a card, that player may instead put a card from their hand on top of their library.
+SVar:DBChooseFromHand:DB$ ChooseCard | Defined$ ReplacedPlayer | ChoiceZone$ Hand | Choices$ Card.OwnedBy ReplacedPlayer | Amount$ 1 | MinAmount$ 0 | Mandatory$ False | RememberChosen$ True | SubAbility$ DBBranch
+SVar:ChosenCount:Remembered$Amount
+SVar:DBBranch:DB$ Branch | BranchConditionSVar$ ChosenCount | BranchConditionSVarCompare$ EQ0 | TrueSubAbility$ DBDrawInstead | FalseSubAbility$ DBPutOnTop
+SVar:DBPutOnTop:DB$ ChangeZone | Defined$ Remembered | Origin$ Hand | Destination$ Library | LibraryPosition$ 0 | SubAbility$ DBCleanup
+SVar:DBDrawInstead:DB$ Draw | Defined$ ReplacedPlayer | NumCards$ 1
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:NonStackingEffect:True
+Oracle:Flying\nPlayers play with their hands revealed and the top card of their libraries revealed. Players can't cast spells from their hands.\nPlayers may play the top card of their libraries.\nIf a player would draw a card, that player may instead put a card from their hand on top of their library.

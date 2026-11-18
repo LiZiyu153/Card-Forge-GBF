@@ -1,0 +1,6 @@
+Name:Fanciful Flutter
+ManaCost:U
+Types:Instant
+A:SP$ Pump | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumDef$ 3 | SubAbility$ DBDraw | SpellDescription$ Target creature you control gets +0/+3 until end of turn. Draw a card.
+SVar:DBDraw:DB$ Draw | Defined$ You | NumCards$ 1 | StackDescription$ None
+Oracle:Target creature you control gets +0/+3 until end of turn.\nDraw a card.

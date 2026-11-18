@@ -1,0 +1,12 @@
+Name:Impulsive Amaranth
+ManaCost:1 B R
+Types:Creature Erune Wizard
+PT:4/5
+K:Menace
+K:AlternateAdditionalCost:Sac<1/Creature>:ExileFromGrave<2/Card>
+R:Event$ Untap | ValidCard$ Card.Self | ValidStepTurnToController$ You | Layer$ CantHappen | Description$ This creature doesn't untap during your untap step.
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigUntap | TriggerDescription$ At the beginning of your upkeep, you may exile a card from your graveyard. If you do, untap CARDNAME.
+SVar:TrigUntap:DB$ ChangeZone | Origin$ Graveyard | Destination$ Exile | ChangeType$ Card.YouOwn | Chooser$ You | ChangeNum$ 1 | Hidden$ True | Optional$ True | OptionalPrompt$ Exile a card from your graveyard? | RememberChanged$ True | SubAbility$ DBUntap
+SVar:DBUntap:DB$ Untap | Defined$ Self | ConditionDefined$ Remembered | ConditionPresent$ Card | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Menace (This creature can't be blocked except by two or more creatures.)\nAs an additional cost to cast this spell, sacrifice a creature or exile two cards from your graveyard.\nThis creature doesn't untap during your untap step.\nAt the beginning of your upkeep, you may exile a card from your graveyard. If you do, untap this creature.

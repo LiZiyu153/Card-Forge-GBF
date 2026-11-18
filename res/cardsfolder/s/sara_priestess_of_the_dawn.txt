@@ -1,0 +1,12 @@
+Name:Sara, Priestess of the Dawn
+ManaCost:W B
+Rarity:U
+Types:Legendary Creature Human
+PT:1/3
+T:Mode$ Drawn | ValidCard$ Card.YouCtrl | TriggerZones$ Battlefield | Execute$ TrigLoseLife | TriggerDescription$ Whenever you draw a card, you lose 1 life.
+SVar:TrigLoseLife:DB$ LoseLife | Defined$ You | LifeAmount$ 1
+S:Mode$ Continuous | Affected$ Card.Self | CheckSVar$ LifeNow | SVarCompare$ GE25 | AddReplacementEffect$ GainInstead | Description$ If you would gain life while your life total is 25 or greater, draw a card instead.
+SVar:GainInstead:Event$ GainLife | ActiveZones$ Battlefield | ValidPlayer$ You | ReplaceWith$ DBDraw | Description$ If you would gain life while your life total is 25 or greater, draw a card instead.
+SVar:DBDraw:DB$ Draw | Defined$ You | NumCards$ 1
+SVar:LifeNow:Count$YourLifeTotal
+Oracle:Whenever you draw a card, you lose 1 life.\nIf you would gain life while your life total is 25 or greater, draw a card instead.

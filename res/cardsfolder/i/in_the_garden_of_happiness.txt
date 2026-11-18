@@ -1,0 +1,8 @@
+Name:In the Garden of Happiness
+ManaCost:1 U U U
+Types:Sorcery
+A:SP$ ChangeZoneAll | ChangeType$ Land.YouCtrl | Origin$ Battlefield | Destination$ Hand | RememberChanged$ True | SubAbility$ DBChooseCopy | SpellDescription$ Choose a creature you control. Return all lands you control to their owner's hands. For each land returned this way, create a token that's a copy of the chosen creature.
+SVar:DBChooseCopy:DB$ CopyPermanent | Choices$ Creature.YouCtrl | ChoiceTitle$ Choose a creature you control | NumCopies$ X | SubAbility$ DBCleanup
+SVar:X:Remembered$Amount
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Choose a creature you control. Return all lands you control to their owner's hands. For each land returned this way, create a token that's a copy of the chosen creature.

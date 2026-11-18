@@ -1,0 +1,11 @@
+Name:Halluel and Malluel, Twins of Instruction
+ManaCost:W
+Types:Legendary Creature Primal Primarch
+PT:1/1
+K:Flying
+T:Mode$ SpellCast | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigDigSpell | TriggerDescription$ Whenever you cast a spell or activate an ability, if you paid four or more mana for it, look at the top four cards of your library. You may reveal a nonland permanent card with mana value 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+T:Mode$ AbilityCast | ValidSA$ SpellAbility.!ManaAbility+ManaSpent GE4 | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Secondary$ True | Execute$ TrigDigAbility | TriggerDescription$ Whenever you cast a spell or activate an ability, if you paid four or more mana for it, look at the top four cards of your library. You may reveal a nonland permanent card with mana value 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+SVar:TrigDigSpell:DB$ Dig | DigNum$ 4 | ChangeNum$ 1 | Optional$ True | ForceRevealToController$ True | ChangeValid$ Card.Permanent+nonLand+cmcLE2 | RestRandomOrder$ True | DestinationZone$ Hand | ConditionCheckSVar$ X | ConditionSVarCompare$ GE4
+SVar:TrigDigAbility:DB$ Dig | DigNum$ 4 | ChangeNum$ 1 | Optional$ True | ForceRevealToController$ True | ChangeValid$ Card.Permanent+nonLand+cmcLE2 | RestRandomOrder$ True | DestinationZone$ Hand
+SVar:X:TriggeredCard$CastTotalManaSpent
+Oracle:Flying\nWhenever you cast a spell or activate an ability, if you paid four or more mana for it, look at the top four cards of your library. You may reveal a nonland permanent card with mana value 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.

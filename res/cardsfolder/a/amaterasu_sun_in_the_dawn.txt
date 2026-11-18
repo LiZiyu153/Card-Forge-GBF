@@ -1,0 +1,9 @@
+Name:Amaterasu, Sun in the Dawn
+ManaCost:1 W
+Types:Legendary Creature Primal
+PT:1/4
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigExile | TriggerDescription$ When CARDNAME enters the battlefield, exile a nonland colored card from your hand.
+SVar:TrigExile:DB$ ChangeZone | Origin$ Hand | Destination$ Exile | ChangeType$ Card.nonLand+nonColorless | ChangeNum$ 1 | RememberChanged$ True
+T:Mode$ SpellCast | ValidCard$ Card.SharesColorWith Remembered | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigGainLife | TriggerDescription$ Whenever you cast a spell that shares a color with the exiled card, you gain 3 life.
+SVar:TrigGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 3
+Oracle:When Amaterasu, Sun in the Dawn enters the battlefield, exile a nonland colored card from your hand.\nWhenever you cast a spell that shares a color with the exiled card, you gain 3 life.

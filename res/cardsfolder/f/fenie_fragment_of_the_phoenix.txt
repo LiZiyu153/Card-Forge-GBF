@@ -1,0 +1,12 @@
+Name:Fenie, Fragment of the Phoenix
+ManaCost:R R R
+Types:Legendary Creature Phoenix
+PT:3/1
+K:Flying
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | CheckSVar$ X | SVarCompare$ EQ0 | Execute$ TrigPump | TriggerDescription$ When CARDNAME enters, if no mana was spent to cast it, CARDNAME gets +2/+0 and gains indestructible until end of turn.
+SVar:TrigPump:DB$ Pump | Defined$ Self | NumAtt$ 2 | KW$ Indestructible
+SVar:X:Count$CastTotalManaSpent
+A:AB$ ChangeZone | Cost$ R R | Origin$ Graveyard | Destination$ Exile | ActivationZone$ Graveyard | WithCountersType$ TIME | WithCountersAmount$ 2 | RememberChanged$ True | SubAbility$ GiveSuspend | SpellDescription$ Exile CARDNAME from your graveyard with two time counters on it. It gains suspend.
+SVar:GiveSuspend:DB$ Pump | Defined$ Remembered | ConditionDefined$ Remembered | ConditionPresent$ Card.withoutSuspend | PumpZone$ Exile | KW$ Suspend | Duration$ Permanent | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Flying\nWhen Fenie, Fragment of the Phoenix enters, if no mana was spent to cast it, Fenie, Fragment of the Phoenix gets +2/+0 and gains indestructible until end of turn.\n{R}{R}: Exile Fenie, Fragment of the Phoenix from your graveyard with two time counters on it. It gains suspend.

@@ -1,0 +1,7 @@
+Name:Nibelung Horn
+ManaCost:3
+Types:Artifact Axe
+K:Specialty:Creature:3:AddAbility$ ABMana
+SVar:ABMana:AB$ Mana | Cost$ T | Produced$ Any | SubAbility$ DBGainLife | SpellDescription$ Add one mana of any color. You gain 1 life.
+SVar:DBGainLife:DB$ GainLife | LifeAmount$ 1
+Oracle:Creature Specialty 3 (As long as you control three or more creatures, this artifact has the following ability.)\n{T}: Add one mana of any color. You gain 1 life.

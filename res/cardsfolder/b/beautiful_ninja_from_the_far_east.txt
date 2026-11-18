@@ -1,0 +1,10 @@
+Name:Beautiful Ninja from the Far East
+ManaCost:1 U U R
+Types:Creature Human Ninja
+PT:3/1
+K:Shadow
+K:Chain:4:TrigChainLoot
+SVar:TrigChainLoot:DB$ Draw | Defined$ You | NumCards$ 1 | SubAbility$ TrigChainTreasure | SpellDescription$ Draw a card and create two tapped Treasure tokens.
+SVar:TrigChainTreasure:DB$ Token | TokenAmount$ 2 | TokenScript$ c_a_treasure_sac | TokenTapped$ True | TokenOwner$ You
+K:Dash:3 U R
+Oracle:Shadow (This creature can block or be blocked only by creatures with shadow.)\nChain 4 — Whenever you attack with four or more creatures you control with power greater than 2, draw a card and create two tapped Treasure tokens. (Triggers once per combat phase.)\nDash {3}{U}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)

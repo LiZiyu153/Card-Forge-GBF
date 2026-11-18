@@ -1,0 +1,7 @@
+Name:Godspear Gungnir
+ManaCost:1 W
+Types:Kindred Instant Primal
+A:SP$ Destroy | ValidTgts$ Artifact,Enchantment | TgtPrompt$ Select target artifact or enchantment | SubAbility$ DBUnblockable | SpellDescription$ Destroy target artifact or enchantment. Target creature you control can't be blocked this turn.
+SVar:DBUnblockable:DB$ Effect | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | RememberObjects$ Targeted | ExileOnMoved$ Battlefield | StaticAbilities$ STUnblockable | StackDescription$ {c:Targeted} can't be blocked this turn. | SpellDescription$ Target creature you control can't be blocked this turn.
+SVar:STUnblockable:Mode$ CantBlockBy | ValidAttacker$ Card.IsRemembered | Description$ This creature can't be blocked this turn.
+Oracle:Destroy target artifact or enchantment. Target creature you control can't be blocked this turn.

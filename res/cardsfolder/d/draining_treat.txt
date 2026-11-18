@@ -1,0 +1,8 @@
+Name:Draining Treat
+ManaCost:2 B B
+Types:Sorcery
+A:SP$ Sacrifice | Cost$ 2 B B Sac<3/Food> | Defined$ Player.Opponent | SacValid$ Creature | Amount$ 3 | RememberSacrificed$ True | SubAbility$ DBGainLife | SpellDescription$ Each opponent sacrifices three creatures. You gain life equal to the total power of the creatures sacrificed this way.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ X | SubAbility$ DBCleanup | StackDescription$ None
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:X:RememberedLKI$CardPower
+Oracle:As an additional cost to cast this spell, sacrifice three Foods.\nEach opponent sacrifices three creatures. You gain life equal to the total power of the creatures sacrificed this way.

@@ -1,0 +1,13 @@
+Name:Mars, Scorching Hot Flamelit General
+ManaCost:2 R W
+Types:Legendary Creature Primal
+PT:2/2
+K:First Strike
+K:Trample
+K:Lifelink
+S:Mode$ CantBlockBy | ValidAttacker$ Creature.Self | ValidBlocker$ Creature.powerLTX | Secondary$ True | Description$ CARDNAME can't be blocked by creatures with lesser power.
+SVar:X:Count$CardPower
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigPump | TriggerDescription$ Whenever CARDNAME attacks, it gets +X/+0 until end of turn, where X is the number of Primal creatures you control.
+SVar:TrigPump:DB$ Pump | Defined$ Self | NumAtt$ +Y
+SVar:Y:Count$Valid Creature.Primal+YouCtrl
+Oracle:First strike, trample, lifelink\nMars, Scorching Hot Flamelit General can't be blocked by creatures with lesser power.\nWhenever Mars, Scorching Hot Flamelit General attacks, it gets +X/+0 until end of turn, where X is the number of Primal creatures you control.

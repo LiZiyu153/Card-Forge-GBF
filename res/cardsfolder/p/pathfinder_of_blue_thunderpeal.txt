@@ -1,0 +1,7 @@
+Name:Pathfinder of Blue Thunderpeal
+ManaCost:3 W
+Types:Creature Human Warrior
+PT:3/3
+K:Vigilance
+K:Prowess
+Oracle:Vigilance, prowess

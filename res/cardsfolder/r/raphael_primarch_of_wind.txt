@@ -1,0 +1,12 @@
+Name:Raphael, Primarch of Wind
+ManaCost:G G
+Types:Legendary Enchantment Creature Primal Primarch
+PT:1/1
+K:Bestow:3 G G
+K:Flying
+T:Mode$ DamageDone | ValidSource$ Card.Self,Creature.EnchantedBy | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigReveal | TriggerDescription$ Whenever CARDNAME or enchanted creature deals combat damage to a player, reveal that many cards from the top of your library. You may put a land card or a creature card with mana value less than that creature's power onto the battlefield. Put the rest on the bottom of your library in a random order.
+SVar:TrigReveal:DB$ Dig | DigNum$ RevealNum | ChangeNum$ 1 | Optional$ True | ForceRevealToController$ True | ChangeValid$ Land,Creature.cmcLTPowerNum | DestinationZone$ Battlefield | RestRandomOrder$ True
+SVar:RevealNum:TriggerCount$DamageAmount
+SVar:PowerNum:TriggeredSource$CardPower
+S:Mode$ Continuous | Affected$ Creature.EnchantedBy+Other | AddPower$ 1 | AddToughness$ 1 | AddKeyword$ Flying | Description$ Enchanted creature gets +1/+1 and has flying.
+Oracle:Bestow {3}{G}{G}\nFlying\nWhenever Raphael, Primarch of Wind or enchanted creature deals combat damage to a player, reveal that many cards from the top of your library. You may put a land card or a creature card with mana value less than that creature's power onto the battlefield. Put the rest on the bottom of your library in a random order.\nEnchanted creature gets +1/+1 and has flying.

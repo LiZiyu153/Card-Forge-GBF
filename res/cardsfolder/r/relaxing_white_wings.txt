@@ -1,0 +1,9 @@
+Name:Relaxing White Wings
+ManaCost:1 G G
+Types:Enchantment
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Land.YouCtrl | TriggerZones$ Battlefield | Execute$ TrigLandfall | TriggerDescription$ Landfall — Whenever a land you control enters, put a +1/+1 counter on CARDNAME. You gain 1 life.
+SVar:TrigLandfall:DB$ PutCounter | Defined$ Self | CounterType$ P1P1 | CounterNum$ 1 | SubAbility$ DBGainLife
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 1 | StackDescription$ You gain 1 life.
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | OptionalDecider$ You | Execute$ TrigMoveCounters | TriggerDescription$ At the beginning of your upkeep, you may move any number of +1/+1 counters from CARDNAME onto other creatures.
+SVar:TrigMoveCounters:DB$ MoveCounter | Source$ Self | ValidDefined$ Creature.Other | CounterType$ P1P1 | CounterNum$ Any | AILogic$ ToValid | StackDescription$ You may move any number of +1/+1 counters from CARDNAME onto other creatures.
+Oracle:Landfall — Whenever a land you control enters, put a +1/+1 counter on Relaxing White Wings. You gain 1 life.\nAt the beginning of your upkeep, you may move any number of +1/+1 counters from Relaxing White Wings onto other creatures.

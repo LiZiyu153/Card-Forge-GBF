@@ -1,0 +1,6 @@
+Name:Devilish Priest
+ManaCost:1 B
+Types:Creature Human Cleric
+PT:1/2
+A:AB$ Token | Cost$ T Sac<1/Creature.Other/another creature> | TokenScript$ b_3_3_demon_flying | TokenOwner$ You | SpellDescription$ Create a 3/3 black Demon creature token with flying.
+Oracle:{T}, Sacrifice another creature: Create a 3/3 black Demon creature token with flying.

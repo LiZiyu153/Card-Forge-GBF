@@ -1,0 +1,6 @@
+Name:Remedius Nodus
+ManaCost:G
+Types:Kindred Instant Primal
+A:SP$ Destroy | ValidTgts$ Artifact.Black,Enchantment.Black | TgtPrompt$ Select target black artifact or enchantment | SubAbility$ DBGainLife | SpellDescription$ Destroy target black artifact or enchantment. You gain 2 life.
+SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ 2 | StackDescription$ You gain 2 life.
+Oracle:Destroy target black artifact or enchantment. You gain 2 life.

@@ -1,0 +1,11 @@
+Name:Winter Winds, Rimy Conquest
+ManaCost:U
+Types:Instant
+K:Spree
+A:SP$ Charm | Choices$ DBMap,DBBounce,DBDrawDiscard | MinCharmNum$ 1 | CharmNum$ 3 | SpellDescription$ Spree (Choose one or more additional costs.)\n+ {1} — Create two Map tokens.\n+ {2} — Return target spell or creature to its owner's hand.\n+ {3} — Draw three cards, then discard a card.
+SVar:DBMap:DB$ Token | ModeCost$ 1 | TokenAmount$ 2 | TokenScript$ c_a_map_sac_explore | TokenOwner$ You | SpellDescription$ Create two Map tokens.
+SVar:DBBounce:DB$ ChangeZone | ModeCost$ 2 | ValidTgts$ Creature,Card.inZoneStack | TgtZone$ Stack,Battlefield | Origin$ Battlefield,Stack | Destination$ Hand | SpellDescription$ Return target spell or creature to its owner's hand.
+SVar:DBDrawDiscard:DB$ Draw | ModeCost$ 3 | Defined$ You | NumCards$ 3 | SubAbility$ DBDiscard | SpellDescription$ Draw three cards, then discard a card.
+SVar:DBDiscard:DB$ Discard | Defined$ You | Mode$ TgtChoose | NumCards$ 1
+DeckHas:Ability$Token|Discard
+Oracle:Spree (Choose one or more additional costs.)\n+ {1} — Create two Map tokens.\n+ {2} — Return target spell or creature to its owner's hand.\n+ {3} — Draw three cards, then discard a card.

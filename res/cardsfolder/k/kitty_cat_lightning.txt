@@ -1,0 +1,12 @@
+Name:Kitty-Cat Lightning
+ManaCost:U U
+Types:Creature Erune Cat
+PT:2/2
+K:Flash
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigName | TriggerDescription$ When CARDNAME enters, choose a card name.
+SVar:TrigName:DB$ NameCard | Defined$ You
+A:AB$ Charm | Cost$ 2 U | Choices$ DBCounter,DBSacDraw | SpellDescription$ Choose one —
+SVar:DBCounter:DB$ Counter | TargetType$ Spell | ValidTgts$ Card.NamedCard | TgtPrompt$ Select target spell with the chosen name | SpellDescription$ Counter target spell with the chosen name.
+SVar:DBSacDraw:DB$ Sacrifice | SacValid$ Self | SubAbility$ DBDrawTwo | SpellDescription$ Sacrifice CARDNAME. Draw two cards.
+SVar:DBDrawTwo:DB$ Draw | Defined$ You | NumCards$ 2
+Oracle:Flash\nWhen Kitty-Cat Lightning enters, choose a card name.\n{2}{U}: Choose one —\n• Counter target spell with the chosen name.\n• Sacrifice Kitty-Cat Lightning. Draw two cards.

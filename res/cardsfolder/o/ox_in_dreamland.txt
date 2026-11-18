@@ -1,0 +1,8 @@
+Name:Ox in Dreamland
+ManaCost:G
+Types:Sorcery
+A:SP$ ChooseCard | ConditionCheckSVar$ LegalCards | ConditionSVarCompare$ GE1 | Cost$ G tapXType<1/Creature.!token/nontoken creature> | Defined$ You | ChoiceZone$ Graveyard | Choices$ Creature.YouOwn+sharesCreatureTypeWith TappedCards | Amount$ 1 | Mandatory$ True | RememberChosen$ True | SubAbility$ DBReturn | SpellDescription$ As an additional cost to cast this spell, tap an untapped nontoken creature you control. Choose a creature card in your graveyard that shares a creature type with the tapped creature. Return it to your hand. You gain 3 life.
+SVar:LegalCards:Count$ValidGraveyard Creature.YouOwn+sharesCreatureTypeWith TappedCards
+SVar:DBReturn:DB$ ChangeZone | Defined$ Remembered | Origin$ Graveyard | Destination$ Hand | SubAbility$ DBGain
+SVar:DBGain:DB$ GainLife | LifeAmount$ 3
+Oracle:As an additional cost to cast this spell, tap an untapped nontoken creature you control.\nChoose a creature card in your graveyard that shares a creature type with the tapped creature. Return it to your hand.\nYou gain 3 life.

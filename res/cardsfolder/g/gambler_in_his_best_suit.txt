@@ -1,0 +1,10 @@
+Name:Gambler in His Best Suit
+ManaCost:3 G
+Types:Creature Human
+PT:2/2
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigRoll | TriggerDescription$ Whenever CARDNAME attacks, ABILITY
+SVar:TrigRoll:DB$ RollDice | Sides$ 20 | ResultSubAbilities$ 1-9:DBPumpSmall,10-19:DBPumpMedium,20:DBPumpLarge | SpellDescription$ roll a d20.
+SVar:DBPumpSmall:DB$ Pump | Defined$ Self | NumAtt$ +1 | NumDef$ +1 | SpellDescription$ 1—9 VERT CARDNAME gets +1/+1 until end of turn.
+SVar:DBPumpMedium:DB$ Pump | Defined$ Self | NumAtt$ +2 | NumDef$ +2 | SpellDescription$ 10—19 VERT CARDNAME gets +2/+2 until end of turn.
+SVar:DBPumpLarge:DB$ Pump | Defined$ Self | NumAtt$ +3 | NumDef$ +3 | KW$ Trample | SpellDescription$ 20 VERT CARDNAME gets +3/+3 and gains trample until end of turn.
+Oracle:Whenever this creature attacks, roll a d20.\n1—9 | This creature gets +1/+1 until end of turn.\n10—19 | This creature gets +2/+2 until end of turn.\n20 | This creature gets +3/+3 and gains trample until end of turn.

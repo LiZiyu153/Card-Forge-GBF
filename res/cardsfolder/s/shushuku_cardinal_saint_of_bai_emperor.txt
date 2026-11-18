@@ -1,0 +1,9 @@
+Name:Shushuku, Cardinal Saint of Bai Emperor
+ManaCost:GU GU
+Rarity:U
+Types:Legendary Creature Human
+PT:2/2
+K:Chain:4:TrigChainUntapSelf
+A:AB$ Untap | Cost$ T | ValidTgts$ Permanent.Other+YouCtrl | TgtPrompt$ Select another target permanent you control | SpellDescription$ Untap another target permanent you control.
+SVar:TrigChainUntapSelf:DB$ Untap | Defined$ Self | SpellDescription$ Untap CARDNAME.
+Oracle:Chain 4 — Whenever you attack with four or more creatures you control with power greater than 2, untap Shushuku, Cardinal Saint of Bai Emperor. (Triggers once per combat phase.)\n{T}: Untap another target permanent you control.

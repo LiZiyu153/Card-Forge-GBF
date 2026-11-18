@@ -1,0 +1,11 @@
+Name:Gabriel, Primarch of Water
+ManaCost:U U
+Types:Legendary Enchantment Creature Primal Primarch
+PT:2/2
+K:Bestow:3 U U
+K:Flying
+T:Mode$ DamageDealtOnce | ValidSource$ Card.Self,Creature.EnchantedBy | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigScry | TriggerDescription$ Whenever CARDNAME or enchanted creature deals combat damage, scry that many.
+SVar:TrigScry:DB$ Scry | ScryNum$ X
+SVar:X:TriggerCount$DamageAmount
+S:Mode$ Continuous | Affected$ Creature.EnchantedBy+Other | AddPower$ 2 | AddToughness$ 2 | AddKeyword$ Flying | Description$ Enchanted creature gets +2/+2 and has flying.
+Oracle:Bestow {3}{U}{U}\nFlying\nWhenever Gabriel, Primarch of Water or enchanted creature deals combat damage, scry that many.\nEnchanted creature gets +2/+2 and has flying.

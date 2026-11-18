@@ -1,0 +1,9 @@
+Name:Rat's All, Folks!
+ManaCost:1 U R
+Types:Instant
+A:SP$ ChangeZoneAll | Origin$ Hand | Destination$ Library | Defined$ You | ChangeType$ Card | Shuffle$ True | SubAbility$ TrigDigUntil | SpellDescription$ Shuffle your hand into your library. Then exile cards from the top of your library until you exile five nonland cards. Put three time counters on each of them. If they don't have suspend, they gain suspend.
+SVar:TrigDigUntil:DB$ DigUntil | Valid$ Card.nonLand | Amount$ 5 | FoundDestination$ Exile | RevealedDestination$ Exile | RememberFound$ True | SubAbility$ DBPutTimeCounters
+SVar:DBPutTimeCounters:DB$ PutCounter | Defined$ Remembered | CounterType$ TIME | CounterNum$ 3 | SubAbility$ DBGiveSuspend | StackDescription$ Put three time counters on each of them.
+SVar:DBGiveSuspend:DB$ Pump | Defined$ Remembered | PumpZone$ Exile | KW$ Suspend | Duration$ Permanent | ConditionDefined$ Remembered | ConditionPresent$ Card.withoutSuspend | SubAbility$ DBCleanup | StackDescription$ If they don't have suspend, they gain suspend.
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Shuffle your hand into your library. Then exile cards from the top of your library until you exile five nonland cards. Put three time counters on each of them. If they don't have suspend, they gain suspend. (At the beginning of its owner's upkeep, they remove a time counter. When the last is removed, they may play it without paying its mana cost. If it's a creature, it has haste.)

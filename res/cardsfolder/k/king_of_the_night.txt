@@ -1,0 +1,11 @@
+Name:King of the Night
+ManaCost:UR RG GU
+Types:Creature Human
+PT:2/2
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Haste | CheckSVar$ PaidR | SVarCompare$ GE1 | Description$ If red mana was spent to cast CARDNAME, it enters with haste.
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Vigilance | CheckSVar$ PaidG | SVarCompare$ GE1 | Description$ If green mana was spent to cast CARDNAME, it enters with vigilance.
+S:Mode$ Continuous | Affected$ Card.Self | AddKeyword$ Flying | CheckSVar$ PaidU | SVarCompare$ GE1 | Description$ If blue mana was spent to cast CARDNAME, it enters with flying.
+SVar:PaidR:CastSA>Count$Adamant_1.R.1.0
+SVar:PaidG:CastSA>Count$Adamant_1.G.1.0
+SVar:PaidU:CastSA>Count$Adamant_1.U.1.0
+Oracle:If red mana was spent to cast King of the Night, it enters with haste.\nIf green mana was spent to cast King of the Night, it enters with vigilance.\nIf blue mana was spent to cast King of the Night, it enters with flying.

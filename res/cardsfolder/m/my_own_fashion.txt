@@ -1,0 +1,9 @@
+Name:My Own Fashion
+ManaCost:3
+Types:Enchantment
+T:Mode$ SpellCast | ValidCard$ Card | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | OptionalDecider$ You | Execute$ TrigExile | TriggerDescription$ Imprint — Whenever you cast a spell, you may exile a nonland, nonartifact card from your hand.
+SVar:TrigExile:DB$ ChangeZone | Imprint$ True | Origin$ Hand | Destination$ Exile | ChangeType$ Card.nonArtifact+nonLand | ChangeNum$ 1
+A:AB$ Mana | Cost$ PayLife<4> | Amount$ X | Produced$ Combo Any | SpellDescription$ Add one mana of any color. If four or more cards are exiled with CARDNAME, add three mana in any combination of colors instead.
+SVar:X:Count$Compare Y GE4.3.1
+SVar:Y:Count$ValidExile Card.ExiledWithSource
+Oracle:Imprint — Whenever you cast a spell, you may exile a nonland, nonartifact card from your hand.\nPay 4 life: Add one mana of any color. If there are four or more cards exiled with My Own Fashion, add three mana in any combination of colors instead.

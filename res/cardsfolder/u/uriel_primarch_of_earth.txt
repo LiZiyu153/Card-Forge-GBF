@@ -1,0 +1,13 @@
+Name:Uriel, Primarch of Earth
+ManaCost:B R
+Types:Legendary Enchantment Creature Primal Primarch
+PT:1/1
+K:Bestow:3 B R
+K:Flying
+T:Mode$ DamageDone | ValidSource$ Card.Self,Creature.EnchantedBy | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigExile | TriggerDescription$ Whenever CARDNAME or enchanted creature deals combat damage to a player, exile the top card of that player's library. Until the end of your next turn, you may play that card, and you may spend mana as though it were mana of any type to cast it.
+SVar:TrigExile:DB$ Dig | Defined$ TriggeredTarget | DigNum$ 1 | ChangeNum$ All | DestinationZone$ Exile | RememberChanged$ True | SubAbility$ DBEffect
+SVar:DBEffect:DB$ Effect | StaticAbilities$ STPlay | Duration$ UntilTheEndOfYourNextTurn | RememberObjects$ Remembered | ForgetOnMoved$ Exile | SubAbility$ DBCleanup
+SVar:STPlay:Mode$ Continuous | Affected$ Card.IsRemembered | AffectedZone$ Exile | MayPlay$ True | MayPlayIgnoreType$ True | Description$ Until the end of your next turn, you may play that card, and you may spend mana as though it were mana of any type to cast it.
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+S:Mode$ Continuous | Affected$ Creature.EnchantedBy+Other | AddPower$ 1 | AddToughness$ 1 | AddKeyword$ Flying | Description$ Enchanted creature gets +1/+1 and has flying.
+Oracle:Bestow {3}{B}{R}\nFlying\nWhenever CARDNAME or enchanted creature deals combat damage to a player, exile the top card of that player's library. Until the end of your next turn, you may play that card, and you may spend mana as though it were mana of any type to cast it.\nEnchanted creature gets +1/+1 and has flying.

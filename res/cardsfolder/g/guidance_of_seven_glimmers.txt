@@ -1,0 +1,6 @@
+Name:Guidance of Seven Glimmers
+ManaCost:1 WU U
+Types:Sorcery
+A:SP$ TimeTravel | Amount$ X | Cost$ 1 WU U ExileFromHand<1/Card.MultiColor/multicolored card> | CostDesc$ As an additional cost to cast this spell, exile a multicolored card from your hand. | SpellDescription$ For each color the exiled card is, time travel once.
+SVar:X:Count$ValidExile Card.ExiledWithSource$Colors
+Oracle:As an additional cost to cast this spell, exile a multicolored card from your hand.\nFor each color the exiled card is, time travel once.

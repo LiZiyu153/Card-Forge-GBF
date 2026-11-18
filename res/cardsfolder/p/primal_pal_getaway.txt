@@ -1,0 +1,19 @@
+Name:Primal Pal Getaway
+ManaCost:U R G
+Types:Kindred Enchantment Primal
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigPutLand | TriggerDescription$ When CARDNAME enters, you may put a land card from your hand onto the battlefield tapped. If you do, look at the top five cards of your library. You may reveal a Primal card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.
+SVar:TrigPutLand:DB$ ChangeZone | Origin$ Hand | Destination$ Battlefield | Tapped$ True | Optional$ You | ChangeType$ Land | ChangeNum$ 1 | RememberChanged$ True | SubAbility$ DBBranch
+SVar:DBBranch:DB$ Branch | BranchConditionSVar$ LandsPut | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBDig | FalseSubAbility$ DBCleanup
+SVar:DBDig:DB$ Dig | DigNum$ 5 | ChangeNum$ 1 | Optional$ True | ForceRevealToController$ True | ChangeValid$ Card.Primal | RestRandomOrder$ True | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:LandsPut:Count$ValidBattlefield Card.IsRemembered
+K:Specialty:Card.Primal:2:AddStaticAbility$ SPrimalHaste
+SVar:SPrimalHaste:Mode$ Continuous | Affected$ Creature.Primal+YouCtrl | AddKeyword$ Haste | Secondary$ True | Description$ Primal creatures you control have haste.
+K:Specialty:Card.Primal:3:AddStaticAbility$ SPrimalPump
+SVar:SPrimalPump:Mode$ Continuous | Affected$ Creature.Primal+YouCtrl | AddPower$ 1 | AddToughness$ 1 | Secondary$ True | Description$ Primal creatures you control get +1/+1.
+K:Specialty:Card.Primal:5:AddAbility$ ABSacDraw
+SVar:ABSacDraw:AB$ Draw | Cost$ Sac<1/CARDNAME/this enchantment> | NumCards$ PrimalCount | SubAbility$ DBChooseLands | SpellDescription$ Draw a card for each Primal creature you control. Then choose that many lands you control and put those cards on the bottom of your library.
+SVar:DBChooseLands:DB$ ChooseCard | Choices$ Land.YouCtrl | ChoiceZone$ Battlefield | Amount$ PrimalCount | MinAmount$ 0 | Mandatory$ True | ChoiceDesc$ land | SubAbility$ DBBottomLands
+SVar:DBBottomLands:DB$ ChangeZone | Defined$ ChosenCard | Origin$ Battlefield | Destination$ Library | LibraryPosition$ -1 | StackDescription$ Put those cards on the bottom of your library.
+SVar:PrimalCount:Count$Valid Card.Primal+YouCtrl
+Oracle:When CARDNAME enters, you may put a land card from your hand onto the battlefield tapped. If you do, look at the top five cards of your library. You may reveal a Primal card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nPrimal Specialty 2 (As long as you control two or more Primal permanents, this card has the following ability.): Primal creatures you control have haste.\nPrimal Specialty 3: Primal creatures you control get +1/+1.\nPrimal Specialty 5, Sacrifice this enchantment: Draw a card for each Primal permanent you control. Then choose that many lands you control and put those cards on the bottom of your library.

@@ -1,0 +1,9 @@
+Name:Vaseraga, Resolute Light-Seeking Scythe
+ManaCost:G G G
+Types:Legendary Artifact Creature Draph Robot Berserker
+PT:5/1
+K:etbCounter:Shield:1:no Condition:CARDNAME enters the battlefield with a shield counter on it.
+T:Mode$ Attacks | ValidCard$ Card.Self | Execute$ TrigShieldCounter | TriggerZones$ Battlefield | TriggerDescription$ Whenever CARDNAME attacks, put a shield counter on it.
+SVar:TrigShieldCounter:DB$ PutCounter | Defined$ Self | CounterType$ Shield | CounterNum$ 1
+DeckHas:Ability$Counters
+Oracle:Vaseraga, Resolute Light-Seeking Scythe enters the battlefield with a shield counter on it. (If it would be dealt damage or be destroyed, remove a shield counter from it instead.)\nWhenever Vaseraga, Resolute Light-Seeking Scythe attacks, put a shield counter on it.

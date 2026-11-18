@@ -1,0 +1,13 @@
+Name:Luminiera Sword Omega
+ManaCost:1 W
+Types:Artifact Equipment Sabre
+K:Equip:2
+T:Mode$ Attacks | ValidCard$ Creature.EquippedBy | TriggerZones$ Battlefield | Execute$ TrigToken | TriggerDescription$ Whenever equipped creature attacks, create two tapped and attacking 1/1 colorless Construct artifact creature tokens named Star Crystal Drifter, then roll a d20. If you roll a 20, destroy target artifact or enchantment you don't control.
+SVar:TrigToken:DB$ Token | TokenAmount$ 2 | TokenScript$ c_1_1_a_construct_floating | TokenTapped$ True | TokenAttacking$ True | TokenOwner$ You | RememberTokens$ True | SubAbility$ TrigRoll
+SVar:TrigRoll:DB$ RollDice | Sides$ 20 | ResultSubAbilities$ 20:DBImmediateTrig
+SVar:DBImmediateTrig:DB$ ImmediateTrigger | Execute$ DBDestroy | TriggerDescription$ If you roll a 20, destroy target artifact or enchantment you don't control.
+SVar:DBDestroy:DB$ Destroy | ValidTgts$ Artifact.OppCtrl,Enchantment.OppCtrl | TgtPrompt$ Select target artifact or enchantment you don't control
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigSacTokens | TriggerDescription$ At the beginning of your end step, sacrifice the tokens created with CARDNAME.
+SVar:TrigSacTokens:DB$ SacrificeAll | ValidCards$ Creature.IsRemembered
+DeckHas:Ability$Token
+Oracle:Whenever equipped creature attacks, create two tapped and attacking 1/1 colorless Construct artifact creature tokens named Star Crystal Drifter, then roll a d20. If you roll a 20, destroy target artifact or enchantment you don't control.\nAt the beginning of your end step, sacrifice the tokens created with Luminiera Sword Omega.\nEquip {2}

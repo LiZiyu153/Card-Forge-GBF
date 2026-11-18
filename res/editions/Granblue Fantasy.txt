@@ -275,7 +275,130 @@ BoosterBox=36
 265 M Eahta, Blade God
 266 M Niyon, Mystic Musician
 267 M Tien, Treacherous Trigger
-268 U Celestial Guidance
+268 C Celestial Guidance
+269 U Abies Lucens
+270 R Amaterasu, Sun in the Dawn
+271 U Amelia, Captain of Aelvoth's Knights
+272 U Ami, Cardinal Saint of Qing Emperor
+273 C Ancient Artemis
+274 C Ancient Auberon
+275 C Ancient Nalakuvara
+276 U Ancient Perseus
+277 U Baal, Starlight Gig
+278 U Beach Mummy
+279 C Bearer of a Strange Form
+280 U Beautiful Ninja from the Far East
+281 C Beautiful Seeker
+282 C Bird of Paradise
+283 C Captain of Radlith
+284 C Chaos Typhoon
+285 U Chichiri, Cardinal Saint of Zhu Emperor
+286 R Cupitan, Iridescent Pure Heart
+287 C Cutest Golden Statue in the Skies
+288 C Dancing Lights in Valentine's Day
+289 R Danua, Destiny-Controlling Puppeteer
+290 U Devilish Priest
+291 C Diligent Shooter
+292 R Draining Treat
+293 M Echidna, Mother of All
+294 C Erste Kingdom's Prime Minister
+295 C Fanciful Flutter
+296 M Fenie, Fragment of the Phoenix
+297 U Flock to the Future
+298 U Forte, Sky Supremacy
+299 R Gabriel, Primarch of Water
+300 C Gambler in His Best Suit
+301 U Ghostly Summer Bash
+302 U Girlboss Gal ☆
+303 C Godspear Gungnir
+304 C Godsworn Edge
+305 U Guidance of Seven Glimmers
+306 M Halluel and Malluel, Twins of Instruction
+307 R Here's To You
+308 U Honorary Vow
+309 C Impulsive Amaranth
+310 C In Like a Capon
+311 U In the Garden of Happiness
+312 M Kaguya, Exquisite Moon Princess
+313 U King of the Eve
+314 C King of the Night
+315 U Kitty-Cat Lightning
+316 C Last Storm Harp
+317 U Let Me Pay!
+318 C Lord's Strike
+319 U Luminiera Sword Omega
+320 U Magisches Geschenk
+321 R Mars, Scorching Hot Flamelit General
+322 M Medusa, Protective Serpent Eyes
+323 R Michael, Primarch of Fire
+324 U Midsummer Wave
+325 M Mikaboshi, Maternal Beast
+326 U Mirror-Blade Radiance
+327 C Moonlight on Glistening White
+328 U My Own Fashion
+329 C Naive Tubist
+330 U Nezha, Desiring Warrior God
+331 C Nibelung Horn
+332 U Nilakantha
+333 C Olden Cortana
+334 M Olivia, Dark Angel
+335 C Ox in Dreamland
+336 U Pathfinder of Blue Thunderpeal
+337 U Pesci by the Sea
+338 C Phantom of Fighting Spirit
+339 C Pillar Weapon of Flame
+340 U Poolside Command
+341 R Primal Pal Getaway
+342 C Radiant Order
+343 C Ramen Love
+344 R Raphael, Primarch of Wind
+345 U Rat's All, Folks!
+346 R Relaxing White Wings
+347 C Remedius Nodus
+348 C Rose Queen
+349 U Sakura before the Grave
+350 U Samurai Beauty
+351 M Sandalphon, Twelve Majestic Wings
+352 U Sara, Priestess of the Dawn
+353 C Scimitar of Brahman
+354 R Selene Kanonas
+355 U Shukra, Divine Cat
+356 U Shushuku, Cardinal Saint of Bai Emperor
+357 M Siegfried, Loyal Knight of Daybreak
+358 C Sirius Nova: Last Dive
+359 C Spirit of Mana
+360 U Spring of Stars
+361 U Stalwart Slayer of Sea Creatures
+362 C Stan and Aliza
+363 C Steel Diva
+364 C Summon Aquamarine Carbuncle
+365 C Summon Garnet Carbuncle
+366 C Summon Onyx Carbuncle
+367 C Summon Opal Carbuncle
+368 C Summon Peridot Carbuncle
+369 C Summon Zircon Carbuncle
+370 R Sylph, Love-Seeking Butterfly Wings
+371 M Sylvia, Archangel of Retribution
+372 U Terra Misericordia
+373 C The Witch and the Reaper
+374 U Tikoh, Magic Surgeon
+375 C Trident of Poseidon
+376 R Tsukuyomi, Moon in the Dusk
+377 R Uriel, Primarch of Earth
+378 U Uruki, Cardinal Saint of Xuan Emperor
+379 R Vane, Indomitable Guardian Knight
+380 R Vaseraga, Resolute Light-Seeking Scythe
+381 U Veight, Noble Blood
+382 C Warrior Wielding a Magic Sword
+383 R Water Monkey Splash
+384 U Winter Winds, Rimy Conquest
+385 M Yatima, Pure Heart of Highest Density
+386 C Zechariah
+387 M Zooey, Grand Arbitrator
+388 C In Like a Capon
+389 U In the Garden of Happiness
+390 C Ox in Dreamland
+391 U Terra Misericordia
 
 [tokens]
 #1 b_1_1_bird_flying 表示它是一张黑色 1/1 的飞行鸟
@@ -299,3 +422,11 @@ BoosterBox=36
 18 b_2_2_primal_zombie
 19 ub_2_1_erune_diesmill
 20 rw_3_3_erune_vigilance
+21 b_3_3_demon_flying
+22 b_1_1_bat
+23 c_2_2_a_construct_flying
+24 rw_2_2_knight_vigilance
+25 c_1_1_a_construct_floating
+26 r_artifact_equipment_primal_sword
+27 g_1_1_erune_monkey
+28 u_3_3_snow_reach_trample

@@ -1,0 +1,10 @@
+Name:Ramen Love
+ManaCost:1
+Types:Sorcery
+K:Tiered
+A:SP$ Charm | Choices$ DBTierFishCake,DBTierChashuEgg,DBTierChashuOnions
+SVar:DBTierFishCake:DB$ Token | TokenAmount$ 1 | TokenScript$ c_a_food_sac | TokenOwner$ You | PrecostDesc$ Supple Fish Cake | ModeCost$ 0 | SpellDescription$ Create a Food token.
+SVar:DBTierChashuEgg:DB$ Token | TokenAmount$ 3 | TokenScript$ c_a_food_sac | TokenOwner$ You | PrecostDesc$ Chashu, Soft-Boiled Egg | ModeCost$ 3 | SpellDescription$ Create three Food tokens.
+SVar:DBTierChashuOnions:DB$ Token | TokenAmount$ 5 | TokenScript$ c_a_food_sac | TokenOwner$ You | PrecostDesc$ Chashu, Extra Onions | ModeCost$ 6 | SubAbility$ DBPutCounters | SpellDescription$ Create five Food tokens, then put a +1/+1 counter on each creature you control.
+SVar:DBPutCounters:DB$ PutCounterAll | ValidCards$ Creature.YouCtrl | CounterType$ P1P1 | CounterNum$ 1 | StackDescription$ Put a +1/+1 counter on each creature you control.
+Oracle:Tiered (Choose one additional cost.)\n• Supple Fish Cake — {0} — Create a Food token.\n• Chashu, Soft-Boiled Egg — {3} — Create three Food tokens.\n• Chashu, Extra Onions — {6} — Create five Food tokens, then put a +1/+1 counter on each creature you control.

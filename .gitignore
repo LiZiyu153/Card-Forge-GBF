@@ -94,3 +94,5 @@ res/languages/*
 # DSH project-level skill: card-scripting workflow / template lookup / single-card preflight.
 # Excluded so the skill never pollutes the release history.
 /.dsh/
+# DSH knowledge base (local agent notes; not part of the game).
+/.dsh-knowledge/

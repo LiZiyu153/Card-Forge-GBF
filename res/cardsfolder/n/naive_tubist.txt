@@ -1,0 +1,9 @@
+Name:Naive Tubist
+ManaCost:1 G
+Types:Creature Harvin
+PT:1/2
+K:Backup:1:BackupAbilities
+SVar:BackupAbilities:DB$ Pump | KW$ Reach
+K:Reach
+DeckHas:Ability$Counters
+Oracle:Backup 1 (When this creature enters, put a +1/+1 counter on target creature. If that's another creature, it gains the following ability until end of turn.)\nReach

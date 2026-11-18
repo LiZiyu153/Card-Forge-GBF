@@ -1,0 +1,5 @@
+Name:Summon Garnet Carbuncle
+ManaCost:R
+Types:Kindred Instant Primal
+A:SP$ Pump | ValidTgts$ Creature | TgtPrompt$ Select target creature | KW$ Protection:Card.Red:red:Aura.ControlledBy You,Equipment.ControlledBy You:SBA | SpellDescription$ Target creature gains protection from red until end of turn. This effect doesn't remove Auras and Equipment you control that are attached to it.
+Oracle:Target creature gains protection from red until end of turn. This effect doesn't remove Auras and Equipment you control that are attached to it.

@@ -1,0 +1,29 @@
+Name:Zooey, Grand Arbitrator
+ManaCost:W U B R G
+Types:Legendary Creature Primal
+PT:5/5
+K:Flying
+K:First Strike
+K:Vigilance
+K:Trample
+K:Lifelink
+S:Mode$ Continuous | Affected$ Card.nonLand+YouOwn | MayPlay$ True | MayPlayWithoutManaCost$ True | AffectedZone$ Hand | CheckSVar$ DevotionAllEqual | SVarCompare$ GE1 | Description$ As long as your devotion to white, blue, black, red, and green are all equal and each of them is at least 5, you may cast spells from your hand without paying their mana costs.
+SVar:DevotionW:Count$Devotion.White
+SVar:DevotionU:Count$Devotion.Blue
+SVar:DevotionB:Count$Devotion.Black
+SVar:DevotionR:Count$Devotion.Red
+SVar:DevotionG:Count$Devotion.Green
+SVar:DiffWU:Count$SVar$DevotionW/Minus.SVar$DevotionU
+SVar:DiffWB:Count$SVar$DevotionW/Minus.SVar$DevotionB
+SVar:DiffWR:Count$SVar$DevotionW/Minus.SVar$DevotionR
+SVar:DiffWG:Count$SVar$DevotionW/Minus.SVar$DevotionG
+SVar:WhiteAtLeastFive:Count$Compare DevotionW GE5.1.0
+SVar:BlueMatches:Count$Compare DiffWU EQ0.1.0
+SVar:BlackMatches:Count$Compare DiffWB EQ0.1.0
+SVar:RedMatches:Count$Compare DiffWR EQ0.1.0
+SVar:GreenMatches:Count$Compare DiffWG EQ0.1.0
+SVar:EqualBlueBlack:Count$SVar$BlueMatches/Times.SVar$BlackMatches
+SVar:EqualBlueRed:Count$SVar$EqualBlueBlack/Times.SVar$RedMatches
+SVar:EqualBlueGreen:Count$SVar$EqualBlueRed/Times.SVar$GreenMatches
+SVar:DevotionAllEqual:Count$SVar$EqualBlueGreen/Times.SVar$WhiteAtLeastFive
+Oracle:Flying, first strike, vigilance, trample, lifelink\nAs long as your devotion to white, blue, black, red, and green are all equal and each of them is at least 5, you may cast spells from your hand without paying their mana costs.

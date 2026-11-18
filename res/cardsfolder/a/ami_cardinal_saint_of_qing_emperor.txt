@@ -1,0 +1,8 @@
+Name:Ami, Cardinal Saint of Qing Emperor
+ManaCost:3 G
+Types:Legendary Creature Erune
+PT:2/3
+K:Disguise:2 G
+T:Mode$ TurnFaceUp | ValidCard$ Permanent.YouCtrl | TriggerZones$ Battlefield | Execute$ TrigDestroy | TriggerDescription$ Whenever CARDNAME or another permanent you control is turned face up, destroy target artifact, enchantment, or land.
+SVar:TrigDestroy:DB$ Destroy | ValidTgts$ Artifact,Enchantment,Land | TgtPrompt$ Select target artifact, enchantment, or land
+Oracle:Disguise {2}{G} (You may cast this card face down for {3} as a 2/2 creature with ward {2}. Turn it face up any time for its disguise cost.)\nWhenever Ami, Cardinal Saint of Qing Emperor or another permanent you control is turned face up, destroy target artifact, enchantment, or land.

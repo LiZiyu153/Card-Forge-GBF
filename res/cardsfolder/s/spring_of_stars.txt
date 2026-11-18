@@ -1,0 +1,11 @@
+Name:Spring of Stars
+ManaCost:1 U U
+Types:Enchantment
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigExile | TriggerDescription$ When CARDNAME enters, you may exile any number of cards from your hand. If you do, draw that many cards.
+SVar:TrigExile:DB$ ChangeZone | Origin$ Hand | Destination$ Exile | ChangeType$ Card | ChangeNum$ HandSize | RememberChanged$ True | SubAbility$ DBDraw
+SVar:HandSize:Count$ValidHand Card.YouOwn
+SVar:DBDraw:DB$ Draw | NumCards$ ExiledCount
+SVar:ExiledCount:Remembered$Amount
+S:Mode$ Continuous | Affected$ Card.ExiledWithSource+nonLand | AffectedZone$ Exile | EffectZone$ Battlefield | MayPlay$ True | CheckSVar$ HandCount | SVarCompare$ EQ0 | Description$ As long as you have no cards in hand, you may cast cards exiled with CARDNAME.
+SVar:HandCount:Count$ValidHand Card.YouOwn
+Oracle:When Spring of Stars enters, you may exile any number of cards from your hand. If you do, draw that many cards.\nAs long as you have no cards in hand, you may cast cards exiled with Spring of Stars.

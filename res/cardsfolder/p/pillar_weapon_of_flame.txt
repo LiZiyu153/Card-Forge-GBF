@@ -1,0 +1,7 @@
+Name:Pillar Weapon of Flame
+ManaCost:1 R
+Types:Artifact Spear
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigDraw | TriggerDescription$ When CARDNAME enters, draw a card.
+SVar:TrigDraw:DB$ Draw | Defined$ You | NumCards$ 1
+A:AB$ Pump | Cost$ R T | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | NumAtt$ +1 | SpellDescription$ Target creature you control gets +1/+0 until end of turn.
+Oracle:When CARDNAME enters, draw a card.\n{R}, {T}: Target creature you control gets +1/+0 until end of turn.

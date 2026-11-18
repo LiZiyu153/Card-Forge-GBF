@@ -1,0 +1,5 @@
+Name:Lord's Strike
+ManaCost:3 W
+Types:Sorcery
+A:SP$ Token | TokenAmount$ 2 | TokenScript$ rw_2_2_knight_vigilance | TokenOwner$ You | SpellDescription$ Create two 2/2 red and white Knight creature tokens with vigilance.
+Oracle:Create two 2/2 red and white Knight creature tokens with vigilance.

@@ -1,0 +1,11 @@
+Name:Last Storm Harp
+ManaCost:1 G G
+Types:Artifact Equipment Harp
+K:Flash
+K:Equip:2
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigAttach | TriggerDescription$ When CARDNAME enters, attach it to target creature you control.
+SVar:TrigAttach:DB$ Attach | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddKeyword$ Reach | Description$ Equipped creature has reach.
+T:Mode$ AttackerBlockedByCreature | ValidCard$ Creature.withFlying | ValidBlocker$ Creature.AttachedBy | TriggerZones$ Battlefield | Execute$ TrigShoot | TriggerDescription$ Whenever equipped creature blocks a creature with flying, the equipped creature deals 3 damage to that creature.
+SVar:TrigShoot:DB$ DealDamage | Defined$ TriggeredAttacker | NumDmg$ 3 | DamageSource$ TriggeredBlocker
+Oracle:Flash\nWhen Last Storm Harp enters, attach it to target creature you control.\nEquipped creature has reach.\nWhenever equipped creature blocks a creature with flying, the equipped creature deals 3 damage to that creature.\nEquip {2}

@@ -1,0 +1,8 @@
+Name:Ancient Nalakuvara
+ManaCost:3
+Types:Artifact Equipment Spear
+K:Equip:4
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddPower$ 2 | AddToughness$ 2 | AddKeyword$ Vigilance | Description$ Equipped creature gets +2/+2 and has vigilance.
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigAttach | OptionalDecider$ You | TriggerDescription$ When CARDNAME enters the battlefield, you may attach it to target Primal you control.
+SVar:TrigAttach:DB$ Attach | ValidTgts$ Creature.Primal+YouCtrl | TgtPrompt$ Select target Primal you control
+Oracle:When Ancient Nalakuvara enters the battlefield, you may attach it to target Primal you control.\nEquipped creature gets +2/+2 and has vigilance.\nEquip {4}

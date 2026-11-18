@@ -1,0 +1,5 @@
+Name:Summon Zircon Carbuncle
+ManaCost:W G
+Types:Kindred Instant Primal
+A:SP$ Pump | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control | KW$ Hexproof | SpellDescription$ Target creature you control gains hexproof until end of turn.
+Oracle:Target creature you control gains hexproof until end of turn.

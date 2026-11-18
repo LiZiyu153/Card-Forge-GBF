@@ -1,0 +1,9 @@
+Name:Olden Cortana
+ManaCost:1 B
+Types:Artifact Equipment Dagger
+K:Equip:2
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddPower$ 2 | Description$ Equipped creature gets +2/+0.
+T:Mode$ Attacks | ValidCard$ Creature.EquippedBy | TriggerZones$ Battlefield | Execute$ TrigDrain | TriggerDescription$ Whenever equipped creature attacks, you gain 1 life and each opponent loses 1 life.
+SVar:TrigDrain:DB$ GainLife | LifeAmount$ 1 | SubAbility$ DBLose
+SVar:DBLose:DB$ LoseLife | Defined$ Player.Opponent | LifeAmount$ 1
+Oracle:Equipped creature gets +2/+0.\nWhenever equipped creature attacks, you gain 1 life and each opponent loses 1 life.\nEquip {2}

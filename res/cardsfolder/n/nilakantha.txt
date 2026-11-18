@@ -1,0 +1,10 @@
+Name:Nilakantha
+ManaCost:2 R
+Types:Artifact Equipment Staff
+K:Equip:4 R
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ TrigAttach | TriggerDescription$ When CARDNAME enters, attach it to target creature you control.
+SVar:TrigAttach:DB$ Attach | ValidTgts$ Creature.YouCtrl | TgtPrompt$ Select target creature you control
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddPower$ 1 | AddToughness$ 1 | Description$ Equipped creature gets +1/+1.
+T:Mode$ Attached | ValidSource$ Card.Self | ValidTarget$ Creature | TriggerZones$ Battlefield | Execute$ TrigBurn | TriggerDescription$ Whenever CARDNAME becomes attached to a creature, it deals 1 damage to each creature.
+SVar:TrigBurn:DB$ DamageAll | NumDmg$ 1 | ValidCards$ Creature | ValidDescription$ each creature
+Oracle:When Nilakantha enters, attach it to target creature you control.\nEquipped creature gets +1/+1.\nWhenever Nilakantha becomes attached to a creature, it deals 1 damage to each creature.\nEquip {4}{R}

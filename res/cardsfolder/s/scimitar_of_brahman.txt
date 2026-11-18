@@ -1,0 +1,8 @@
+Name:Scimitar of Brahman
+ManaCost:R
+Rarity:C
+Types:Artifact Equipment Sabre
+K:Equip:1
+S:Mode$ Continuous | Affected$ Creature.EquippedBy | AddKeyword$ First Strike | Description$ Equipped creature has first strike.
+A:AB$ Surveil | Cost$ Sac<1/CARDNAME> | Amount$ 1 | SpellDescription$ Sacrifice CARDNAME: Surveil 1.
+Oracle:Equipped creature has first strike.\nSacrifice Scimitar of Brahman: Surveil 1. (Look at the top card of your library. You may put that card into your graveyard.)\nEquip {1}

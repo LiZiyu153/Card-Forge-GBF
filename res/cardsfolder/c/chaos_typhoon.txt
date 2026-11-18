@@ -1,0 +1,8 @@
+Name:Chaos Typhoon
+ManaCost:X B
+Types:Kindred Instant Primal
+A:SP$ Charm | Choices$ DBPumpOne,DBPumpMany | SpellDescription$ Choose one —\n• Target creature gets -X/-X until end of turn.\n• Up to X target creatures get -1/-1 until end of turn.
+SVar:DBPumpOne:DB$ Pump | ValidTgts$ Creature | TgtPrompt$ Select target creature | NumAtt$ -X | NumDef$ -X | IsCurse$ True | SpellDescription$ Target creature gets -X/-X until end of turn.
+SVar:DBPumpMany:DB$ Pump | ValidTgts$ Creature | TargetMin$ 0 | TargetMax$ X | TgtPrompt$ Select up to X target creatures | NumAtt$ -1 | NumDef$ -1 | IsCurse$ True | SpellDescription$ Up to X target creatures get -1/-1 until end of turn.
+SVar:X:Count$xPaid
+Oracle:Choose one —\n• Target creature gets -X/-X until end of turn.\n• Up to X target creatures get -1/-1 until end of turn.

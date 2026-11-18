@@ -1,0 +1,8 @@
+Name:Beautiful Seeker
+ManaCost:4 W
+Types:Creature Erune
+PT:2/3
+K:Lifelink
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigPutCounter | TriggerDescription$ When CARDNAME enters, put two +1/+1 counters on another target creature you control.
+SVar:TrigPutCounter:DB$ PutCounter | ValidTgts$ Creature.Other+YouCtrl | TgtPrompt$ Select another target creature you control | CounterType$ P1P1 | CounterNum$ 2 | SpellDescription$ Put two +1/+1 counters on another target creature you control.
+Oracle:Lifelink\nWhen Beautiful Seeker enters, put two +1/+1 counters on another target creature you control.

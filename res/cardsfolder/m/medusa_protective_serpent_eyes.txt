@@ -1,0 +1,14 @@
+Name:Medusa, Protective Serpent Eyes
+ManaCost:2U 2U U B
+Types:Legendary Creature Primal
+PT:*/*+2
+K:Deathtouch
+S:Mode$ Continuous | Affected$ Card.Self | CharacteristicDefining$ True | SetPower$ P | SetToughness$ T | Description$ CARDNAME's power is equal to the number of Primal cards you control, and its toughness is equal to that number plus 2.
+SVar:P:Count$Valid Creature.Primal+YouCtrl
+SVar:T:SVar$P/Plus.2
+T:Mode$ SpellCast | ValidCard$ Card | ValidActivatingPlayer$ Player.Opponent | ActivatorThisTurnCast$ GE2 | TriggerZones$ Battlefield | Execute$ TrigChoose | TriggerDescription$ Whenever an opponent casts a spell other than the first spell they cast each turn, you choose a nonartifact, nonland permanent that player controls. That permanent becomes a colorless land with "{T}: Add {C}" and loses all other card types and abilities.
+SVar:TrigChoose:DB$ ChooseCard | Defined$ You | Choices$ Permanent.nonArtifact+nonLand+ControlledBy TriggeredCardController | ChoiceAmount$ 1 | Mandatory$ True | ChoiceTitle$ Choose a nonartifact, nonland permanent that player controls | RememberChosen$ True | SubAbility$ DBAnimate
+SVar:DBAnimate:DB$ Animate | Defined$ Remembered | Types$ Land | RemoveCardTypes$ True | RemoveAllAbilities$ True | Colors$ Colorless | OverwriteColors$ True | Abilities$ ABMana | Duration$ Permanent | SubAbility$ DBCleanup
+SVar:ABMana:AB$ Mana | Cost$ T | Produced$ C | SpellDescription$ Add {C}.
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Deathtouch\nMedusa, Protective Serpent Eyes's power is equal to the number of Primal cards you control, and its toughness is equal to that number plus 2.\nWhenever an opponent casts a spell other than the first spell they cast each turn, you choose a nonartifact, nonland permanent that player controls. That permanent becomes a colorless land with "{T}: Add {C}" and loses all other card types and abilities.

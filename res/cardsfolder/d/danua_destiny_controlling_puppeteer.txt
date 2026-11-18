@@ -1,0 +1,10 @@
+Name:Danua, Destiny-Controlling Puppeteer
+ManaCost:1 B B R
+Types:Legendary Creature Draph Warlock
+PT:2/4
+K:Double Strike
+S:Mode$ MinMaxBlocker | ValidCard$ Creature.Self | Min$ 3 | Description$ CARDNAME can't be blocked except by three or more creatures.
+T:Mode$ SpellCast | ValidActivatingPlayer$ You | TargetsValid$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigDrain | TriggerDescription$ Whenever you cast a spell that targets CARDNAME, you gain 2 life and each opponent loses 2 life.
+SVar:TrigDrain:DB$ GainLife | Defined$ You | LifeAmount$ 2 | SubAbility$ DBLoseLife
+SVar:DBLoseLife:DB$ LoseLife | Defined$ Player.Opponent | LifeAmount$ 2
+Oracle:Double strike\nDanua, Destiny-Controlling Puppeteer can't be blocked except by three or more creatures.\nWhenever you cast a spell that targets Danua, Destiny-Controlling Puppeteer, you gain 2 life and each opponent loses 2 life.

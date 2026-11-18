@@ -30,6 +30,7 @@ import forge.game.player.PlayerPredicates;
 import forge.game.spellability.*;
 import forge.game.trigger.Trigger;
 import forge.game.trigger.TriggerType;
+import forge.game.trigger.WrappedAbility;
 import forge.game.zone.CostPaymentStack;
 import forge.game.zone.ZoneType;
 import forge.util.*;
@@ -1426,8 +1427,17 @@ public class AbilityUtils {
         final boolean paid = payer.getController().payCostToPreventEffect(cost, sa, false, new FCollection<>(payer));
 
         if (paid) {
-            sa.resolve();
-            resolveSubAbilities(sa, game);
+            if (sa.isWrapper()) {
+                // R57 (P-05 fix): do NOT sa.resolve() here. For a triggered PayCost the SA is a
+                // WrappedAbility; resolving it goes WrappedAbility.resolve -> playSpellAbilityNoStack
+                // -> the wrapped PayCost node again -> the cost is charged twice. But we cannot
+                // simply skip it either: resolveSubAbilities(wrapper) returns early for wrappers,
+                // so the SubAbility chain would never run. Continue the chain from the wrapped SA.
+                resolveSubAbilities(((WrappedAbility) sa).getWrappedAbility(), game);
+            } else {
+                sa.resolve();
+                resolveSubAbilities(sa, game);
+            }
         } else if (sa.hasParam("UnpaidSubAbility")) {
             SpellAbility unpaid = sa.getAdditionalAbility("UnpaidSubAbility");
             if (unpaid != null) {

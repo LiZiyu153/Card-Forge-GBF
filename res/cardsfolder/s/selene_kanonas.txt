@@ -1,0 +1,18 @@
+Name:Selene Kanonas
+ManaCost:2 B G
+Rarity:R
+Types:Enchantment
+K:Ascend
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigUpkeep | TriggerDescription$ At the beginning of your upkeep, reveal the top card of your library. If you have the city's blessing, reveal two cards instead. You may put a land card from among them onto the battlefield. If you have the city's blessing, you may put a land or creature card from among them onto the battlefield instead. Then put the rest into your graveyard. If you put a creature card onto the battlefield this way, you gain X life and each opponent loses X life, where X is that card's mana value, then end the turn.
+SVar:TrigUpkeep:DB$ Branch | BranchConditionSVar$ HasBlessing | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DigBlessed | FalseSubAbility$ DigNormal
+SVar:DigNormal:DB$ Dig | DigNum$ 1 | Reveal$ True | ChangeNum$ 1 | ChangeValid$ Land | DestinationZone$ Battlefield | DestinationZone2$ Graveyard | Optional$ True | RememberChanged$ True | SubAbility$ DBDrain
+SVar:DigBlessed:DB$ Dig | DigNum$ 2 | Reveal$ True | ChangeNum$ 1 | ChangeValid$ Land,Creature | DestinationZone$ Battlefield | DestinationZone2$ Graveyard | Optional$ True | RememberChanged$ True | SubAbility$ DBDrain
+SVar:DBDrain:DB$ Branch | BranchConditionSVar$ PutCreature | BranchConditionSVarCompare$ GE1 | TrueSubAbility$ DBGain | FalseSubAbility$ DBCleanup
+SVar:PutCreature:Count$ValidBattlefield Creature.IsRemembered
+SVar:DBGain:DB$ GainLife | Defined$ You | LifeAmount$ X | SubAbility$ DBLose
+SVar:DBLose:DB$ LoseLife | Defined$ Player.Opponent | LifeAmount$ X | SubAbility$ DBEndTurn
+SVar:DBEndTurn:DB$ EndTurn
+SVar:X:Count$ValidAll Card.IsRemembered$GreatestCardManaCost
+SVar:HasBlessing:Count$Blessing.1.0
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+Oracle:Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.)\nAt the beginning of your upkeep, reveal the top card of your library. If you have the city's blessing, reveal two cards instead. You may put a land card from among them onto the battlefield. If you have the city's blessing, you may put a land or creature card from among them onto the battlefield instead. Then put the rest into your graveyard. If you put a creature card onto the battlefield this way, you gain X life and each opponent loses X life, where X is that card's mana value, then end the turn.

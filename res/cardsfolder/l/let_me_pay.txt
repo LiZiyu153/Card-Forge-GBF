@@ -1,0 +1,8 @@
+Name:Let Me Pay!
+ManaCost:2 R R
+Types:Enchantment
+S:Mode$ CantBeCast | ValidCard$ Card | Caster$ You | NumLimitEachTurn$ 2 | Description$ You can't cast more than two spells each turn.
+T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigTreasure | TriggerDescription$ Whenever you pay mana to cast an instant or sorcery spell, create a tapped Treasure token for each mana paid.
+SVar:TrigTreasure:DB$ Token | TokenAmount$ ManaPaid | TokenScript$ c_a_treasure_sac | TokenTapped$ True
+SVar:ManaPaid:TriggeredCard$CastTotalManaSpent
+Oracle:You can't cast more than two spells each turn.\nWhenever you pay mana to cast an instant or sorcery spell, create a tapped Treasure token for each mana paid.

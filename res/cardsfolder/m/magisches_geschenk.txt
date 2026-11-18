@@ -1,0 +1,10 @@
+Name:Magisches Geschenk
+ManaCost:G
+Types:Instant
+K:Spree
+A:SP$ Charm | Choices$ DBFood,DBExileUntil | MinCharmNum$ 1 | CharmNum$ 2 | SpellDescription$ Spree (Choose one or more additional costs.)\n+ {1} — Create two Food tokens.\n+ {U/B}{U/B} — Exile cards from the top of your library until you exile a card with mana value greater than X, where X is the number of artifacts you control. Put that card into your hand.
+SVar:DBFood:DB$ Token | ModeCost$ 1 | TokenAmount$ 2 | TokenScript$ c_a_food_sac | TokenOwner$ You | SpellDescription$ Create two Food tokens. (A Food token is an artifact with "{2}, {T}, Sacrifice this token: You gain 3 life.")
+SVar:DBExileUntil:DB$ DigUntil | ModeCost$ U/B U/B | Valid$ Card.cmcGTX | ValidDescription$ card with mana value greater than X | FoundDestination$ Hand | RevealedDestination$ Exile | SpellDescription$ Exile cards from the top of your library until you exile a card with mana value greater than X, where X is the number of artifacts you control. Put that card into your hand.
+SVar:X:Count$Valid Artifact.YouCtrl
+DeckHas:Ability$Token
+Oracle:Spree (Choose one or more additional costs.)\n+ {1} — Create two Food tokens. (A Food token is an artifact with "{2}, {T}, Sacrifice this token: You gain 3 life.")\n+ {U/B}{U/B} — Exile cards from the top of your library until you exile a card with mana value greater than X, where X is the number of artifacts you control. Put that card into your hand.

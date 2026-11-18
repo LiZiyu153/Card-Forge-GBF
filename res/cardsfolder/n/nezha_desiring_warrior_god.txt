@@ -1,0 +1,8 @@
+Name:Nezha, Desiring Warrior God
+ManaCost:7 R G
+Types:Legendary Creature Primal
+PT:11/1
+K:Flying
+K:Double Strike
+K:Trample
+Oracle:Flying, double strike, trample

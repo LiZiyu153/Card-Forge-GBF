@@ -1,0 +1,5 @@
+Name:Summon Opal Carbuncle
+ManaCost:W
+Types:Kindred Instant Primal
+A:SP$ Pump | ValidTgts$ Creature | TgtPrompt$ Select target creature | KW$ Protection:Card.White:white:Aura.ControlledBy You,Equipment.ControlledBy You:SBA | SpellDescription$ Target creature gains protection from white until end of turn. This effect doesn't remove Auras and Equipment you control that are attached to it.
+Oracle:Target creature gains protection from white until end of turn. This effect doesn't remove Auras and Equipment you control that are attached to it.

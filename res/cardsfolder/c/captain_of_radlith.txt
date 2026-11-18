@@ -1,0 +1,7 @@
+Name:Captain of Radlith
+ManaCost:2 R
+Types:Creature Human Knight
+PT:3/2
+T:Mode$ SpellCast | ValidCard$ Instant,Sorcery | ValidActivatingPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigGain | TriggerDescription$ Whenever you cast an instant or sorcery spell, CARDNAME gains double strike until end of turn.
+SVar:TrigGain:DB$ Pump | Defined$ Self | KW$ Double Strike | SpellDescription$ CARDNAME gains double strike until end of turn.
+Oracle:Whenever you cast an instant or sorcery spell, Captain of Radlith gains double strike until end of turn.

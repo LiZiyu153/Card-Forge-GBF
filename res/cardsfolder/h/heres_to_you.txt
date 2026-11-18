@@ -1,0 +1,11 @@
+Name:Here's To You
+ManaCost:X U U
+Types:Sorcery
+A:SP$ Draw | NumCards$ X | SubAbility$ DBUntap | SpellDescription$ Draw X cards and untap up to X lands. If X is greater than 7, you have no maximum hand size for the rest of the game. End the turn.
+SVar:DBUntap:DB$ Untap | ValidTgts$ Land.YouCtrl | TargetMin$ 0 | TargetMax$ X | TgtPrompt$ Select up to X lands to untap | SubAbility$ DBNoMaxHandSize
+SVar:DBNoMaxHandSize:DB$ Effect | StaticAbilities$ STHandSize | Duration$ Permanent | ConditionCheckSVar$ X | ConditionSVarCompare$ GE8 | SubAbility$ DBEndTurn
+SVar:STHandSize:Mode$ Continuous | Affected$ You | SetMaxHandSize$ Unlimited | Description$ You have no maximum hand size for the rest of the game.
+SVar:DBEndTurn:DB$ EndTurn
+SVar:X:Count$xPaid
+AI:RemoveDeck:All
+Oracle:Draw X cards and untap up to X lands. If X is greater than 7, you have no maximum hand size for the rest of the game.\nEnd the turn.

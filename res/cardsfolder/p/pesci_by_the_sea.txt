@@ -1,0 +1,9 @@
+Name:Pesci by the Sea
+ManaCost:X U U
+Types:Instant
+A:SP$ Repeat | MaxRepeat$ Y | RepeatSubAbility$ DBScryDraw | StackDescription$ SpellDescription | SpellDescription$ Converge — For each color of mana spent to cast this spell, repeat the following process: scry X, then draw a card.
+SVar:DBScryDraw:DB$ Scry | ScryNum$ X | SubAbility$ DBDraw
+SVar:DBDraw:DB$ Draw
+SVar:X:Count$xPaid
+SVar:Y:Count$Converge
+Oracle:Converge — For each color of mana spent to cast this spell, repeat the following process: scry X, then draw a card.

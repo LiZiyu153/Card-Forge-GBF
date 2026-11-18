@@ -1,0 +1,9 @@
+Name:Bird of Paradise
+ManaCost:W
+Types:Creature Draph
+PT:1/1
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigChoice | TriggerDescription$ When CARDNAME enters, choose one —\n• Exile up to one target card from a graveyard.\n• Tap target creature.
+SVar:TrigChoice:DB$ Charm | Choices$ DBExile,DBTap | SpellDescription$ When CARDNAME enters, choose one — Exile up to one target card from a graveyard, or tap target creature.
+SVar:DBExile:DB$ ChangeZone | ValidTgts$ Card | TargetMin$ 0 | TargetMax$ 1 | TgtPrompt$ Choose up to one target card in a graveyard | Origin$ Graveyard | Destination$ Exile | SpellDescription$ Exile up to one target card from a graveyard.
+SVar:DBTap:DB$ Tap | ValidTgts$ Creature | TgtPrompt$ Select target creature | SpellDescription$ Tap target creature.
+Oracle:When Bird of Paradise enters, choose one —\n• Exile up to one target card from a graveyard.\n• Tap target creature.
